@@ -1,24 +1,28 @@
 import styled, { css } from 'styled-components';
 
 
-const Button = ({onClick,children,primary,...props}) => {
-//    const handleClick = convertClick(type,onClick);
+const Button = ({onClick,type,children,primary,...props}) => {
+   const handleClick =onClick? onClick:convertClick(type);
     return (
-        <StyledButton onClick={onClick}  >
+        <StyledButton onClick={handleClick}  >
           {children}
         </StyledButton>
     );
 };
 
-// function convertClick (type){
-//     switch (type) {
-//         case "login":
-//            location.href= "/";
-//             break; 
-//         default:
-//             console.log("동작");
-//     }
-// };
+function convertClick (type){
+  
+    switch (type) {
+        case "login":
+         return handleClickLogin;
+            break; 
+        default:
+            console.log("동작");
+    }
+};
+const handleClickLogin =()=>{
+  location.href ="/login";
+};
 
 const StyledButton = styled.button`
   padding: 8px 20px;

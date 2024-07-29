@@ -49,7 +49,16 @@ table {
 
 
 &:root {
-  --main-font-color: #000f22; 
+  --black: #303030; 
+  --white: #FFFFFF; 
+  --main-red: #EC6E6C; 
+  --red-20: #FFB5B1; 
+  --main-mint: #7AE6E1; 
+  --gray: #F8F8F8; 
+  --gray-10: #F5F5F5; 
+  --gray-20: #BDBDBD; 
+
+
   --home-max-width: 1174px;
 
 
@@ -65,7 +74,11 @@ table {
  font-weight: 300;
  font-size: 22px;
 }
-
+.text32 {
+  font-family: "Pretendard Variable", sans-serif;
+ font-weight: bold;
+ font-size: 32px;
+}
 `;
  
 export default GlobalStyles;

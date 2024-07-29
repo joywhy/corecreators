@@ -1,8 +1,8 @@
 
-const Logo = () => {
+const Logo = ({src}) => {
     return (
         <a href="/">
-        <img src="src/assets/logo.svg" alt="coreCreatorsLogo"/>
+        <img src={src} alt="coreCreatorsLogo"/>
     </a>
     );
 };

@@ -4,14 +4,11 @@ import Logo from "../common/Logo.jsx"
 import styled from 'styled-components';
 
 const Header = () => {
-    const handleClick =()=>{
-        location.href ="/login";
-     };
-
+    
     return (
         <StyledHeader>
-          <Logo/>
-          <Button onClick ={()=>handleClick()}  type="login" primary>로그인</Button>
+          <Logo src="src/assets/logo.svg"/>
+          <Button   type="login" primary>로그인</Button>
         </StyledHeader>
     );
 };

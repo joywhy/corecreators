@@ -10,6 +10,7 @@ const Home = () => {
   return (
    <>
    <Header/>
+
    <main>
     <nav>
       <StyledUl>
@@ -17,6 +18,8 @@ const Home = () => {
       </StyledUl>
     </nav>
    </main>
+
+   {/* <Footer/> */}
    </>
   )
 }
