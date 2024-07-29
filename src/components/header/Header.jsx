@@ -26,8 +26,6 @@ align-items: flex-end;
 max-width: var(--home-max-width);
 height:258px;
 padding-bottom : 17px;
-
 `;
 
-// width:1145px;
 export default Header;
