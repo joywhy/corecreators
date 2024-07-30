@@ -1,9 +1,6 @@
-import React,{ useState, useCallback,useEffect }from "react";
-import Button from "../common/Button";
+import { useState, useCallback,useEffect }from "react";
 
 import styled from 'styled-components';
-
-
 
 
   const LoginForm = ()=>{
@@ -54,8 +51,7 @@ import styled from 'styled-components';
       console.log("전송");
       console.log(values);
 
-     // const my = await req('login', {mail: 'admin@corecreators.kr', pw: await password('qwerasdf')});
-     // if(!my.token) console.log('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.') 
+   
      // console.log('성공', my);
      
 
