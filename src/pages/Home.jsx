@@ -49,7 +49,13 @@ max-width: var(--home-max-width);
 display :flex;
 justify-content: space-between;
 margin-top: 189px;
+flex-wrap:wrap;
 
+@media only screen and (max-width: 600px) {
+    & {
+      justify-content: center;
+    }
+  }
 `;
 // card css
 const StyledLi = styled.li`
@@ -57,6 +63,8 @@ display: flex;
 flex-direction: column;
 flex-wrap: wrap;
 width: 300px;
+margin-bottom: 20px;
+
 & >img {
 width: 300px;
 height: 200px;

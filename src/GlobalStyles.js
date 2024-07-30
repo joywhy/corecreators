@@ -48,6 +48,10 @@ table {
 }
  a {color: black; text-decoration: none; outline: none} 
 a:hover, a:active {text-decoration: none; color:black; background-color:none;}
+body{
+  margin: 0;
+  padding: 0;
+}
 
 &:root {
   --black: #303030; 

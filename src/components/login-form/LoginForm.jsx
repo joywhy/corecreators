@@ -84,9 +84,9 @@ const DetailSetting = () =>{
     
  return (
     <StyledDiv className="detailSettings" >
-    <div>
-      <input type="checkbox" id="remeber-me" name="remeber-me" defaultChecked />
-      <label htmlFor="remeber-me">로그인 상태 유지</label>
+    <div className="check_wrap">
+        <input type="checkbox" id="check_btn"/>
+        <label htmlFor="check_btn"><span>로그인 상태 유지</span></label>
     </div>
 
      <a href="/relogin">
@@ -97,11 +97,22 @@ const DetailSetting = () =>{
 }
 
  const StyledForm = styled.form`
- width: 400px;
+ max-width: 400px;
+ width: 100%;
  text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+
+ @media only screen and (max-width: 280px) {
+    & {
+      /* width: 100vw; */
+    }
+  }
 
  & >input:nth-of-type(1) {
    margin-top: 61px;
+  
  }
 
  & >input {
@@ -111,14 +122,29 @@ const DetailSetting = () =>{
  border: 1px solid var(--gray-20);
  font-size: 20px;
 
-    &:focus {outline: 1px solid var(--main-mint);} 
+ @media only screen and (max-width: 400px) {
+    & {
+      width: 80%;
+    }
+  }
+  &:focus {outline: 2px solid var(--main-red);}
+
  }
  
  & div.detailSettings {
-   display:  flex;
+   display: flex;
    justify-content: space-between;
    align-items: center;
    height: 30px;
+   width: 100%;
+
+   @media only screen and (max-width: 400px) {
+    & {
+      width: 80%;
+      font-size: 13px;
+    }
+  }
+
  }
  & span  {
  display: block;
@@ -128,6 +154,13 @@ const DetailSetting = () =>{
  line-height: 20px;
  color: red;
  font-size: 13px;
+ @media only screen and (max-width: 400px) {
+    & {
+      width: 80%;
+      /* border: 1px solid rebeccapurple; */
+    }
+  }
+ 
 }
 
 &  button  {
@@ -139,7 +172,11 @@ const DetailSetting = () =>{
     border: none;
     margin-top: 20px;
     color: var(--white);
-
+    @media only screen and (max-width: 400px) {
+    & {
+      width: 80%;
+    }
+  }
     &:hover {
         background: var(--black);
     }
@@ -148,6 +185,50 @@ const DetailSetting = () =>{
 `;
 
 const StyledDiv = styled.div`
+
+& div {
+   display: flex;
+   flex-wrap: nowrap;
+}
+& span {
+color: black;
+}
+
+& input#check_btn{
+  display:none;
+  }
+
+ & input#check_btn + label{
+  cursor:pointer;
+  display: flex;
+ }
+
+& input#check_btn + label > span{
+  vertical-align: middle;
+  padding-left: 5px;
+ }
+
+/* label:before에 체크하기 전 상태 CSS */
+& input#check_btn + label:before{
+  content:"";
+  display:inline-block;
+  width:16px;
+  height:13px;
+  border:2px solid black;
+  border-radius: 4px;
+  vertical-align:middle;
+  }
+  
+/* label:before에 체크 된 상태 CSS */  
+& input#check_btn:checked + label:before{
+  content:"";
+  background-color:#F47C7C;
+  border-color:#F47C7C;
+  background-image: url('check_btn.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border:2px solid black;
+  }
 
 `;
 
