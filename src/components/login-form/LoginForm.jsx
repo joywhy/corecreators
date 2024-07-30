@@ -1,5 +1,5 @@
 import { useState, useCallback,useEffect }from "react";
-
+import {getUserInfo} from "../../api";
 import styled from 'styled-components';
 
 
@@ -49,12 +49,11 @@ import styled from 'styled-components';
         return
       }
       console.log("전송");
-      console.log(values);
-
-   
-     // console.log('성공', my);
-     
-
+    
+     const userInfo = getUserInfo(values);
+     if(!userInfo.token) console.log('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
+      
+      console.log(userInfo);
     }
  
     const validate = useCallback(() => {

@@ -1,8 +1,11 @@
-export async function getUserInfo() {
+// await req('login', {mail: 'admin@corecreators.kr', pw: await password('qwerasdf')});x
+export async function getUserInfo(userinput) {
+  const { email: email, password: pass } = userinput;
+
+  console.log(email, pass);
   const userInfo = await req('login', {
-    mail: 'admin@corecreators.kr',
-    pw: await password('qwerasdf'),
+    mail: email,
+    pw: await password(pass),
   });
   return userInfo;
-  // if(!my.token) console.log('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
 }
