@@ -36,7 +36,7 @@ justify-content: center;
 align-items: center;
 background-color: black;
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     & {
       width: 100vw;
       height: calc( 100vh*0.3);
@@ -63,7 +63,7 @@ display: flex;
 justify-content: center;
 background-color: white;
 flex-direction: column;
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     & {
       position: absolute;
       margin-top: 300px;
