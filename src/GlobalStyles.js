@@ -46,7 +46,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+ a {color: black; text-decoration: none; outline: none} 
+a:hover, a:active {text-decoration: none; color:black; background-color:none;}
 
 &:root {
   --black: #303030; 
@@ -57,6 +58,7 @@ table {
   --gray: #F8F8F8; 
   --gray-10: #F5F5F5; 
   --gray-20: #BDBDBD; 
+  --gray-30 : #897C77;
 
 
   --home-max-width: 1174px;
@@ -64,6 +66,11 @@ table {
 
 
   }
+.text13{
+  font-family: "Pretendard Variable", sans-serif;
+ font-size: 13px;
+}
+
 .text16 {
   font-family: "Pretendard Variable", sans-serif;
   font-weight: bold;

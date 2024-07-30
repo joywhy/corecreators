@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
 
-const Button = ({onClick,type,children,primary,...props}) => {
+const Button = ({onClick,type,children,primary, ...props}) => {
    const handleClick =onClick? onClick:convertClick(type);
     return (
-        <StyledButton onClick={handleClick}  >
+        <StyledButton onClick={handleClick}  {...props}>
           {children}
         </StyledButton>
     );
@@ -17,7 +17,7 @@ function convertClick (type){
          return handleClickLogin;
             break; 
         default:
-            console.log("동작");
+            // console.log("동작");
     }
 };
 const handleClickLogin =()=>{
@@ -33,6 +33,8 @@ const StyledButton = styled.button`
 
   color: ${(props) => props.color || 'white'};
   background: ${(props) => props.background || 'black'};
+  width: ${(props) => props.width || 'auto'};
+  
   border:none;
   &:hover {
      color:  ${(props) => props.background || 'black'};
@@ -58,7 +60,7 @@ const StyledButton = styled.button`
   ${(props) =>
     props.secondary &&
     css`
-    color: white;
+   background-color:linear-gradient(to right, #EC6E6C , #897C77,#7FE5E0); ;
   `}
   //부가 버튼
    ${(props) =>
