@@ -154,7 +154,7 @@ assign(self, {
 
 		if(!cookie.my) return;
     await ws.reload();
-		// DATA.my = await req('login');
+		// DATA.my = await req('  ');
   },
 
 	cookie: new Proxy({}, {
