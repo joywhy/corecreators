@@ -1,24 +1,10 @@
-import React,{ useState }from "react";
+import React,{ useState, useCallback,useEffect }from "react";
 import Button from "../common/Button";
 
 import styled from 'styled-components';
 
 
-const validate = (values) => {
-    const errors = {
-      email: "",
-      password: "",
-    }
-  
-    if (!values.email) {
-      errors.email = "이메일을 입력하세요"
-    }
-    if (!values.password) {
-      errors.password = "비밀번호를 입력하세요"
-    }
-  
-    return errors
-}
+
 
   const LoginForm = ()=>{
     const [values, setValues] = useState({
@@ -29,6 +15,10 @@ const validate = (values) => {
       email: "",
       password: "",
     })
+    const [touched, setTouched] = useState({
+        email: false,
+        password: false,
+      })
   
     const handleChange = e => {
       setValues({
@@ -38,44 +28,78 @@ const validate = (values) => {
       const errors = validate(values);
       setErrors(errors);
     }
+    const handleBlur = e => {
+        setTouched({
+          ...touched,
+          [e.target.name]: true,
+        })
+      }
   
     const handleSubmit = e => {
       e.preventDefault();
+      setTouched({
+        email: true,
+        password: true,
+      })
 
       const errors = validate(values);
       setErrors(errors);
 
+       
       let isError =Object.values(errors).some(v => v);
   
       if (isError) {
         return
       }
-  
+      console.log("전송");
+      console.log(values);
+      
     }
-  
+ 
+    const validate = useCallback(() => {
+        const errors = {
+          email: "",
+          password: "",
+        }
+    
+        if (!values.email) {
+          errors.email = "이메일을 입력하세요"
+        }
+        if (!values.password) {
+          errors.password = "비밀번호를 입력하세요"
+        }
+        return errors;
+      }, [values]);
+
+     useEffect(() => {
+        validate()
+      }, [values])
+
     return (
       <StyledForm onSubmit={handleSubmit}>
         <h1 className="text32">LOGIN</h1>
         <input
-          type="text"
+          type="email"
           name="email"
           value={values.email}
           onChange={handleChange}
-          placeholder="  이메일을 입력하세요."
+          onBlur={handleBlur}
+          placeholder="이메일"
         />
-         <span>{errors.email?errors.email:""}</span>
+       {touched.email && errors.email && <span>{errors.email}</span>}
         <input
           type="password"
           name="password"
           value={values.password}
           onChange={handleChange}
-          placeholder="  비밀번호를 입력하세요."
+          onBlur={handleBlur}
+          placeholder="비밀번호"
         />
-        <span>{errors.password?errors.password:""}</span>
+    {touched.password && errors.password && <span>{errors.password}</span>}
+
   
          <DetailSetting />
-
-        <button type="submit" onClick={handleSubmit}   className="text16">로그인</button>
+        <button type="submit"   className="text16">로그인</button>
       </StyledForm>
     )
   }
@@ -89,7 +113,7 @@ const DetailSetting = () =>{
         <label htmlFor="check_btn"><span>로그인 상태 유지</span></label>
     </div>
 
-     <a href="/relogin">
+     <a href="/relogin" className="text13">
       비밀번호 재설정
      </a> 
    </StyledDiv>
@@ -121,6 +145,9 @@ const DetailSetting = () =>{
  border-radius:12px;
  border: 1px solid var(--gray-20);
  font-size: 20px;
+ margin-bottom: 14px;
+ padding: 0 20px;
+ box-sizing: border-box;
 
  @media only screen and (max-width: 400px) {
     & {
@@ -144,9 +171,10 @@ const DetailSetting = () =>{
       font-size: 13px;
     }
   }
-
- }
+}
  & span  {
+    position: relative;
+    top:-5px;
  display: block;
  width: 100%;
  height: 20px;
@@ -157,7 +185,6 @@ const DetailSetting = () =>{
  @media only screen and (max-width: 400px) {
     & {
       width: 80%;
-      /* border: 1px solid rebeccapurple; */
     }
   }
  
@@ -191,7 +218,7 @@ const StyledDiv = styled.div`
    flex-wrap: nowrap;
 }
 & span {
-color: black;
+color: var(--black)
 }
 
 & input#check_btn{
@@ -204,30 +231,31 @@ color: black;
  }
 
 & input#check_btn + label > span{
-  vertical-align: middle;
   padding-left: 5px;
+  display: block; 
+  position: relative;
+  top: -1px;
  }
 
-/* label:before에 체크하기 전 상태 CSS */
+/* label:before에 체크하기 전 */
 & input#check_btn + label:before{
   content:"";
   display:inline-block;
   width:16px;
   height:13px;
-  border:2px solid black;
+  border:1px solid var(--gray-20);
   border-radius: 4px;
   vertical-align:middle;
   }
   
-/* label:before에 체크 된 상태 CSS */  
+/* label:before에 체크 후*/  
 & input#check_btn:checked + label:before{
   content:"";
-  background-color:#F47C7C;
-  border-color:#F47C7C;
+  background-color:#FF5D5A;
+  border-color:#FF5D5A;
   background-image: url('check_btn.png');
   background-repeat: no-repeat;
   background-position: 50%;
-  border:2px solid black;
   }
 
 `;
