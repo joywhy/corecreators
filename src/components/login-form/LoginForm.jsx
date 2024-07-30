@@ -57,6 +57,8 @@ import styled from 'styled-components';
      // const my = await req('login', {mail: 'admin@corecreators.kr', pw: await password('qwerasdf')});
      // if(!my.token) console.log('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.') 
      // console.log('성공', my);
+     
+
     }
  
     const validate = useCallback(() => {
