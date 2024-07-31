@@ -64,7 +64,9 @@ body{
   --gray-20: #BDBDBD; 
   --gray-30 : #897C77;
 
-
+ --gray-50: #424242;
+ 
+ --gray-70 : #191919;
   --home-max-width: 1174px;
 
 

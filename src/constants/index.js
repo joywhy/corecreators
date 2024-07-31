@@ -9,7 +9,7 @@ export const CARDS = [
       title :'보고서 솔루션',
       desc : "캠페인 보고서 전달용",
       img :"/src/assets/home/listUp_img.png",
-      url: "http://localhost:9090",
+      url: "http://localhost:5173/report",
     } ,
      {
       title :'코크 크리에이터',
