@@ -3,7 +3,7 @@ import Aside from "../components/common/Aside.jsx"
 import styled from 'styled-components';
 
 
-const Listup = () => {
+const List = () => {
   
   return (
   <>
@@ -11,4 +11,4 @@ const Listup = () => {
   </>
   )
 }
-export default Listup;
+export default List;

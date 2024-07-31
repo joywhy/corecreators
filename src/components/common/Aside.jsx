@@ -10,9 +10,9 @@ const Aside = () => {
   let navList =[
     {
       title: "리스트업",
-      path:"/listup",
-      iconUrl: "listup_icon.svg",
-      iconActiveUrl :"listup_icon_active.svg"
+      path:"/list",
+      iconUrl: "list_icon.svg",
+      iconActiveUrl :"list_icon_active.svg"
     },
     {
       title: "보고서",
@@ -22,7 +22,7 @@ const Aside = () => {
     },
     {
       title: "크리에이터",
-      path:"/creators",
+      path:"/sort",
       iconUrl: "creators_icon.svg",
       iconActiveUrl :"creators_icon_active.svg"
     },
