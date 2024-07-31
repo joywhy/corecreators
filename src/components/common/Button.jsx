@@ -1,24 +1,41 @@
+// import {navigateToPath} from  "../../utils"
 import styled, { css } from 'styled-components';
+// import {useNavigate} from "react-router-dom";
 
-
-const Button = ({onClick,children,primary,...props}) => {
-//    const handleClick = convertClick(type,onClick);
+const Button = ({onClick,type,children,primary, ...props}) => {
+   const handleClick =onClick? onClick:convertClick(type);
+  
     return (
-        <StyledButton onClick={onClick}  >
+        <StyledButton onClick={handleClick}  {...props}>
           {children}
         </StyledButton>
     );
 };
 
-// function convertClick (type){
-//     switch (type) {
-//         case "login":
-//            location.href= "/";
-//             break; 
-//         default:
-//             console.log("동작");
-//     }
-// };
+function convertClick (type){
+  
+  switch (type) {
+      case "login":
+       return handleClickLogin;
+          break; 
+
+       case "logout":
+          return handleClickLogout;
+               break; 
+      default:
+          // console.log("동작");
+  }
+};
+
+ const handleClickLogin =()=>{
+  location.href ="/login";
+  // navigateToPath("/login");
+  // useNavigate("/login");
+};
+const handleClickLogout =()=>{
+  window.localStorage.clear();
+  location.reload(true);
+}
 
 const StyledButton = styled.button`
   padding: 8px 20px;
@@ -29,6 +46,8 @@ const StyledButton = styled.button`
 
   color: ${(props) => props.color || 'white'};
   background: ${(props) => props.background || 'black'};
+  width: ${(props) => props.width || 'auto'};
+  
   border:none;
   &:hover {
      color:  ${(props) => props.background || 'black'};
@@ -54,7 +73,7 @@ const StyledButton = styled.button`
   ${(props) =>
     props.secondary &&
     css`
-    color: white;
+   background-color:linear-gradient(to right, #EC6E6C , #897C77,#7FE5E0); ;
   `}
   //부가 버튼
    ${(props) =>
