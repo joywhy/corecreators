@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import List from "./pages/List";
 import Sort from "./pages/Sort";
 import Report from "./pages/Report";
+import { ReactQueryDevtools } from 'react-query/devtools'
 import './App.css'
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
         <Route path="/Sort" element={<Sort/>}/>
         <Route path="/report" element={<Report/>}/>
       </Routes>
-        
+      <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
     </>
   )
 }
