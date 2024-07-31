@@ -32,7 +32,7 @@ import styled from 'styled-components';
         })
       }
   
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
       e.preventDefault();
       setTouched({
         email: true,
@@ -50,8 +50,14 @@ import styled from 'styled-components';
       }
       console.log("전송");
     
-     const userInfo = getUserInfo(values);
-     if(!userInfo.token) console.log('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
+     const userInfo = await getUserInfo(values);
+     let isSuccessed = !!userInfo.token;
+
+     if(!isSuccessed) {
+      alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
+     }else{
+         
+     }
       
       console.log(userInfo);
     }
