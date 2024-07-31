@@ -1,4 +1,5 @@
 import { useState, useCallback,useEffect }from "react";
+import { useQuery,useMutation,useQueryClient } from 'react-query'
 
 import {getUserInfo} from "../../api";
 import {navigateToPath} from  "../../utils"
@@ -7,6 +8,7 @@ import styled from 'styled-components';
 
 
   const LoginForm = ()=>{
+  
 
     const [values, setValues] = useState({
       email: "",
@@ -20,7 +22,19 @@ import styled from 'styled-components';
         email: false,
         password: false,
       })
-  
+      const queryClient = useQueryClient();
+      const { mutate, isLoading, isError, error } = useMutation(getUserInfo, {
+        onSuccess: (data) => {
+            // 로그인 성공 시 처리 로직을 여기에 추가하세요.
+            queryClient.invalidateQueries('userInfo')
+            console.log('Login successful', data);
+        },
+        onError: (error) => {
+            // 로그인 실패 시 처리 로직을 여기에 추가하세요.
+            console.error('Login failed', error);
+        },
+    });
+
     const handleChange = e => {
       setValues({
         ...values,
@@ -47,12 +61,13 @@ import styled from 'styled-components';
       setErrors(errors);
 
        
-      let isError =Object.values(errors).some(v => v);
+      let Isincorrectly =Object.values(errors).some(v => v);
   
-      if (isError) {
+      if (Isincorrectly) {
         return
       }
-    
+      mutate(values);
+
      const userInf = await getUserInfo(values);
      let isSuccessed = !!userInf.token;
 
@@ -115,7 +130,7 @@ import styled from 'styled-components';
         <button type="submit"   className="text16">로그인</button>
       </StyledForm>
     )
-  }
+  };
    
 const DetailSetting = () =>{
     

@@ -11,7 +11,7 @@ const Header = () => {
   let token = window.localStorage.getItem("token");
 
   let isLogin = token?true:false;
-  console.log( isLogin );
+  // console.log( isLogin );
     return (
         <StyledHeader>
            <Logo src="src/assets/logo.svg"/>
