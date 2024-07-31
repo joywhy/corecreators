@@ -1,8 +1,10 @@
+// import {navigateToPath} from  "../../utils"
 import styled, { css } from 'styled-components';
-
+// import {useNavigate} from "react-router-dom";
 
 const Button = ({onClick,type,children,primary, ...props}) => {
    const handleClick =onClick? onClick:convertClick(type);
+  
     return (
         <StyledButton onClick={handleClick}  {...props}>
           {children}
@@ -12,17 +14,28 @@ const Button = ({onClick,type,children,primary, ...props}) => {
 
 function convertClick (type){
   
-    switch (type) {
-        case "login":
-         return handleClickLogin;
-            break; 
-        default:
-            // console.log("동작");
-    }
+  switch (type) {
+      case "login":
+       return handleClickLogin;
+          break; 
+
+       case "logout":
+          return handleClickLogout;
+               break; 
+      default:
+          // console.log("동작");
+  }
 };
-const handleClickLogin =()=>{
+
+ const handleClickLogin =()=>{
   location.href ="/login";
+  // navigateToPath("/login");
+  // useNavigate("/login");
 };
+const handleClickLogout =()=>{
+  window.localStorage.clear();
+  location.reload(true);
+}
 
 const StyledButton = styled.button`
   padding: 8px 20px;
