@@ -3,7 +3,7 @@ import Aside from "../components/common/Aside.jsx"
 import styled from 'styled-components';
 
 
-const Report = () => {
+const Sort = () => {
   
   return (
   <>
@@ -11,4 +11,4 @@ const Report = () => {
   </>
   )
 }
-export default Report;
+export default Sort;
