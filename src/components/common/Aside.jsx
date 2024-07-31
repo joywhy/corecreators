@@ -40,7 +40,8 @@ const Aside = () => {
     }
   ];
   if( window.localStorage.getItem("cate")!=="최고관리자"){
-    navList= navList.filter((nav)=>nav.title !=="회원" ||nav.title !=="접속내역");
+    navList= navList.filter((nav)=>nav.title !=="회원" &&nav.title !=="접속내역");
+    console.log(navList);
    }
 
   return (
