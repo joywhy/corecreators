@@ -4,7 +4,6 @@ import Logo from "../common/Logo.jsx"
 import styled from 'styled-components';
 
 const Header = () => {
-    
     return (
         <StyledHeader>
           <Logo src="src/assets/logo.svg"/>
