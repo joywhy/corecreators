@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -46,7 +46,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
- a {color: black; text-decoration: none; outline: none} 
+a {color: black; text-decoration: none; outline: none}
 a:hover, a:active {text-decoration: none; color:black; background-color:none;}
 body{
   margin: 0;
@@ -93,5 +93,5 @@ body{
  font-size: 32px;
 }
 `;
- 
+
 export default GlobalStyles;

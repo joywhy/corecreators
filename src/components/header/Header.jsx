@@ -1,11 +1,9 @@
 
-import {useEffect} from "react";
-import { userInfo } from '../../store/state.js';
-import { getUserInfo } from '../../api/index.js';
+
 import Button from "../common/Button";
 import Logo from "../common/Logo.jsx";
 
-import { useAtom } from 'jotai';
+
 import styled from 'styled-components';
 
 
