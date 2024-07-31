@@ -2,7 +2,7 @@
 const Logo = ({src}) => {
     return (
         <a href="/">
-        <img src={src} alt="coreCreatorsLogo"/>
+        < img  className="logo" src={src} alt="coreCreatorsLogo"/>
     </a>
     );
 };

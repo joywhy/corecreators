@@ -1,9 +1,21 @@
 import { useState, useCallback,useEffect }from "react";
+import { useNavigate } from "react-router-dom";
+
+import { userInfo } from '../../store/state.js';
+import { useAtom } from 'jotai';
+// import { useRecoilState } from 'recoil';
+
 import {getUserInfo} from "../../api";
+import {navigateToPath} from  "../../utils"
+
 import styled from 'styled-components';
 
 
   const LoginForm = ()=>{
+    // const [userinfoState, setUserinfoState] = useRecoilState(userState);
+    const [userState, setUserState] = useAtom(userInfo);
+
+
     const [values, setValues] = useState({
       email: "",
       password: "",
@@ -48,18 +60,32 @@ import styled from 'styled-components';
       if (isError) {
         return
       }
-      console.log("전송");
     
-     const userInfo = await getUserInfo(values);
-     let isSuccessed = !!userInfo.token;
+     const userInf = await getUserInfo(values);
+     let isSuccessed = !!userInf.token;
 
      if(!isSuccessed) {
       alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
      }else{
-         
-     }
+      console.log(userInf);
+      setUserState(userInf);
+
+      // window.localStorage.setItem("userInfo", [...userInf])
       
-      console.log(userInfo);
+      // window.localStorage.setItem("email", userInf.mail)
+      // window.localStorage.setItem("password", values.password)
+      for (let key in userInf) {
+        const value = userInf[key]
+        window.localStorage.setItem(key, value)
+        // console.log(key)
+        // console.log(value)
+      }
+      navigateToPath("/");
+      // useNavigate("/")
+      
+     }
+    //  console.log("동작");
+    //  console.log(userinfoState);
     }
  
     const validate = useCallback(() => {

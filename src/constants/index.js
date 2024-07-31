@@ -3,7 +3,7 @@ export const CARDS = [
       title :'리스트업 솔루션',
       desc : "크리에이터 리스트 전달용",
       img :"/src/assets/home/listUp_img.png",
-      url: "http://localhost:7878", //추후 주소로
+      url: "http://localhost:5173/listup", //추후 주소로
     },
     {
       title :'보고서 솔루션',
