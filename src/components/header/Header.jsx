@@ -12,6 +12,7 @@ const Header = () => {
 
   let isLogin = token?true:false;
   // console.log( isLogin );
+  
     return (
         <StyledHeader>
            <Logo src="src/assets/logo.svg"/>

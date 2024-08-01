@@ -1,8 +1,8 @@
 import React from "react";
 import Logo from "./Logo";
 import {navigateToPath} from "../../utils/index.js";
-import styled from 'styled-components';
 
+import styled from 'styled-components';
 
 const Aside = () => {
   // let isLogin = window.localStorage.getItem("token");
@@ -28,25 +28,24 @@ const Aside = () => {
     },
     {
       title: "회원",
-      path:"/user",
+      path:"/adm/user",
       iconUrl: "user_icon.svg",
       iconActiveUrl :"user_icon_active.svg"
     },
     {
       title: "접속내역",
-      path:"/log",
+      path:"/adm/log",
       iconUrl: "log_icon.svg",
       iconActiveUrl :"log_icon_active.svg"
     }
   ];
   if( window.localStorage.getItem("cate")!=="최고관리자"){
     navList= navList.filter((nav)=>nav.title !=="회원" &&nav.title !=="접속내역");
-    // console.log(navList);
    }
 
   return (
     <StyledAside>
-     <Logo src="src/assets/logo_white.svg"/>
+     <Logo src="/src/assets/logo_white.svg"/>
     <nav>
       <h1>NAVIGATION</h1>
      <ul>

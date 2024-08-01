@@ -63,7 +63,7 @@ body{
   --gray-10: #F5F5F5; 
   --gray-20: #BDBDBD; 
   --gray-30 : #897C77;
-
+  --gray-40:#F5F5F5;
  --gray-50: #424242;
  
  --gray-70 : #191919;
@@ -72,15 +72,28 @@ body{
 
 
   }
+  .text10{
+  font-family: "Pretendard Variable", sans-serif;
+ font-size: 10px;
+}
 .text13{
   font-family: "Pretendard Variable", sans-serif;
  font-size: 13px;
 }
-
+.text14{
+  font-family: "Pretendard Variable", sans-serif;
+ font-size: 14px;
+ font-weight: bold;
+}
 .text16 {
   font-family: "Pretendard Variable", sans-serif;
   font-weight: bold;
  font-size: 16px;
+}
+.text20 {
+  font-family: "Pretendard Variable", sans-serif;
+ font-weight: bold;
+ font-size: 20px;
 }
 .text22 {
   font-family: "Pretendard Variable", sans-serif;
