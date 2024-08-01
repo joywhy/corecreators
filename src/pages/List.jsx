@@ -17,15 +17,17 @@ const List = () => {
         {
       name: "@pattery_Ledner",
       cate: "콘텐츠 메이커",
-      img :"",
+      img :"/src/assets/userProfile.png",
+      icon :"/src/assets/instargram_icon.svg",
        follower: "134,233",
        view: "15,344",
        percent :"80",
     },
     {
         name: "@pattery_Ledner",
-        cate: "콘텐츠 메이커",
-        img :"",
+        cate: "인플루언서",
+        img :"/src/assets/userProfile.png",
+        icon :"/src/assets/instargram_icon.svg",
          follower: "134,233",
          view: "15,344",
          percent :"80",
@@ -40,9 +42,10 @@ const List = () => {
     userNo: 2,
     creatorList: [
         {
-      name: "@pattery_Ledner",
+      name: "@patter",
       cate: "콘텐츠 메이커",
-      img :"",
+      img :"/src/assets/userProfile.png",
+      icon :"/src/assets/instargram_icon.svg",
        follower: "134,233",
        view: "15,344",
        percent :"80",
@@ -50,7 +53,8 @@ const List = () => {
     {
         name: "@pattery_Ledner",
         cate: "콘텐츠 메이커",
-        img :"",
+        img :"/src/assets/userProfile.png",
+        icon :"/src/assets/instargram_icon.svg",
          follower: "134,233",
          view: "15,344",
          percent :"80",
@@ -66,7 +70,7 @@ const List = () => {
   <Aside/>
   <MainWrapper>
    <Nav List={List} setIndex={setIndex} index={index} />
-   <Contents List={List} setIndex={setIndex} index={index}/>
+   <Contents List={List} index={index}/>
   </MainWrapper>
   </StyledDiv>
   )

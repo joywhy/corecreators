@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Li from "./Li"
 import styled from 'styled-components';
 
@@ -27,12 +27,31 @@ const Nav = ({title="캠페인",List,index,setIndex}) => {
 }
 
 const Header = ({title})=>{
+    const [isSearch,setIsSearch]= useState(false);
+    const [value,setValue] = useState("");
+
+    const handleCLick = ()=>{
+        setIsSearch(prev=>!prev);
+    };
+
+    if(isSearch){
+     return (
+      <StyledHeader2>
+           <input placeholder="Search..."/>
+           <img src="/src/assets/search_icon.svg"  alt ="검색아이콘"/>
+         
+        </StyledHeader2>
+     )
+    }
     return (
         <StyledHeader>
           <h1 className="text20"> {title}</h1>
 
          <div >
-             <img src="/src/assets/search_icon.svg" alt ="검색아이콘"/>
+            <button onClick = {handleCLick}>
+            <img src="/src/assets/search_icon.svg"  alt ="검색아이콘"/>
+            </button>
+
              <img src="/src/assets/cross_icon.svg" alt ="추가 아이콘"/>
            </div>
         </StyledHeader>
@@ -55,13 +74,49 @@ const StyledHeader = styled.header`
     align-items: center;
     padding: 0 10px;
     box-sizing: border-box;
-
+    /* transition-property: all;
+    transition: all 0.5s linear 0.5s; */
     & div{
 
       display: flex;
       & img:nth-child(1) {
         margin-right: 11px;
       } 
+    }
+    & button  {
+        background-color: white;
+        border: none;
+        & img {
+            height: 100%;
+        } 
+    }
+`;
+const StyledHeader2 = styled.header`
+    position: relative;
+    width: 100%;
+    height: 47px;
+    justify-content:space-between;
+    align-items: center;
+    padding: 7px;
+    box-sizing: border-box; 
+
+    & input  {
+        border-radius: 5px;
+        padding-left: 35px;
+        height: 100%;
+        box-sizing :border-box;
+        background-color: #d1d1d1;
+        border: none;
+        width: 100%;
+    }
+    & input:focus {
+        outline: 2px solid var(--main-red);
+    }
+    & img {
+        position: absolute;
+        top:15px;
+        /* transform: x; */
+        left: 20px;
     }
 `;
 
