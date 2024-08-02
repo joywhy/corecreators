@@ -139,6 +139,8 @@ padding :10px;
     max-width: 100px;
     flex-grow: 1;
     text-align: end;
+    font-size: 14px;
+    font-weight: bold;
   }
 `;
 export default Contents;
