@@ -14,7 +14,7 @@ const Sort = () => {
     <Aside/>
     <MainWrapper>
      {/* <Nav/> */}
-     <Contents/>
+     {/* <Contents/> */}
     </MainWrapper>
     </StyledDiv>
     )

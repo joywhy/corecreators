@@ -12,7 +12,7 @@ const Report = () => {
     <Aside/>
     <MainWrapper>
      {/* <Nav/> */}
-     <Contents/>
+     {/* <Contents/> */}
     </MainWrapper>
     </StyledDiv>
     )

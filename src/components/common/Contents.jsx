@@ -58,7 +58,7 @@ const Li = (props)=>{
       </div>
    </div>
 
-   <div>
+   <div className="des">
     <span>{follower}</span>
     <span>{view}</span>
     <span>{percent}</span>
@@ -71,11 +71,9 @@ flex-grow:7;
 `;
 
 const StyledContainer = styled.div`
-/* border:1px solid red; */
 padding: 14px 25px;
 
 & header {
-  /* border:1px solid red; */
   display: flex;
   justify-content: end;
   margin-bottom: 5px;
@@ -90,7 +88,6 @@ width: 100%;
 border-radius: 10px;
 height: 66px;
 display: flex;
-/* border: 1px solid red; */
 justify-content: space-between;
 align-items: center;
 box-sizing: border-box;
@@ -103,7 +100,6 @@ padding :10px;
 
   & .imgWrapper {
     position: relative;
-    /* border: 1px solid red; */
     width: 56px;
     height: 47px;
     & img {
@@ -117,7 +113,6 @@ padding :10px;
   }
 
   & .title {
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -133,6 +128,17 @@ padding :10px;
 
     }
   }
+ 
 }
+& .des {
+  display: flex;
+  width: 300px;
+}
+& span  {
+    display:block;
+    max-width: 100px;
+    flex-grow: 1;
+    text-align: end;
+  }
 `;
 export default Contents;
