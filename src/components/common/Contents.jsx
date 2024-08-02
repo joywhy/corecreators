@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 
 import styled from 'styled-components';
 
@@ -17,9 +17,20 @@ const Contents = ({List,index}) => {
 </StyledDiv>
   )
 }
-const CampaignForm = ()=>{
-
-  return (<>CampaignForm</>);
+const CampaignForm = ({name=""})=>{
+  const [values, setValues] = useState({
+    name: name,
+    password: "",
+    channelList:[],
+    memo:""
+  })
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  })
+  return (<>CampaignForm
+  
+  </>);
 }
 
 const CreatorList = ({list})=> {
