@@ -52,7 +52,7 @@ const Header = ({title})=>{
             <img src="/src/assets/search_icon.svg"  alt ="검색아이콘"/>
             </button>
 
-             <img src="/src/assets/cross_icon.svg" alt ="추가 아이콘"/>
+             <img src="/src/assets/common/cross_icon.svg" alt ="추가 아이콘"/>
            </div>
         </StyledHeader>
     );
