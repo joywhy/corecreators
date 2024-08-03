@@ -48,8 +48,9 @@ const CampaignForm = ({name="",advertiser=""})=>{
            <Channel />
            <Channel />
           </ul>
+          <textarea placeholder="메모"></textarea>
            <button type="submit"   className="text16" >완료</button>
-       
+        
     </StyledForm>
     
     );
@@ -99,6 +100,20 @@ color: black;
   font-weight: bold;
   margin-top: 17px;
  }
+ & textarea {
+    width: 100%;
+    /* height: 100%; */
+    border: none;
+    resize: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #F5F5F5;
+    margin:10px 0;
+    border-radius: 5px;
+     height: 260px;
+    &:focus {outline: 2px solid var(--main-mint);}
+  
+}
 `;
 
 const StyleChannerl = styled.li`
@@ -126,5 +141,6 @@ align-items: center;
     height: 5px;
     padding:0 10px;
 }
+
 `;
 export default CampaignForm;
