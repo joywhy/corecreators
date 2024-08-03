@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
-import { ChannelType } from '../../constants';
+
 
 import styled from 'styled-components';
-const Dropdown = () => {
-
-
-    const [value, setValue] = useState(ChannelType[0]);
-
+const Dropdown = ({list,setValue,value}) => {
+   let selectedValue = list.filter((data)=>value.channelType=== data.type)[0];
     const [isOpen, setIsOpen] = useState(false);
+
+    const handleClick = (item) => {
+        setValue({...value, "channelType": item.type}); 
+        setIsOpen(false);
+    };
     return (
         <StyleDropdown>
            <div className='SelectedValue'  onClick={()=>{setIsOpen(!isOpen);}}>
                <div>
-                <img src={value.imgUrl} alt={`${value.name} 이미지`}/>
-                <span>{value.name}</span>
+                <img src={selectedValue.imgUrl} alt={`${selectedValue.name} 이미지`}/>
+                <span>{selectedValue.name}</span>
                 </div>
                 <img src="/src/assets/common/downArrow_icon.svg" className={isOpen?'downArrow reverse ':'downArrow'} alt="화살표"/>
             </div>  
             {isOpen &&(
                <ul>
-                {ChannelType.map((item,index)=>(
-                    <li  onClick={()=>{setValue(item); setIsOpen(false);}}key={index+ "item"}>
+                {list.map((item,index)=>(
+                    <li  onClick={()=>{handleClick(item)}}key={index+ "item"}>
                       <img src={item.imgUrl}/>
                        <span>{item.name}</span> 
                     </li>

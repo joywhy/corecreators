@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Dropdown from "./Dropdown";
-
+import Button from "./Button";
+import { ChannelType } from "../../constants";
 import styled from 'styled-components';
 
 const CampaignForm = ({name="",advertiser=""})=>{
@@ -49,7 +50,7 @@ const CampaignForm = ({name="",advertiser=""})=>{
            <Channel />
           </ul>
           <textarea placeholder="메모"></textarea>
-           <button type="submit"   className="text16" >완료</button>
+           <Button type="submit"   className="text16" >완료</Button>
         
     </StyledForm>
     
@@ -57,12 +58,23 @@ const CampaignForm = ({name="",advertiser=""})=>{
   }
 
 const Channel = ()=>{
-
-
+const [value, setValue] = useState({
+  channelType:"instargram",
+  channel:""
+});
+const handleChange = e => {
+  setValue({
+    ...value,
+    [e.target.name]: e.target.value,
+  })
+  // const errors = validate(values);
+  // setErrors(errors);
+}
+// console.log(value);
 return (
 <StyleChannerl>
-  <Dropdown/>
-  <input type="text" name="channel" placeholder="채널"/>
+  <Dropdown list={ChannelType} setValue={setValue} value={value}/>
+  <input type="text" name="channel" placeholder="채널"     value={value.channel} onChange={handleChange}/>
   <img  className="delete" src="src/components/common/delete_icon.svg" alt="채널 삭제 아이콘" />
 </StyleChannerl>
 );    
