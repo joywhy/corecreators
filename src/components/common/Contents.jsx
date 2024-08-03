@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 const Contents = ({List,index}) => {
   const isManager =  window.localStorage.getItem("cate")==="최고관리자";
-  // console.log(List);
   const userType =  window.localStorage.getItem("cate");
   const advertiser = userType==="최고관리자"?"광고주":"";
 
