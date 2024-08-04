@@ -13,7 +13,7 @@ const Adm = () => {
     <Aside/>
     <MainWrapper>
      {/* <Nav/> */}
-     <Contents/>
+     {/* <Contents/> */}
     </MainWrapper>
     </StyledDiv>
     )
