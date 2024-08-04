@@ -11,7 +11,7 @@ const ChannelList = ({changeList,list}) => {
   const changeChannelType =  (item,idx) => {
     let newList = list.map((chan,index)=>{
         return(index===idx)?{...chan,"channelType": item}: chan});
-        console.log(newList);
+        // console.log(newList);
         changeList(newList);
     }
     const changeChannel =  (item,idx) => {
@@ -58,7 +58,9 @@ const Channel = ({changeType,changeChannel,value,deleteChannel,idx})=>{
       <Dropdown handleDropDown={(newType)=>changeType(newType)} list={ChannelType}  type={value.ChannelType}  value={value.channelType} />
       <input type="text" name="channelType" placeholder="채널"     value={value.channel} onChange={(e)=>changeChannel(e.target.value)}/>
      {idx!==0?
-      <img  className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" onClick={deleteChannel}/>
+     <div  className="deleteIcon" onClick={deleteChannel}>
+      <img  className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" />
+      </div>
       : <img style={{visibility:"hidden"}} className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" onClick={deleteChannel}/>
       } </StyleChannerl>
     );    
@@ -99,9 +101,17 @@ align-items: center;
     border-radius:5px;
     &:focus {outline: 2px solid var(--main-mint);}
 }
+& .deleteIcon {
+    /* border:1px solid red; */
+    height: 40px;
+    display: flex;
+    align-items: center;
+   
+}
 & img.delete {
     height: 5px;
     padding:0 10px;
+    /* line-height:100%; */
 }
 
 `;
