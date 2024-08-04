@@ -8,7 +8,7 @@ let basic = {
 };
 
 const CampaignForm = ({name="",advertiser="",memo="",channelList=[{  channelType:"instargram",
-  channel:""}],content,changeContent})=>{
+  channel:""}],content="",changeContent})=>{
 
     const handleChange = (e) => {
       changeContent({

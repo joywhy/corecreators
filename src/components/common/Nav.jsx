@@ -3,11 +3,11 @@ import Li from "./Li"
 import styled from 'styled-components';
 
 
-const Nav = ({title="캠페인",List,index,setIndex,addList}) => {
-
+const Nav = ({title="캠페인",List,index,setIndex,addList,deleteList}) => {
+   const [isModal,setIsModal]=useState(false);
     const userType =  window.localStorage.getItem("cate");
     const advertiser = userType==="최고관리자"?"광고주":"";
-
+    // console.log(isModal);
   return (
 <StyledDiv>
   <Header title={title} addList={addList}/>
@@ -18,7 +18,25 @@ const Nav = ({title="캠페인",List,index,setIndex,addList}) => {
             const handleClick = ()=>{
                 setIndex(idx);
             }
-         return <Li date={campaign.date} onClick = {handleClick}  isActive={isActive} title= {campaign.name} advertiser={advertiser}  key={idx+campaign.name}/>
+            const handleDelete = ()=>{
+                deleteList(idx);
+                setIsModal(false);
+                if(idx ===0 &&idx===index){
+                    setIndex(0);
+                }else  if(idx <= index ){
+                    setIndex(index-1);
+                }
+            }
+            const onClickDeleteChattingRoom=(e)=>{
+                e.preventDefault();
+                setIsModal(idx);
+            }
+         return (
+            <StyledContainer key={idx+campaign.name}>
+         <Li  onContextMenu={onClickDeleteChattingRoom} date={campaign.date} onClick = {handleClick}  isActive={isActive} title= {campaign.name} advertiser={advertiser}  key={idx+campaign.name}/>
+         {isModal===idx&&<div className="modal" onClick={handleDelete} key={idx+"모달"}>삭제하기</div>}
+         </StyledContainer>
+        )
         })}
     </ul>
     </nav>
@@ -59,7 +77,35 @@ const Header = ({title,addList})=>{
     );
 }
 
+const StyledContainer =styled.div`
+position: relative;
+/* border:1px solid red; */
+width:100%;
+/* height:50px; */
 
+& .modal {
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    width: 100px;
+    height:40px;
+    background-color:white;
+    border-radius: 5px;
+    z-index:10;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
+    /* width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: white; */
+}
+`;
 const StyledDiv = styled.div`
 max-width: 300px;
 flex-grow:3;

@@ -7,7 +7,7 @@ const Contents = ({content,index,changeContent}) => {
   const isManager =  window.localStorage.getItem("cate")==="최고관리자";
   const userType =  window.localStorage.getItem("cate");
   const advertiser = userType==="최고관리자"?"광고주":"";
-
+ console.log(content);
   return (
 <StyledDiv>
    {

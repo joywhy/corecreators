@@ -23,7 +23,7 @@ let basicList = {
   memo: "메모"
 };
 
-  const list = [
+const list = [
     {
     name : "00캠페인",
     userNo: 2,
@@ -82,20 +82,32 @@ channelList:[{...basic}],
 },
 ];
 const [List,setList] = useState(list);
+console.log(List);
+console.log(List[index]);
+console.log(index);
 
 const changeList = (newContent) => {
   let newList = List.map((content,idx)=>{return index===idx?newContent:content})
-  setList(newList);
+    setList(newList);
 }
 const addList = ()=>{
   let newList = [...List,{...basicList}];
   setList(newList);
 }
+const deleteList = (idx) => {
+  const newList= List.filter((_, index) => index!==idx);
+
+  if(newList.length===0){
+    setList([{...basicList}]);
+}else  {
+  setList(newList);
+}
+}
   return (
   <StyledDiv>
   <Aside/>
   <MainWrapper>
-   <Nav List={List} setIndex={setIndex} index={index} addList={addList}/>
+   <Nav deleteList={deleteList} List={List} setIndex={setIndex} index={index} addList={addList}/>
    <Contents changeContent={changeList} content={List[index]} index={index}/>
 
   </MainWrapper>

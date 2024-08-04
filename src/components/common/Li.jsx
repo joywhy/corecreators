@@ -3,13 +3,13 @@ import React from "react";
 import styled from 'styled-components';
 
 
-const Li = ({date="2024.7.7",isActive,advertiser ,onClick,title})=>{
+const Li = ({date="2024.7.7",isActive,advertiser ,onClick,title,onContextMenu})=>{
    
   const userType =  window.localStorage.getItem("cate");
 
     if (userType==="최고관리자"){
     return ( 
-    <StyledLi className={isActive?"active ":""} onClick ={onClick}>
+    <StyledLi className={isActive?"active ":""} onClick ={onClick} onContextMenu={onContextMenu}>
      <div className="title">
         <h1 className="text14"> {title}</h1>
         {advertiser&&<p className="text13">{advertiser}</p>}
