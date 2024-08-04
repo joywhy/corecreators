@@ -3,14 +3,14 @@ import Li from "./Li"
 import styled from 'styled-components';
 
 
-const Nav = ({title="캠페인",List,index,setIndex}) => {
+const Nav = ({title="캠페인",List,index,setIndex,addList}) => {
 
     const userType =  window.localStorage.getItem("cate");
     const advertiser = userType==="최고관리자"?"광고주":"";
 
   return (
 <StyledDiv>
-  <Header title={title}/>
+  <Header title={title} addList={addList}/>
     <nav>
     <ul>
         {List.map((campaign,idx)=>{
@@ -26,7 +26,7 @@ const Nav = ({title="캠페인",List,index,setIndex}) => {
   )
 }
 
-const Header = ({title})=>{
+const Header = ({title,addList})=>{
     const [isSearch,setIsSearch]= useState(false);
     const [value,setValue] = useState("");
 
@@ -51,8 +51,9 @@ const Header = ({title})=>{
             <button onClick = {handleCLick}>
             <img src="/src/assets/search_icon.svg"  alt ="검색아이콘"/>
             </button>
-
+            <div onClick={addList}>            
              <img src="/src/assets/common/cross_icon.svg" alt ="추가 아이콘"/>
+             </div>
            </div>
         </StyledHeader>
     );

@@ -13,6 +13,15 @@ const List = () => {
     channelType:"instargram",
    channel:""
 };
+let basicList = {
+  name:"캠페인명",
+  userNo:"",
+  creatorList :[],
+  channelList:[{...basic}],
+  no:"",
+  date: "2024.07.27",
+  memo: "메모"
+};
 
   const list = [
     {
@@ -41,7 +50,7 @@ const List = () => {
 channelList:[{...basic}],
     no:1,
     date: "2024.07.27",
-    memo: "00캠페인 메모"
+    memo: "메모"
 },
 {
     name : "**캠페인",
@@ -69,7 +78,7 @@ channelList:[{...basic}],
 channelList:[{...basic}],
     no:1,
     date: "2024.07.28",
-    memo: "**캠페인 메모"
+    memo: "메모"
 },
 ];
 const [List,setList] = useState(list);
@@ -78,11 +87,15 @@ const changeList = (newContent) => {
   let newList = List.map((content,idx)=>{return index===idx?newContent:content})
   setList(newList);
 }
+const addList = ()=>{
+  let newList = [...List,{...basicList}];
+  setList(newList);
+}
   return (
   <StyledDiv>
   <Aside/>
   <MainWrapper>
-   <Nav List={List} setIndex={setIndex} index={index} />
+   <Nav List={List} setIndex={setIndex} index={index} addList={addList}/>
    <Contents changeContent={changeList} content={List[index]} index={index}/>
 
   </MainWrapper>

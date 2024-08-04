@@ -22,11 +22,7 @@ const ChannelList = ({changeList,list}) => {
 
     const addChannel = () => {
         let newList = [...list,{...basic}];
-        // console.log(newList);
-        changeList(newList);
-
-        // console.log("동작");
-       
+        changeList(newList);  
     }
     const deleteChannel = (idx) => {
         changeList(list.filter((_, index) => index!==idx));
@@ -61,39 +57,30 @@ const Channel = ({changeType,changeChannel,value,deleteChannel,idx})=>{
     <StyleChannerl>
       <Dropdown handleDropDown={(newType)=>changeType(newType)} list={ChannelType}  type={value.ChannelType}  value={value.channelType} />
       <input type="text" name="channelType" placeholder="채널"     value={value.channel} onChange={(e)=>changeChannel(e.target.value)}/>
-     {idx!==0&& <img  className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" onClick={deleteChannel}/>
-   } </StyleChannerl>
+     {idx!==0?
+      <img  className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" onClick={deleteChannel}/>
+      : <img style={{visibility:"hidden"}} className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" onClick={deleteChannel}/>
+      } </StyleChannerl>
     );    
     }
 const StyleTitle = styled.div`
     width: 100%;
     display:flex;
     justify-content: space-between;
-    border:1px solid red;
     align-items: center;
- 
-
-
     & h3 {
-  /* width: 100%; */
-  border:1px solid red;
   text-align: left;
   font-size: 16px;
   font-weight: bold;
-  margin-top: 17px;
   height: 100%;
   line-height:100%;
  }
     `;
-    
 const StyleUl = styled.ul`
 position: relative;
 width: 100%;
 `;
-
-
 const StyleChannerl = styled.li`
-/* border:1px solid red ; */
 width: 100%;
 height: 40px;
 margin-top:10px;
@@ -111,7 +98,6 @@ align-items: center;
     color: black;
     border-radius:5px;
     &:focus {outline: 2px solid var(--main-mint);}
-  
 }
 & img.delete {
     height: 5px;
