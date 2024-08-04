@@ -2,53 +2,49 @@ import React,{useState} from "react";
 import Dropdown from "./Dropdown";
 import Button from "./Button";
 import { ChannelType } from "../../constants";
+import ChannelList from "../channelList/ChannelList.jsx";
 import styled from 'styled-components';
 
 const CampaignForm = ({name="",advertiser=""})=>{
+  let basic = {
+    channelType:"instargram",
+   channel:""
+};
+
     const [values, setValues] = useState({
       name: name,
       advertiser: advertiser,
-      channelList:[],
+      channelList:[{...basic}],
       memo:""
     })
-    // const [errors, setErrors] = useState({
-    //   email: "",
-    //   password: "",
-    // })
-    const handleChange = e => {
+    console.log(values.channelList);
+    const handleChange = (e) => {
       setValues({
         ...values,
         [e.target.name]: e.target.value,
       })
-      // const errors = validate(values);
-      // setErrors(errors);
     }
-  
+   const changeList = (newList)=>{
+    setValues({ ...values,"channelList":newList})
+   }
     const handleSubmit =  e => {
       e.preventDefault();
     }
     return (<StyledForm onSubmit={handleSubmit}>
       
-     <input
+           <input name="name"
             type="text"
-            name="name"
             value={values.name}
             onChange={handleChange}
             placeholder="캠페인명"
           />
-           <input
-            type="text"
+           <input type="text"
             name="advertiser"
             value={values.advertiser}
             onChange={handleChange}
             placeholder="@광고주"
           />
-          <h3>채널 리스트</h3>
-          {/* <ul style={{border: `1px solid blue`, width:`100%`}}> */}
-          <ul style={{ width:`100%`,position:"relative"}}>
-           <Channel />
-           <Channel />
-          </ul>
+          <ChannelList changeList={(newList)=>changeList(newList)} list={values.channelList}/>
           <textarea placeholder="메모"></textarea>
            <Button type="submit"   className="text16" >완료</Button>
         
@@ -57,28 +53,28 @@ const CampaignForm = ({name="",advertiser=""})=>{
     );
   }
 
-const Channel = ()=>{
-const [value, setValue] = useState({
-  channelType:"instargram",
-  channel:""
-});
-const handleChange = e => {
-  setValue({
-    ...value,
-    [e.target.name]: e.target.value,
-  })
-  // const errors = validate(values);
-  // setErrors(errors);
-}
-// console.log(value);
-return (
-<StyleChannerl>
-  <Dropdown list={ChannelType} setValue={setValue} value={value}/>
-  <input type="text" name="channel" placeholder="채널"     value={value.channel} onChange={handleChange}/>
-  <img  className="delete" src="src/components/common/delete_icon.svg" alt="채널 삭제 아이콘" />
-</StyleChannerl>
-);    
-}
+// const Channel = ()=>{
+// const [value, setValue] = useState({
+//   channelType:"instargram",
+//   channel:""
+// });
+// const handleChange = e => {
+//   setValue({
+//     ...value,
+//     [e.target.name]: e.target.value,
+//   })
+//   // const errors = validate(values);
+//   // setErrors(errors);
+// }
+// // console.log(value);
+// return (
+// <StyleChannerl>
+//   <Dropdown list={ChannelType} setValue={setValue} value={value}/>
+//   <input type="text" name="channel" placeholder="채널"     value={value.channel} onChange={handleChange}/>
+//   <img  className="delete" src="src/assets/common/delete_icon.svg" alt="채널 삭제 아이콘" />
+// </StyleChannerl>
+// );    
+// }
 
 const StyledForm = styled.form`
 position: relative
@@ -105,13 +101,13 @@ box-sizing: border-box;
 color: black;
   &:focus {outline: 2px solid var(--main-mint);}
  }
- & h3 {
+ /* & h3 {
   width: 100%;
   text-align: left;
   font-size: 16px;
   font-weight: bold;
   margin-top: 17px;
- }
+ } */
  & textarea {
     width: 100%;
     /* height: 100%; */

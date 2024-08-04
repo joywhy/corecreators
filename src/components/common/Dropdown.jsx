@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 
 import styled from 'styled-components';
-const Dropdown = ({list,setValue,value}) => {
-   let selectedValue = list.filter((data)=>value.channelType=== data.type)[0];
+const Dropdown = ({handleDropDown,list,value}) => {
+   let selectedValue = list.filter((data)=>value=== data.type)[0];
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleClick = (item) => {
-        setValue({...value, "channelType": item.type}); 
+    const handleClick = (value) => {
+        handleDropDown(value); 
         setIsOpen(false);
     };
     return (
@@ -22,7 +22,7 @@ const Dropdown = ({list,setValue,value}) => {
             {isOpen &&(
                <ul>
                 {list.map((item,index)=>(
-                    <li  onClick={()=>{handleClick(item)}}key={index+ "item"}>
+                    <li  onClick={()=>{handleClick(item.type)}}key={index+ "item"}>
                       <img src={item.imgUrl}/>
                        <span>{item.name}</span> 
                     </li>
