@@ -1,31 +1,26 @@
-import React,{useState} from "react";
-import Dropdown from "./Dropdown";
+import React,{useState,useEffect} from "react";
 import Button from "./Button";
-import { ChannelType } from "../../constants";
 import ChannelList from "../channelList/ChannelList.jsx";
 import styled from 'styled-components';
-
-const CampaignForm = ({name="",advertiser=""})=>{
-  let basic = {
-    channelType:"instargram",
-   channel:""
+let basic = {
+  channelType:"instargram",
+ channel:""
 };
 
-    const [values, setValues] = useState({
-      name: name,
-      advertiser: advertiser,
-      channelList:[{...basic}],
-      memo:""
-    })
-    console.log(values.channelList);
+const CampaignForm = ({name="",advertiser="",memo="",channelList=[{  channelType:"instargram",
+  channel:""}],content,changeContent})=>{
+
     const handleChange = (e) => {
-      setValues({
-        ...values,
+      changeContent({
+        ...content,
         [e.target.name]: e.target.value,
       })
     }
    const changeList = (newList)=>{
-    setValues({ ...values,"channelList":newList})
+    changeContent({ ...content,"channelList":newList})
+   }
+   const changeMemo = (e)=>{
+    changeContent({ ...content,"memo":e.target.value})
    }
     const handleSubmit =  e => {
       e.preventDefault();
@@ -34,18 +29,18 @@ const CampaignForm = ({name="",advertiser=""})=>{
       
            <input name="name"
             type="text"
-            value={values.name}
+            value={name}
             onChange={handleChange}
             placeholder="캠페인명"
           />
            <input type="text"
             name="advertiser"
-            value={values.advertiser}
+            value={advertiser}
             onChange={handleChange}
             placeholder="@광고주"
           />
-          <ChannelList changeList={(newList)=>changeList(newList)} list={values.channelList}/>
-          <textarea placeholder="메모"></textarea>
+          <ChannelList changeList={(newList)=>changeList(newList)} list={channelList}/>
+          <textarea placeholder="메모" value={memo}  onChange={changeMemo}></textarea>
            <Button type="submit"   className="text16" >완료</Button>
         
     </StyledForm>

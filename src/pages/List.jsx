@@ -9,7 +9,12 @@ import styled from 'styled-components';
 
 const List = () => {
   const [index,setIndex] = useState(0);
-  const List = [
+  let basic = {
+    channelType:"instargram",
+   channel:""
+};
+
+  const list = [
     {
     name : "00캠페인",
     userNo: 2,
@@ -33,6 +38,7 @@ const List = () => {
          percent :"80%",
       },
 ],
+channelList:[{...basic}],
     no:1,
     date: "2024.07.27",
     memo: "00캠페인 메모"
@@ -60,17 +66,24 @@ const List = () => {
          percent :"80%",
       },
 ],
+channelList:[{...basic}],
     no:1,
     date: "2024.07.28",
     memo: "**캠페인 메모"
 },
 ];
+const [List,setList] = useState(list);
+
+const changeList = (newContent) => {
+  let newList = List.map((content,idx)=>{return index===idx?newContent:content})
+  setList(newList);
+}
   return (
   <StyledDiv>
   <Aside/>
   <MainWrapper>
    <Nav List={List} setIndex={setIndex} index={index} />
-   <Contents List={List} index={index}/>
+   <Contents changeContent={changeList} content={List[index]} index={index}/>
 
   </MainWrapper>
   </StyledDiv>

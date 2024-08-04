@@ -3,7 +3,7 @@ import CampaignForm from "./CampaignForm";
 import styled from 'styled-components';
 
 
-const Contents = ({List,index}) => {
+const Contents = ({content,index,changeContent}) => {
   const isManager =  window.localStorage.getItem("cate")==="최고관리자";
   const userType =  window.localStorage.getItem("cate");
   const advertiser = userType==="최고관리자"?"광고주":"";
@@ -12,10 +12,16 @@ const Contents = ({List,index}) => {
 <StyledDiv>
    {
     isManager? 
-    // <CampaignForm name = {List[index].name} advertiser={advertiser}/>
-    <CampaignForm />
+    <CampaignForm 
+    content={content} 
+    name={content.name} 
+    advertiser={advertiser}
+    memo={content.memo} 
+    channelList={content.channelList}
+    changeContent={changeContent}
+    />
     :
-    <CreatorList list = {List[index].creatorList}/>
+    <CreatorList list = {content.creatorList}/>
    }
 </StyledDiv>
   )
