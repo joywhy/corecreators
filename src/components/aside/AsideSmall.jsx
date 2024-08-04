@@ -1,11 +1,10 @@
 import React from "react";
-import Logo from "./Logo";
-import {navigateToPath} from "../../utils/index.js";
+import Logo from "../common/Logo.jsx";
+import {navigateToPath,handleClickLogout} from "../../utils/index.js";
 
 import styled from 'styled-components';
 
 const Aside = () => {
-  // let isLogin = window.localStorage.getItem("token");
 
   let navList =[
     {
@@ -45,9 +44,7 @@ const Aside = () => {
 
   return (
     <StyledAside>
-     <Logo src="/src/assets/logo_white.svg"/>
     <nav>
-      <h1>NAVIGATION</h1>
      <ul>
       {navList.map((nav,idx)=>{
         const isActive = location.pathname === nav.path;
@@ -70,61 +67,41 @@ const handleClick =() =>{
   return (
     <StyledLi  className={isActive?"isActive":""} onClick={handleClick}>
       <img src={imgUrl} alt={`${title} 이미지`}/>
-     <p>{title}</p> 
     </StyledLi>
   )
 }
 
 const StyledAside = styled.aside`
-max-width: 250px;
+/* position:absolute;
+bottom:0; */
 width: 100%;
 background-color: var(--black);
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-
-&  a {
-  margin-top: 80px;
-  width: 80%;
-  &  img {
-    width: 157px;
-  }
+height: 70px;
+/* border:1px solid red; */
+& ul {
+    display: flex;
+justify-content:space-around;
+padding: 10px;
+box-sizing:border-box;
+/* border:1px solid red; */
 }
-&  nav {
-  /* border: 1px solid red; */
-  margin-top: 80px;
-  max-width: 220px;
-  width: 100%;
-  color:white;
 
-&  h1 {
-  font-size: 12px;
-  font-weight: bold;
-  height: 36px;
-  line-height: 36px;
- }
-}
 `;
 
 const StyledLi = styled.li`
-max-width: 100%;
-/* border: 1px solid red; */
+
 height: 50px;
-display: flex;
-justify-content: flex-start;
-align-items: center;
 border-radius: 10px;
 padding-left: 8px;
-/* line-height: 50px; */
-
+display:flex;
+justify-content: center;
+align-items: center;
 &.isActive {
 color: var(--red-20);
 background-color:var( --gray-70);
 }
 
 &:hover {
-  
   background-color: var(--gray-50);
 }
 

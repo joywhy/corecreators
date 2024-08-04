@@ -2,14 +2,16 @@ import React,{useState} from "react";
 import CampaignForm from "./CampaignForm";
 import styled from 'styled-components';
 
+import useWindowDimensions from '../../hooks/useWindowDimensions.jsx'
 
 const Contents = ({content,index,changeContent}) => {
   const isManager =  window.localStorage.getItem("cate")==="최고관리자";
   const userType =  window.localStorage.getItem("cate");
   const advertiser = userType==="최고관리자"?"광고주":"";
  console.log(content);
+ let { height, width } = useWindowDimensions();
   return (
-<StyledDiv>
+<StyledDiv style={{height: height}}>
    {
     isManager? 
     <CampaignForm 
@@ -73,6 +75,15 @@ const Li = (props)=>{
 
 const StyledDiv = styled.div`
 flex-grow:7;
+overflow: scroll;
+@media only screen and (max-width: 800px) {
+    & {
+    height:calc(100vh - 70px);
+    /* border:1px solid red; */
+    overflow: scroll;
+    }
+  }
+
 `;
 
 

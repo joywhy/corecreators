@@ -17,15 +17,15 @@ function convertClick (type){
   switch (type) {
       case "login":
        return handleClickLogin;
-          break; 
+       
 
        case "logout":
           return handleClickLogout;
-               break; 
+      
       default:
           // console.log("동작");
   }
-};
+}
 
  const handleClickLogin =()=>{
   location.href ="/login";

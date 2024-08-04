@@ -1,9 +1,13 @@
 import React,{useState} from "react";
-import Aside from "../components/common/Aside.jsx";
+import Aside from "../components/aside/Aside.jsx";
+import AsideSmall from "../components/aside/AsideSmall.jsx";
 
 import MainWrapper from '../components/common/MainWrapper.jsx'
 import Nav from "../components/common/Nav.jsx"
 import Contents from "../components/common/Contents.jsx"
+import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+
+
 import styled from 'styled-components';
 
 
@@ -82,10 +86,8 @@ channelList:[{...basic}],
 },
 ];
 const [List,setList] = useState(list);
-console.log(List);
-console.log(List[index]);
-console.log(index);
 
+let { height, width } = useWindowDimensions();
 const changeList = (newContent) => {
   let newList = List.map((content,idx)=>{return index===idx?newContent:content})
     setList(newList);
@@ -105,12 +107,13 @@ const deleteList = (idx) => {
 }
   return (
   <StyledDiv>
-  <Aside/>
+  {width>800&&<Aside/>}
   <MainWrapper>
    <Nav deleteList={deleteList} List={List} setIndex={setIndex} index={index} addList={addList}/>
    <Contents changeContent={changeList} content={List[index]} index={index}/>
 
   </MainWrapper>
+  {width<=800&&<AsideSmall/>}
   </StyledDiv>
   )
 }
@@ -118,6 +121,15 @@ const deleteList = (idx) => {
 const StyledDiv = styled.div`
 width:100%;
 display: flex;
+
+@media only screen and (max-width: 800px) {
+    & {
+      display:block;
+      flex-direction: column;
+      align-items: end;
+      /* justify-content: end; */
+    }
+  }
 `;
 
 export default List;

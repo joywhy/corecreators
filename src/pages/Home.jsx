@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/header/Header";
 import {CARDS} from  "../constants"
-
+import {isLogin} from "../utils"
 import styled from 'styled-components';
 
 
@@ -27,8 +27,14 @@ const Home = () => {
 const Card = ({title,desc,img,url}) => {
 
     const handleClick = (url)=>{
-      location.href ="";
-      location.href = `${url}`;
+      if(isLogin()){
+        location.href ="";
+        location.href = `${url}`;
+      }else{
+        alert("로그인이 필요합니다.");
+        return;  
+      }
+    
     }
   
     return (

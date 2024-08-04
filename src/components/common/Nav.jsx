@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import Li from "./Li"
 import styled from 'styled-components';
 
+import useWindowDimensions from '../../hooks/useWindowDimensions.jsx'
 
 const Nav = ({title="캠페인",List,index,setIndex,addList,deleteList}) => {
    const [isModal,setIsModal]=useState(false);
     const userType =  window.localStorage.getItem("cate");
     const advertiser = userType==="최고관리자"?"광고주":"";
     // console.log(isModal);
+    let { height, width } = useWindowDimensions();
   return (
-<StyledDiv>
+<StyledDiv style={{height: height}}>
   <Header title={title} addList={addList}/>
     <nav>
     <ul>
@@ -45,6 +47,8 @@ const Nav = ({title="캠페인",List,index,setIndex,addList,deleteList}) => {
 }
 
 const Header = ({title,addList})=>{
+    const isManager =  window.localStorage.getItem("cate")==="최고관리자";
+  
     const [isSearch,setIsSearch]= useState(false);
     const [value,setValue] = useState("");
 
@@ -69,9 +73,12 @@ const Header = ({title,addList})=>{
             <button onClick = {handleCLick}>
             <img src="/src/assets/search_icon.svg"  alt ="검색아이콘"/>
             </button>
-            <div onClick={addList}>            
+            {isManager? ( <div onClick={addList}>            
              <img src="/src/assets/common/cross_icon.svg" alt ="추가 아이콘"/>
-             </div>
+             </div>):
+            <div></div>
+            }
+           
            </div>
         </StyledHeader>
     );
@@ -111,6 +118,14 @@ max-width: 300px;
 flex-grow:3;
 width: 100%;
 border-right: 1px solid var(--gray-10); 
+overflow: scroll;
+@media only screen and (max-width: 800px) {
+    & {
+    height:calc(100vh - 70px);
+    /* border:1px solid red; */
+    overflow: scroll;
+    }
+  }
 `;
 
 const StyledHeader = styled.header`

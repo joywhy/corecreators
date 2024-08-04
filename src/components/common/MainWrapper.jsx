@@ -35,4 +35,10 @@ border-radius: 10px;
 background-color: var(--white);
 overflow: hidden;
 }
+@media only screen and (max-width: 800px) {
+    & {
+    height:calc(100vh - 70px);
+
+    }
+  }
 `;
