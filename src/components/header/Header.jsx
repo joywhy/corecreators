@@ -1,22 +1,19 @@
 
-import {useEffect} from "react";
-import { userInfo } from '../../store/state.js';
-import { getUserInfo } from '../../api/index.js';
+
 import Button from "../common/Button";
 import Logo from "../common/Logo.jsx";
 
-import { useAtom } from 'jotai';
+
 import styled from 'styled-components';
 
 
 const Header = () => {
+  let token = window.localStorage.getItem("token");
 
-let token = window.localStorage.getItem("token");
-
-let isLogin = token?true:false;
-console.log( isLogin );
-    
-   return (
+  let isLogin = token?true:false;
+  // console.log( isLogin );
+  
+    return (
         <StyledHeader>
            <Logo src="src/assets/logo.svg"/>
           {isLogin?

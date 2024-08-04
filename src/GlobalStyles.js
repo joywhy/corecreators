@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-components";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -46,7 +46,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
- a {color: black; text-decoration: none; outline: none} 
+a {color: black; text-decoration: none; outline: none}
 a:hover, a:active {text-decoration: none; color:black; background-color:none;}
 body{
   margin: 0;
@@ -63,22 +63,37 @@ body{
   --gray-10: #F5F5F5; 
   --gray-20: #BDBDBD; 
   --gray-30 : #897C77;
-
-
+  --gray-40:#F5F5F5;
+ --gray-50: #424242;
+ 
+ --gray-70 : #191919;
   --home-max-width: 1174px;
 
 
 
   }
+  .text10{
+  font-family: "Pretendard Variable", sans-serif;
+ font-size: 10px;
+}
 .text13{
   font-family: "Pretendard Variable", sans-serif;
  font-size: 13px;
 }
-
+.text14{
+  font-family: "Pretendard Variable", sans-serif;
+ font-size: 14px;
+ font-weight: bold;
+}
 .text16 {
   font-family: "Pretendard Variable", sans-serif;
   font-weight: bold;
  font-size: 16px;
+}
+.text20 {
+  font-family: "Pretendard Variable", sans-serif;
+ font-weight: bold;
+ font-size: 20px;
 }
 .text22 {
   font-family: "Pretendard Variable", sans-serif;
@@ -91,5 +106,5 @@ body{
  font-size: 32px;
 }
 `;
- 
+
 export default GlobalStyles;

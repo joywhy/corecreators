@@ -2,18 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'; 
-import { RecoilRoot } from 'recoil';
-
+import { QueryClient, QueryClientProvider } from 'react-query'
 import GlobalStyles from'./GlobalStyles.js';
 
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-    <GlobalStyles/>
-      <RecoilRoot>
+     <QueryClientProvider client={queryClient}>
+     <BrowserRouter>
+     <GlobalStyles/>
         <App />
-      </RecoilRoot>
     </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

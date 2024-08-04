@@ -1,9 +1,5 @@
 import { useState, useCallback,useEffect }from "react";
-import { useNavigate } from "react-router-dom";
-
-import { userInfo } from '../../store/state.js';
-import { useAtom } from 'jotai';
-// import { useRecoilState } from 'recoil';
+import { useQuery,useMutation,useQueryClient } from 'react-query'
 
 import {getUserInfo} from "../../api";
 import {navigateToPath} from  "../../utils"
@@ -12,9 +8,7 @@ import styled from 'styled-components';
 
 
   const LoginForm = ()=>{
-    // const [userinfoState, setUserinfoState] = useRecoilState(userState);
-    const [userState, setUserState] = useAtom(userInfo);
-
+  
 
     const [values, setValues] = useState({
       email: "",
@@ -28,7 +22,19 @@ import styled from 'styled-components';
         email: false,
         password: false,
       })
-  
+      const queryClient = useQueryClient();
+      const { mutate, isLoading, isError, error } = useMutation(getUserInfo, {
+        onSuccess: (data) => {
+            // 로그인 성공 시 처리 로직을 여기에 추가하세요.
+            queryClient.invalidateQueries('userInfo')
+            console.log('Login successful', data);
+        },
+        onError: (error) => {
+            // 로그인 실패 시 처리 로직을 여기에 추가하세요.
+            console.error('Login failed', error);
+        },
+    });
+
     const handleChange = e => {
       setValues({
         ...values,
@@ -55,37 +61,27 @@ import styled from 'styled-components';
       setErrors(errors);
 
        
-      let isError =Object.values(errors).some(v => v);
+      let Isincorrectly =Object.values(errors).some(v => v);
   
-      if (isError) {
+      if (Isincorrectly) {
         return
       }
-    
+      mutate(values);
+
      const userInf = await getUserInfo(values);
      let isSuccessed = !!userInf.token;
 
      if(!isSuccessed) {
       alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
      }else{
-      console.log(userInf);
-      setUserState(userInf);
-
-      // window.localStorage.setItem("userInfo", [...userInf])
-      
-      // window.localStorage.setItem("email", userInf.mail)
-      // window.localStorage.setItem("password", values.password)
+  
       for (let key in userInf) {
         const value = userInf[key]
         window.localStorage.setItem(key, value)
-        // console.log(key)
-        // console.log(value)
       }
       navigateToPath("/");
-      // useNavigate("/")
-      
      }
-    //  console.log("동작");
-    //  console.log(userinfoState);
+
     }
  
     const validate = useCallback(() => {
@@ -134,7 +130,7 @@ import styled from 'styled-components';
         <button type="submit"   className="text16">로그인</button>
       </StyledForm>
     )
-  }
+  };
    
 const DetailSetting = () =>{
     
@@ -159,12 +155,6 @@ const DetailSetting = () =>{
  display: flex;
  flex-direction: column;
  align-items: center;
-
- @media only screen and (max-width: 280px) {
-    & {
-      /* width: 100vw; */
-    }
-  }
 
  & >input:nth-of-type(1) {
    margin-top: 61px;
