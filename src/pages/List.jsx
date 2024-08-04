@@ -71,6 +71,7 @@ const List = () => {
   <MainWrapper>
    <Nav List={List} setIndex={setIndex} index={index} />
    <Contents List={List} index={index}/>
+
   </MainWrapper>
   </StyledDiv>
   )

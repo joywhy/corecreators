@@ -1,25 +1,24 @@
-import React from "react";
-
+import React,{useState} from "react";
+import CampaignForm from "./CampaignForm";
 import styled from 'styled-components';
 
 
 const Contents = ({List,index}) => {
   const isManager =  window.localStorage.getItem("cate")==="최고관리자";
-  // console.log(List);
+  const userType =  window.localStorage.getItem("cate");
+  const advertiser = userType==="최고관리자"?"광고주":"";
+
   return (
 <StyledDiv>
    {
     isManager? 
-    <CampaignForm/>
+    // <CampaignForm name = {List[index].name} advertiser={advertiser}/>
+    <CampaignForm />
     :
     <CreatorList list = {List[index].creatorList}/>
    }
 </StyledDiv>
   )
-}
-const CampaignForm = ()=>{
-
-  return (<>CampaignForm</>);
 }
 
 const CreatorList = ({list})=> {
@@ -69,6 +68,7 @@ const Li = (props)=>{
 const StyledDiv = styled.div`
 flex-grow:7;
 `;
+
 
 const StyledContainer = styled.div`
 padding: 14px 25px;
