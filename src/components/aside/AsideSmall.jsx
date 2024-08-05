@@ -72,18 +72,14 @@ const handleClick =() =>{
 }
 
 const StyledAside = styled.aside`
-/* position:absolute;
-bottom:0; */
 width: 100%;
 background-color: var(--black);
 height: 70px;
-/* border:1px solid red; */
 & ul {
-    display: flex;
+display: flex;
 justify-content:space-around;
 padding: 10px;
 box-sizing:border-box;
-/* border:1px solid red; */
 }
 
 `;
