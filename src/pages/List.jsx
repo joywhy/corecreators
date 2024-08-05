@@ -93,7 +93,9 @@ const changeList = (newContent) => {
   let newList = List.map((content,idx)=>{return index===idx?newContent:content})
     setList(newList);
 }
-const addList = ()=>{
+const createForm = ()=>{
+  // const 
+
   let newList = [...List,{...basicList}];
   setList(newList);
 }
@@ -111,7 +113,7 @@ const deleteList = (idx) => {
   {width>responsiveWidth&&<Aside/>}
   <MainWrapper>
     {width>responsiveWidthMiddle &&
-     <Nav deleteList={deleteList} List={List} setIndex={setIndex} index={index} addList={addList}/>
+     <Nav deleteList={deleteList} List={List} setIndex={setIndex} index={index} addList={createForm}/>
     }
   <Contents changeContent={changeList} content={List[index]} index={index}/>
 
