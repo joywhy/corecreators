@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import Li from "./Li"
 import styled from 'styled-components';
-
+import { usehasManagerPermission } from "../../hooks/usehasManagerPermission.jsx";
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx'
 
 const Nav = ({title="캠페인",List,index,setIndex,addList,deleteList}) => {
    const [isModal,setIsModal]=useState(false);
-    const userType =  window.localStorage.getItem("cate");
+   
+   let {isManager,userType} = usehasManagerPermission();
     const advertiser = userType==="최고관리자"?"광고주":"";
-    // console.log(isModal);
+  
     let { height, width } = useWindowDimensions();
   return (
-<StyledDiv style={{height: height}}>
-  <Header title={title} addList={addList}/>
+<StyledDiv style={{height: height - 70}}>
+  <Header title={title} addList={addList} isManager={isManager}/>
     <nav>
     <ul>
         {List.map((campaign,idx)=>{
@@ -46,9 +47,8 @@ const Nav = ({title="캠페인",List,index,setIndex,addList,deleteList}) => {
   )
 }
 
-const Header = ({title,addList})=>{
-    const isManager =  window.localStorage.getItem("cate")==="최고관리자";
-  
+const Header = ({title,addList,isManager})=>{
+    
     const [isSearch,setIsSearch]= useState(false);
     const [value,setValue] = useState("");
 
@@ -103,14 +103,7 @@ width:100%;
     justify-content: center;
     align-items: center;
     border:1px solid black;
-    /* width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-    color: white; */
+
 }
 `;
 const StyledDiv = styled.div`
@@ -119,10 +112,9 @@ flex-grow:3;
 width: 100%;
 border-right: 1px solid var(--gray-10); 
 overflow: scroll;
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1200px) {
     & {
-    height:calc(100vh - 70px);
-    /* border:1px solid red; */
+    height: calc(100vh - 70px);
     overflow: scroll;
     }
   }
@@ -136,8 +128,6 @@ const StyledHeader = styled.header`
     align-items: center;
     padding: 0 10px;
     box-sizing: border-box;
-    /* transition-property: all;
-    transition: all 0.5s linear 0.5s; */
     & div{
 
       display: flex;

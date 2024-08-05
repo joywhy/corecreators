@@ -1,5 +1,6 @@
 import { useState, useCallback,useEffect }from "react";
-import { useQuery,useMutation,useQueryClient } from 'react-query'
+// import { useQuery,useMutation,useQueryClient } from 'react-query'
+import { useUserInfo } from '../../store/userInfoStore';
 
 import {getUserInfo} from "../../api";
 import {navigateToPath} from  "../../utils"
@@ -8,8 +9,7 @@ import styled from 'styled-components';
 
 
   const LoginForm = ()=>{
-  
-
+    const { userInfo, error, sendLoginRequest, loading } = useUserInfo();
     const [values, setValues] = useState({
       email: "",
       password: "",
@@ -22,18 +22,18 @@ import styled from 'styled-components';
         email: false,
         password: false,
       })
-      const queryClient = useQueryClient();
-      const { mutate, isLoading, isError, error } = useMutation(getUserInfo, {
-        onSuccess: (data) => {
-            // 로그인 성공 시 처리 로직을 여기에 추가하세요.
-            queryClient.invalidateQueries('userInfo')
-            console.log('Login successful', data);
-        },
-        onError: (error) => {
-            // 로그인 실패 시 처리 로직을 여기에 추가하세요.
-            console.error('Login failed', error);
-        },
-    });
+    //   const queryClient = useQueryClient();
+    //   const { mutate, isLoading, isError, error } = useMutation(getUserInfo, {
+    //     onSuccess: (data) => {
+    //         // 로그인 성공 시 처리 로직을 여기에 추가하세요.
+    //         queryClient.invalidateQueries('userInfo')
+    //         console.log('Login successful', data);
+    //     },
+    //     onError: (error) => {
+    //         // 로그인 실패 시 처리 로직을 여기에 추가하세요.
+    //         console.error('Login failed', error);
+    //     },
+    // });
 
     const handleChange = e => {
       setValues({
@@ -66,19 +66,19 @@ import styled from 'styled-components';
       if (Isincorrectly) {
         return
       }
-      mutate(values);
+      // mutate(values);
 
-     const userInf = await getUserInfo(values);
-     let isSuccessed = !!userInf.token;
-
-     if(!isSuccessed) {
+    //  const userInf = await getUserInfo(values);
+    //  let isSuccessed = !!userInf.no;
+    sendLoginRequest(values);
+     if(!error) {
       alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.')
      }else{
   
-      for (let key in userInf) {
-        const value = userInf[key]
-        window.localStorage.setItem(key, value)
-      }
+      // for (let key in userInfo) {
+      //   const value = userInfo[key]
+      //   window.localStorage.setItem(key, value)
+      // }
       navigateToPath("/");
      }
 

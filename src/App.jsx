@@ -5,7 +5,7 @@ import List from "./pages/List";
 import Sort from "./pages/Sort";
 import Report from "./pages/Report";
 import Adm from "./pages/Adm";
-import { ReactQueryDevtools } from 'react-query/devtools'
+
 import './App.css'
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/adm/*" element={<Adm/>}/>
       </Routes>
 
-      <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
+   
     </>
   )
 }

@@ -5,18 +5,21 @@ import MainWrapper from '../components/common/MainWrapper.jsx'
 import Nav from "../components/common/Nav.jsx"
 import Contents from "../components/common/Contents.jsx"
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+import {responsiveWidth} from "../constants"
+
 import styled from 'styled-components';
 
 const Adm = () => {
   let { height, width } = useWindowDimensions();
   return (
     <StyledDiv>
- {width>800&&<Aside/>}
+ {width>responsiveWidth&&<Aside/>}
     <MainWrapper>
      {/* <Nav/> */}
      {/* <Contents/> */}
+     <div className="content">adm</div>
     </MainWrapper>
-    {width<=800&&<AsideSmall/>}
+    {width<=responsiveWidth&&<AsideSmall/>}
     </StyledDiv>
     )
   }
@@ -24,11 +27,19 @@ const Adm = () => {
   const StyledDiv = styled.div`
   width:100%;
   display: flex;
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 1200px) {
     & {
       display:block;
     }
   }
+  & .content {
+  height: 100%;
+
+  @media only screen and (max-width: 1200px) {
+    & {
+      height: calc(100vh - 70px);
+    }
+}}
   `;
   
 export default Adm;

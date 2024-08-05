@@ -2,23 +2,27 @@
 
 import Button from "../common/Button";
 import Logo from "../common/Logo.jsx";
-
-
+import { useUserInfo } from '../../store/userInfoStore.js';
+import {isLogin} from "../../utils"
 import styled from 'styled-components';
+import { useEffect } from "react";
 
 
 const Header = () => {
-  let token = window.localStorage.getItem("token");
+  const { userInfo, rememberUser } = useUserInfo();
+  // rememberUser();
 
-  let isLogin = token?true:false;
-  // console.log( isLogin );
-  
+  useEffect(()=>{
+    rememberUser();
+  console.log(userInfo);
+  },[])
     return (
         <StyledHeader>
            <Logo src="src/assets/logo.svg"/>
-          {isLogin?
+          {isLogin()?
           <div className="rightside">
-           <span>{`${window.localStorage.getItem("name")}님`}</span> 
+           {/* <span>{`${window.localStorage.getItem("name")}님`}</span>  */}
+           <span>{`${userInfo.name}님`}</span> 
            <Button   type="logout" primary>로그아웃</Button>
            </div>
            :<Button   type="login" primary>로그인</Button>}

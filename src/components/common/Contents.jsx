@@ -1,17 +1,43 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import CampaignForm from "./CampaignForm";
 import styled from 'styled-components';
 
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx'
+import {responsiveWidthMiddle} from "../../constants"
+import { useUserInfo } from '../../store/userInfoStore.js';
 
 const Contents = ({content,index,changeContent}) => {
-  const isManager =  window.localStorage.getItem("cate")==="최고관리자";
-  const userType =  window.localStorage.getItem("cate");
-  const advertiser = userType==="최고관리자"?"광고주":"";
- console.log(content);
+  // const isManager =  window.localStorage.getItem("cate")==="최고관리자";
+  // const userType =  window.localStorage.getItem("cate");
+  const { userInfo ,rememberUser} = useUserInfo();
+ 
+  let isManager =  userInfo.cate==="최고관리자";
+  let userType =  userInfo.cate;
+  let advertiser = userType==="최고관리자"?"광고주":"";
+// console.log(userInfo);
+useEffect(()=>{
+  rememberUser();
+// console.log(userInfo);
+isManager = userInfo.cate==="최고관리자";
+userType =  userInfo.cate;
+advertiser = userType==="최고관리자"?"광고주":"";
+},[])
  let { height, width } = useWindowDimensions();
+
+ const handleBackCick = ()=>{  
+  alert("뒤로가기");
+ }
+// console.log(userInfo);
   return (
-<StyledDiv style={{height: height}}>
+<StyledDiv style={{height:  height - 70}}>
+  {
+    width<responsiveWidthMiddle &&(
+      <div className="backButton" onClick={handleBackCick}>
+        <img src="/src/assets/common/back_icon.svg" alt ="뒤로가기"/>
+        뒤로가기
+      </div>
+    )
+  }
    {
     isManager? 
     <CampaignForm 
@@ -76,11 +102,21 @@ const Li = (props)=>{
 const StyledDiv = styled.div`
 flex-grow:7;
 overflow: scroll;
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1200px) {
     & {
     height:calc(100vh - 70px);
     /* border:1px solid red; */
     overflow: scroll;
+    }
+  }
+  & .backButton {
+    /* border: 1px solid red; */
+    display:  flex;
+    align-items: center;
+    padding: 10px 10px 0px 10px;
+
+    & img {
+      /* border: 1px solid red; */
     }
   }
 
