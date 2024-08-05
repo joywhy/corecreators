@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../common/Logo.jsx";
 import {navigateToPath,handleClickLogout} from "../../utils/index.js";
-
+import { usehasManagerPermission } from "../../hooks/usehasManagerPermission.jsx";
 import styled from 'styled-components';
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx'
-
+import { useUserInfo } from '../../store/userInfoStore.js';
 const Aside = () => {
-  // let isLogin = window.localStorage.getItem("token");
+  const { userInfo ,rememberUser} = useUserInfo();
+
+  let {isManager,userType} = usehasManagerPermission();
+  // console.log(isManager);
+  useEffect(()=>{
+    rememberUser(); 
+  },[])
+   
   let { height, width } = useWindowDimensions();
   let navList =[
     {
@@ -40,10 +47,11 @@ const Aside = () => {
       iconActiveUrl :"log_icon_active.svg"
     }
   ];
-  if( window.localStorage.getItem("cate")!=="최고관리자"){
+  if( !isManager){
     navList= navList.filter((nav)=>nav.title !=="회원" &&nav.title !=="접속내역");
    }
-console.log(height);
+
+   
   return (
     <StyledAside stye={{height: height}}>
       <div>

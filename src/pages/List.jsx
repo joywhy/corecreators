@@ -6,12 +6,13 @@ import MainWrapper from '../components/common/MainWrapper.jsx'
 import Nav from "../components/common/Nav.jsx"
 import Contents from "../components/common/Contents.jsx"
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-
+import {responsiveWidth,responsiveWidthMiddle} from "../constants"
 
 import styled from 'styled-components';
 
 
 const List = () => {
+
   const [index,setIndex] = useState(0);
   let basic = {
     channelType:"instargram",
@@ -107,13 +108,15 @@ const deleteList = (idx) => {
 }
   return (
   <StyledDiv>
-  {width>800&&<Aside/>}
+  {width>responsiveWidth&&<Aside/>}
   <MainWrapper>
-   <Nav deleteList={deleteList} List={List} setIndex={setIndex} index={index} addList={addList}/>
-   <Contents changeContent={changeList} content={List[index]} index={index}/>
+    {width>responsiveWidthMiddle &&
+     <Nav deleteList={deleteList} List={List} setIndex={setIndex} index={index} addList={addList}/>
+    }
+  <Contents changeContent={changeList} content={List[index]} index={index}/>
 
   </MainWrapper>
-  {width<=800&&<AsideSmall/>}
+  {width<=responsiveWidth&&<AsideSmall/>}
   </StyledDiv>
   )
 }
@@ -122,7 +125,7 @@ const StyledDiv = styled.div`
 width:100%;
 display: flex;
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1200px) {
     & {
       display:block;
       flex-direction: column;

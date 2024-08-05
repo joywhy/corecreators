@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import GlobalStyles from'./GlobalStyles.js';
 
 const queryClient = new QueryClient()
-
+await onready();
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <QueryClientProvider client={queryClient}>

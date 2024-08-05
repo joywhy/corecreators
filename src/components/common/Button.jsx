@@ -33,7 +33,8 @@ function convertClick (type){
   // useNavigate("/login");
 };
 const handleClickLogout =()=>{
-  window.localStorage.clear();
+  // window.localStorage.clear();
+  delete  cookie.my ;
   location.reload(true);
 }
 

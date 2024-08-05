@@ -1,11 +1,12 @@
 import React from "react";
 import Logo from "../common/Logo.jsx";
 import {navigateToPath,handleClickLogout} from "../../utils/index.js";
-
+import { usehasManagerPermission } from "../../hooks/usehasManagerPermission.jsx";
 import styled from 'styled-components';
 
 const Aside = () => {
 
+  let {isManager,userType} = usehasManagerPermission();
   let navList =[
     {
       title: "리스트업",
@@ -38,7 +39,7 @@ const Aside = () => {
       iconActiveUrl :"log_icon_active.svg"
     }
   ];
-  if( window.localStorage.getItem("cate")!=="최고관리자"){
+  if(!isManager){
     navList= navList.filter((nav)=>nav.title !=="회원" &&nav.title !=="접속내역");
    }
 

@@ -10,14 +10,21 @@ export const navigateToPath = (path) => {
 export const handleClickLogout = () => {
   window.localStorage.clear();
   location.reload(true);
+  // delete  cookie.my;
   location.href = '/';
 };
 
+// 로그인체크 userInfo.no
+// 권한체크 userInfo.cate
 export const isLogin = () => {
-  let token = window.localStorage.getItem('token');
-  return token ? true : false;
+  // let token = window.localStorage.getItem('no');
+  return cookie.my ? true : false;
 };
 export const getWindowDimensions = () => {
   const { innerWidth: width, innerHeight: height } = window;
   return { width, height };
 };
+
+export const  hasManagerPermission=()=> {
+    return window.localStorage.getItem("cate")==="최고관리자";
+  }

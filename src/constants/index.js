@@ -36,3 +36,6 @@ export const ChannelType = [
     imgUrl: '/src/assets/channel/tikkok_icon.svg',
   },
 ];
+
+ export const responsiveWidth = 1200;
+ export const responsiveWidthMiddle = 750;
