@@ -48,8 +48,7 @@ const Nav = ({title="캠페인",List,index,setIndex,addList,deleteList}) => {
 }
 
 const Header = ({title,addList,isManager})=>{
-    // const isManager =  window.localStorage.getItem("cate")==="최고관리자";
-  
+    
     const [isSearch,setIsSearch]= useState(false);
     const [value,setValue] = useState("");
 
