@@ -7,14 +7,11 @@ import { responsiveWidthMiddle } from '../../constants';
 import { useUserInfo } from '../../store/userInfoStore.js';
 
 const Contents = ({ content, index, changeContent }) => {
-  // const isManager =  window.localStorage.getItem("cate")==="최고관리자";
-  // const userType =  window.localStorage.getItem("cate");
   const { userInfo, rememberUser } = useUserInfo();
 
   let isManager = userInfo.cate === '최고관리자';
   let userType = userInfo.cate;
   let advertiser = userType === '최고관리자' ? '광고주' : '';
-  // console.log(userInfo);
   useEffect(() => {
     rememberUser();
     // console.log(userInfo);

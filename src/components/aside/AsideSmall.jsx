@@ -1,11 +1,11 @@
 import React from 'react';
 import Logo from '../common/Logo.jsx';
 import { navigateToPath, handleClickLogout } from '../../utils/index.js';
-import { usehasManagerPermission } from '../../hooks/usehasManagerPermission.jsx';
+import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 import styled from 'styled-components';
 
 const Aside = () => {
-  let { isManager, userType } = usehasManagerPermission();
+  let { isManager, userType } = useHasManagerPermission();
   let navList = [
     {
       title: '리스트업',

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import Logo from '../common/Logo.jsx';
 import { navigateToPath, handleClickLogout } from '../../utils/index.js';
-import { usehasManagerPermission } from '../../hooks/usehasManagerPermission.jsx';
+import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 import styled from 'styled-components';
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 import { useUserInfo } from '../../store/userInfoStore.js';
 const Aside = () => {
   const { userInfo, rememberUser } = useUserInfo();
 
-  let { isManager, userType } = usehasManagerPermission();
+  let { isManager, userType } = useHasManagerPermission();
   // console.log(isManager);
   useEffect(() => {
     rememberUser();

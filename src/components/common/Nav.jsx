@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
-import { usehasManagerPermission } from '../../hooks/usehasManagerPermission.jsx';
+import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 
 const Nav = ({
@@ -14,7 +14,7 @@ const Nav = ({
 }) => {
   const [isModal, setIsModal] = useState(false);
 
-  let { isManager, userType } = usehasManagerPermission();
+  let { isManager, userType } = useHasManagerPermission();
   const advertiser = userType === '최고관리자' ? '광고주' : '';
 
   let { height, width } = useWindowDimensions();

@@ -13,12 +13,13 @@ export const useUserInfo = create((set) => ({
       mail: email,
       pw: await password(pass),
     });
+    console.log(userInfo);
     cookie.my = userInfo.token;
     delete userInfo.token;
 
     set({ userInfo, loading: false });
 
-    if (userInfo.no) {
+    if (!userInfo.no) {
       set({ error: true, loading: false });
     }
   },

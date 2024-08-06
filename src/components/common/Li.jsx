@@ -1,5 +1,5 @@
 import React from 'react';
-import { usehasManagerPermission } from '../../hooks/usehasManagerPermission.jsx';
+import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 import styled from 'styled-components';
 
 const Li = ({
@@ -10,7 +10,7 @@ const Li = ({
   title,
   onContextMenu,
 }) => {
-  let { isManager, userType } = usehasManagerPermission();
+  let { isManager, userType } = useHasManagerPermission();
 
   if (isManager) {
     return (
