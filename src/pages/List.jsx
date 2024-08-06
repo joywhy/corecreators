@@ -1,31 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
-
 import MainWrapper from '../components/common/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
 import Contents from '../components/common/Contents.jsx';
+
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth, responsiveWidthMiddle } from '../constants';
-
+import {
+  CHANNEL_STRUCTURE as basic,
+  CAMPAIGN_STRUCTURE as basicList,
+} from '../constants';
+import { useCampaign } from '../store/useCampaign.js';
 import styled from 'styled-components';
 
 const List = () => {
   const [index, setIndex] = useState(0);
-  let basic = {
-    channelType: 'instargram',
-    channel: '',
-  };
-  let basicList = {
-    name: '캠페인명',
-    userNo: '',
-    creatorList: [],
-    channelList: [{ ...basic }],
-    no: '',
-    date: '2024.07.27',
-    memo: '메모',
-  };
-
+  const { loading, campaign, error, getList, changeList } = useCampaign();
   const list = [
     {
       name: '00캠페인',
@@ -84,20 +75,25 @@ const List = () => {
       memo: '메모',
     },
   ];
-  const [List, setList] = useState(list);
 
+  const [List, setList] = useState([]);
   let { height, width } = useWindowDimensions();
-  const changeList = (newContent) => {
-    let newList = List.map((content, idx) => {
-      return index === idx ? newContent : content;
-    });
-    setList(newList);
-  };
+
+  useEffect(() => {
+    getList(10);
+  }, []);
+  // const changeList = (newContent) => {
+  //   let newList = List.map((content, idx) => {
+  //     return index === idx ? newContent : content;
+  //   });
+  //   setList(newList);
+  // };
+  const [newCampaign, setNewCampagin] = useState({ ...basicList });
   const createForm = () => {
     // const
-
-    let newList = [...List, { ...basicList }];
-    setList(newList);
+    // let newList = [...List, { ...basicList }];
+    // setList(newList);
+    setIndex(campaign.length);
   };
   const deleteList = (idx) => {
     const newList = List.filter((_, index) => index !== idx);
@@ -108,6 +104,11 @@ const List = () => {
       setList(newList);
     }
   };
+  if (loading) {
+    return (
+      <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
+    );
+  }
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -115,17 +116,18 @@ const List = () => {
         {width > responsiveWidthMiddle && (
           <Nav
             deleteList={deleteList}
-            List={List}
+            List={campaign}
             setIndex={setIndex}
             index={index}
             addList={createForm}
+            height={height}
           />
         )}
-        <Contents
+        {/* <Contents
           changeContent={changeList}
           content={List[index]}
           index={index}
-        />
+        /> */}
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>

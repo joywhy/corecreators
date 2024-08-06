@@ -2,22 +2,21 @@ import React, { useState } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
 import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
-import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
+// import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 
 const Nav = ({
   title = '캠페인',
-  List,
+  List = [],
   index,
   setIndex,
   addList,
   deleteList,
+  height,
 }) => {
   const [isModal, setIsModal] = useState(false);
 
-  let { isManager, userType } = useHasManagerPermission();
-  const advertiser = userType === '최고관리자' ? '광고주' : '';
-
-  let { height, width } = useWindowDimensions();
+  let { isManager, userType, advertiser } = useHasManagerPermission();
+  console.log(height);
   return (
     <StyledDiv style={{ height: height - 70 }}>
       <Header title={title} addList={addList} isManager={isManager} />

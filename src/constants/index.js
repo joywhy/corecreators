@@ -36,6 +36,18 @@ export const ChannelType = [
     imgUrl: '/src/assets/channel/tikkok_icon.svg',
   },
 ];
-
+export const CHANNEL_STRUCTURE = {
+  channelType: 'instargram',
+  channel: '',
+};
+export const CAMPAIGN_STRUCTURE = {
+  name: '캠페인명',
+  userNo: '',
+  creatorList: [],
+  // channelList: [{ ...CHANNEL_STRUCTURE }],
+  no: '',
+  date: '2024.07.27',
+  memo: '메모',
+};
 export const responsiveWidth = 1200;
 export const responsiveWidthMiddle = 750;
