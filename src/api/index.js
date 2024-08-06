@@ -13,7 +13,7 @@ export async function getUserInfo(userinput) {
   return userInfo;
 }
 
-export async function  rememberUser() {
-   return await req('login', {token: cookie.my});
+export async function rememberUser() {
+  return await req('login', { token: cookie.my });
 }
-// 
+//

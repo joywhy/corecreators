@@ -1,52 +1,66 @@
-import React,{useState,useEffect} from "react";
-import Button from "./Button";
-import ChannelList from "../channelList/ChannelList.jsx";
+import React, { useState, useEffect } from 'react';
+import Button from './Button';
+import ChannelList from '../channelList/ChannelList.jsx';
 import styled from 'styled-components';
 let basic = {
-  channelType:"instargram",
- channel:""
+  channelType: 'instargram',
+  channel: '',
 };
 
-const CampaignForm = ({name="",advertiser="",memo="",channelList=[{  channelType:"instargram",
-  channel:""}],content="",changeContent})=>{
-
-    const handleChange = (e) => {
-      changeContent({
-        ...content,
-        [e.target.name]: e.target.value,
-      })
-    }
-   const changeList = (newList)=>{
-    changeContent({ ...content,"channelList":newList})
-   }
-   const changeMemo = (e)=>{
-    changeContent({ ...content,"memo":e.target.value})
-   }
-    const handleSubmit =  e => {
-      e.preventDefault();
-    }
-    return (<StyledForm onSubmit={handleSubmit}>
-      
-           <input name="name"
-            type="text"
-            value={name}
-            onChange={handleChange}
-            placeholder="캠페인명"
-          />
-           <input type="text"
-            name="advertiser"
-            value={advertiser}
-            onChange={handleChange}
-            placeholder="@광고주"
-          />
-          <ChannelList changeList={(newList)=>changeList(newList)} list={channelList}/>
-          <textarea placeholder="메모" value={memo}  onChange={changeMemo}></textarea>
-           <Button type="submit"   className="text16" >완료</Button>
-        
+const CampaignForm = ({
+  name = '',
+  advertiser = '',
+  memo = '',
+  channelList = [{ channelType: 'instargram', channel: '' }],
+  content = '',
+  changeContent,
+}) => {
+  const handleChange = (e) => {
+    changeContent({
+      ...content,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const changeList = (newList) => {
+    changeContent({ ...content, channelList: newList });
+  };
+  const changeMemo = (e) => {
+    changeContent({ ...content, memo: e.target.value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  return (
+    <StyledForm onSubmit={handleSubmit}>
+      <input
+        name="name"
+        type="text"
+        value={name}
+        onChange={handleChange}
+        placeholder="캠페인명"
+      />
+      <input
+        type="text"
+        name="advertiser"
+        value={advertiser}
+        onChange={handleChange}
+        placeholder="@광고주"
+      />
+      <ChannelList
+        changeList={(newList) => changeList(newList)}
+        list={channelList}
+      />
+      <textarea
+        placeholder="메모"
+        value={memo}
+        onChange={changeMemo}
+      ></textarea>
+      <Button type="submit" className="text16">
+        완료
+      </Button>
     </StyledForm>
-    
-    );
-  }
+  );
+};
 
 const StyledForm = styled.form`
 position: relative

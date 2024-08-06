@@ -1,10 +1,9 @@
-
 import { create } from 'zustand';
 
 export const useUserInfo = create((set) => ({
   loading: false,
   userInfo: {
-    name: ''
+    name: '',
   },
   error: null,
   sendLoginRequest: async (userinput) => {
@@ -14,25 +13,25 @@ export const useUserInfo = create((set) => ({
       mail: email,
       pw: await password(pass),
     });
+    console.log(userInfo);
     cookie.my = userInfo.token;
     delete userInfo.token;
 
     set({ userInfo, loading: false });
 
-    if(!!userInfo.no){
-      set({ error:true, loading: false });
+    if (!userInfo.no) {
+      set({ error: true, loading: false });
     }
   },
   rememberUser: async () => {
-  if(cookie.my){
-    set({ loading: true });
-    const userInfo = await req('login', {token: cookie.my});
+    if (cookie.my) {
+      set({ loading: true });
+      const userInfo = await req('login', { token: cookie.my });
 
-    set({ userInfo, loading: false });
-    if(!!userInfo.no){
-      set({ error:true, loading: false });
+      set({ userInfo, loading: false });
+      if (userInfo.no) {
+        set({ error: true, loading: false });
+      }
     }
- }
-  
   },
 }));
