@@ -37,5 +37,5 @@ export const ChannelType = [
   },
 ];
 
- export const responsiveWidth = 1200;
- export const responsiveWidthMiddle = 750;
+export const responsiveWidth = 1200;
+export const responsiveWidthMiddle = 750;

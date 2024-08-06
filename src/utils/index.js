@@ -10,7 +10,7 @@ export const navigateToPath = (path) => {
 export const handleClickLogout = () => {
   window.localStorage.clear();
   location.reload(true);
-  // delete  cookie.my;
+  delete cookie.my;
   location.href = '/';
 };
 
@@ -25,6 +25,6 @@ export const getWindowDimensions = () => {
   return { width, height };
 };
 
-export const  hasManagerPermission=()=> {
-    return window.localStorage.getItem("cate")==="최고관리자";
-  }
+export const hasManagerPermission = () => {
+  return window.localStorage.getItem('cate') === '최고관리자';
+};
