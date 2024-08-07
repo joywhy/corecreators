@@ -13,7 +13,7 @@ import { CAMPAIGN_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
 
 export const useCampaign = create((set) => ({
   loading: false,
-  campaign: [CAMPAIGN_STRUCTURE],
+  campaign: [{ ...CAMPAIGN_STRUCTURE }],
   error: null,
   getList: async (count) => {
     set({ loading: true });
@@ -32,11 +32,15 @@ export const useCampaign = create((set) => ({
       set({ error: true, loading: false });
     }
   },
-  changeList: (changeForm, index) => {
-    let newList = campaign.map((content, idx) => {
-      return index === idx ? newContent : content;
-    });
-    set({ campaign: newList });
+  changeList: async (newContent, index) => {
+    set({ loading: true });
+
+    set((state) => ({
+      campaign: state.campaign.map((content, idx) => {
+        return index === idx ? newContent : content;
+      }),
+      loading: false,
+    }));
   },
   deleteList: (idx) => {
     const newList = campaign.filter((_, index) => index !== idx);

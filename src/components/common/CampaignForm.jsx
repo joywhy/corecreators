@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
-// import { useUserInfo } from '../../store/userInfoStore.js';
 
 import { useCampaign } from '../../store/useCampaign.js';
 import useForm from '../../hooks/useForm.jsx';
@@ -9,10 +8,14 @@ import styled from 'styled-components';
 
 const CampaignForm = ({ index }) => {
   // const
-  const { loading, campaign, error } = useCampaign();
+  const { campaign, changeList } = useCampaign();
   let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
-  const handleSubmitCampaign = () => {};
-  const validateCampaignInput = () => {};
+  const handleSubmitCampaign = () => {
+    changeList(values, index);
+  };
+  const validateCampaignInput = () => {
+    return {};
+  };
 
   const {
     values,
@@ -38,6 +41,7 @@ const CampaignForm = ({ index }) => {
         type="text"
         value={values.name}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="캠페인명"
       />
       <input
@@ -45,6 +49,7 @@ const CampaignForm = ({ index }) => {
         name="advertiser"
         value={values.advertiser}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="@광고주"
       />
       <ChannelList changeList={changeChannelList} list={values.channelList} />
@@ -53,6 +58,7 @@ const CampaignForm = ({ index }) => {
         name="memo"
         value={!values.memo ? '' : values.memo}
         onChange={handleChange}
+        onBlur={handleBlur}
       ></textarea>
       <Button type="submit" className="text16">
         완료
