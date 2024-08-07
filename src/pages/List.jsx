@@ -3,7 +3,7 @@ import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/common/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
-import Contents from '../components/common/Contents.jsx';
+import Contents from '../components/Contents.jsx';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth, responsiveWidthMiddle } from '../constants';
@@ -76,7 +76,7 @@ const List = () => {
     },
   ];
 
-  const [List, setList] = useState([]);
+  const [List, setList] = useState([{ ...basicList }]);
   let { height, width } = useWindowDimensions();
 
   useEffect(() => {
@@ -109,6 +109,7 @@ const List = () => {
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
     );
   }
+  // console.log(List);
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -123,11 +124,11 @@ const List = () => {
             height={height}
           />
         )}
-        {/* <Contents
+        <Contents
           changeContent={changeList}
           content={List[index]}
           index={index}
-        /> */}
+        />
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>

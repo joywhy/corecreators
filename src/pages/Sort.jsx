@@ -3,7 +3,7 @@ import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/common/MainWrapper.jsx';
 // import Nav from '../components/common/Nav.jsx';
-// import Contents from '../components/common/Contents.jsx';
+// import Contents from '../components/Contents.jsx';
 import styled from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth } from '../constants';

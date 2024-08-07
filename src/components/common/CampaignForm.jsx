@@ -1,59 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
-import styled from 'styled-components';
-let basic = {
-  channelType: 'instargram',
-  channel: '',
-};
 
-const CampaignForm = ({
-  name = '',
-  advertiser = '',
-  memo = '',
-  channelList = [{ channelType: 'instargram', channel: '' }],
-  content = '',
-  changeContent,
-}) => {
-  const handleChange = (e) => {
-    changeContent({
-      ...content,
-      [e.target.name]: e.target.value,
-    });
+import { useCampaign } from '../../store/useCampaign.js';
+import useForm from '../../hooks/useForm.jsx';
+import styled from 'styled-components';
+
+const CampaignForm = ({ index }) => {
+  // const
+  const { campaign, changeList } = useCampaign();
+  let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
+  const handleSubmitCampaign = () => {
+    changeList(values, index);
   };
-  const changeList = (newList) => {
-    changeContent({ ...content, channelList: newList });
+  const validateCampaignInput = () => {
+    return {};
   };
-  const changeMemo = (e) => {
-    changeContent({ ...content, memo: e.target.value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleChangeData,
+  } = useForm({
+    initialValues: { ...campaign[index], advertiser: advertiser },
+    validate: validateCampaignInput,
+    onSubmit: handleSubmitCampaign,
+  });
+  console.log(values);
+  const changeChannelList = (newList) => {
+    handleChangeData(newList, 'channelList');
   };
   return (
     <StyledForm onSubmit={handleSubmit}>
       <input
         name="name"
         type="text"
-        value={name}
+        value={values.name}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="캠페인명"
       />
       <input
         type="text"
         name="advertiser"
-        value={advertiser}
+        value={values.advertiser}
         onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="@광고주"
       />
-      <ChannelList
-        changeList={(newList) => changeList(newList)}
-        list={channelList}
-      />
+      <ChannelList changeList={changeChannelList} list={values.channelList} />
       <textarea
         placeholder="메모"
-        value={memo}
-        onChange={changeMemo}
+        name="memo"
+        value={!values.memo ? '' : values.memo}
+        onChange={handleChange}
+        onBlur={handleBlur}
       ></textarea>
       <Button type="submit" className="text16">
         완료

@@ -12,6 +12,12 @@ export default function useForm({ initialValues, validate, onSubmit }) {
     });
   };
 
+  const handleChangeData = (newData, name) => {
+    setValues({
+      ...values,
+      [name]: newData,
+    });
+  };
   const handleBlur = (e) => {
     setTouched({
       ...touched,
@@ -53,5 +59,6 @@ export default function useForm({ initialValues, validate, onSubmit }) {
     handleChange,
     handleBlur,
     handleSubmit,
+    handleChangeData,
   };
 }

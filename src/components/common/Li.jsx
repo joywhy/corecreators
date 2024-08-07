@@ -24,7 +24,7 @@ const Li = ({
           {advertiser && <p className="text13">{advertiser}</p>}
         </div>
 
-        <p className="date text10">{date}</p>
+        <p className="date text10">{new Date(date).format('Y.M.D')}</p>
       </StyledLi>
     );
   }
