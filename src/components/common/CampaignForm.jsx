@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
+import { useUserInfo } from '../../store/userInfoStore.js';
 import styled from 'styled-components';
-let basic = {
-  channelType: 'instargram',
-  channel: '',
-};
+import { useCampaign } from '../../store/useCampaign.js';
+
+// let basic = {
+//   channelType: 'instargram',
+//   channel: '',
+// };
 
 const CampaignForm = ({
   name = '',
-  advertiser = '',
+  // advertiser = '',
   memo = '',
   channelList = [{ channelType: 'instargram', channel: '' }],
   content = '',
   changeContent,
+  index,
 }) => {
+  const { loading, campaign, error, getList } = useCampaign();
+  let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
+
   const handleChange = (e) => {
     changeContent({
       ...content,
@@ -35,7 +42,7 @@ const CampaignForm = ({
       <input
         name="name"
         type="text"
-        value={name}
+        value={campaign[index].name}
         onChange={handleChange}
         placeholder="캠페인명"
       />
@@ -52,7 +59,7 @@ const CampaignForm = ({
       />
       <textarea
         placeholder="메모"
-        value={memo}
+        value={!campaign[index].memo ? '' : campaign[index].memo}
         onChange={changeMemo}
       ></textarea>
       <Button type="submit" className="text16">

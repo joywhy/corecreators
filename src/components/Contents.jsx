@@ -1,30 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import CampaignForm from './CampaignForm';
+import CampaignForm from './common/CampaignForm.jsx';
 import styled from 'styled-components';
 
-import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
-import { responsiveWidthMiddle } from '../../constants';
-import { useUserInfo } from '../../store/userInfoStore.js';
+import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
+import { responsiveWidthMiddle } from '../constants/index.js';
+import { useUserInfo } from '../store/userInfoStore.js';
+import { useHasManagerPermission } from '../hooks/useHasManagerPermission.jsx';
 
 const Contents = ({ content, index, changeContent }) => {
-  const { userInfo, rememberUser } = useUserInfo();
+  //가데이터
+  const creatorList = [
+    {
+      name: '@pattery_Ledner',
+      cate: '콘텐츠 메이커',
+      img: '/src/assets/userProfile.png',
+      icon: '/src/assets/instargram_icon.svg',
+      follower: '134,233',
+      view: '15,344',
+      percent: '80%',
+    },
+    {
+      name: '@pattery_Ledner',
+      cate: '인플루언서',
+      img: '/src/assets/userProfile.png',
+      icon: '/src/assets/instargram_icon.svg',
+      follower: '134,233',
+      view: '15,344',
+      percent: '80%',
+    },
+  ];
 
-  let isManager = userInfo.cate === '최고관리자';
-  let userType = userInfo.cate;
-  let advertiser = userType === '최고관리자' ? '광고주' : '';
+  const { userInfo, rememberUser } = useUserInfo();
+  let { isManager, userType, advertiser } = useHasManagerPermission();
   useEffect(() => {
     rememberUser();
-    // console.log(userInfo);
-    isManager = userInfo.cate === '최고관리자';
-    userType = userInfo.cate;
-    advertiser = userType === '최고관리자' ? '광고주' : '';
   }, []);
   let { height, width } = useWindowDimensions();
 
   const handleBackCick = () => {
     alert('뒤로가기');
   };
-  // console.log(userInfo);
   return (
     <StyledDiv style={{ height: height - 70 }}>
       {width < responsiveWidthMiddle && (
@@ -41,9 +56,10 @@ const Contents = ({ content, index, changeContent }) => {
           memo={content.memo}
           channelList={content.channelList}
           changeContent={changeContent}
+          index={index}
         />
       ) : (
-        <CreatorList list={content.creatorList} />
+        <CreatorList list={creatorList} index={index} />
       )}
     </StyledDiv>
   );

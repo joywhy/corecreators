@@ -42,10 +42,10 @@ export const CHANNEL_STRUCTURE = {
 };
 export const CAMPAIGN_STRUCTURE = {
   name: '캠페인명',
-  userNo: '',
+  userNo: 1,
   creatorList: [],
   // channelList: [{ ...CHANNEL_STRUCTURE }],
-  no: '',
+  no: 0,
   date: '2024.07.27',
   memo: '메모',
 };

@@ -3,7 +3,7 @@ import Li from './Li';
 import styled from 'styled-components';
 import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
 // import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
-
+import { useCampaign } from '../../store/useCampaign';
 const Nav = ({
   title = '캠페인',
   List = [],
@@ -14,15 +14,17 @@ const Nav = ({
   height,
 }) => {
   const [isModal, setIsModal] = useState(false);
+  let { isManager } = useHasManagerPermission();
 
-  let { isManager, userType, advertiser } = useHasManagerPermission();
-  console.log(height);
+  const { loading, campaign, error } = useCampaign();
+  //가데이터
+  let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
   return (
     <StyledDiv style={{ height: height - 70 }}>
       <Header title={title} addList={addList} isManager={isManager} />
       <nav>
         <ul>
-          {List.map((campaign, idx) => {
+          {campaign.map((campaign, idx) => {
             const isActive = idx === index;
             const handleClick = () => {
               setIndex(idx);
