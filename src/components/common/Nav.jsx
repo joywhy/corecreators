@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
+import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
 // import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 
 const Nav = ({
