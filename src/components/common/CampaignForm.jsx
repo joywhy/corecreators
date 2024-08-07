@@ -7,30 +7,29 @@ import { useCampaign } from '../../store/useCampaign.js';
 import useForm from '../../hooks/useForm.jsx';
 import styled from 'styled-components';
 
-const CampaignForm = ({
-  name = '',
-  // advertiser = '',
-  memo = '',
-  channelList = [{ channelType: 'instargram', channel: '' }],
-  content = '',
-  changeContent,
-  index,
-}) => {
+const CampaignForm = ({ index }) => {
   // const
-  const { loading, campaign, error, getList } = useCampaign();
+  const { loading, campaign, error } = useCampaign();
   let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
   const handleSubmitCampaign = () => {};
   const validateCampaignInput = () => {};
 
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
-    useForm({
-      initialValues: { ...campaign[index], ...advertiser },
-      validate: validateCampaignInput,
-      onSubmit: handleSubmitCampaign,
-    });
-
+  const {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleChangeData,
+  } = useForm({
+    initialValues: { ...campaign[index], advertiser: advertiser },
+    validate: validateCampaignInput,
+    onSubmit: handleSubmitCampaign,
+  });
+  console.log(values);
   const changeChannelList = (newList) => {
-    handleChange(newList, 'channelList');
+    handleChangeData(newList, 'channelList');
   };
   return (
     <StyledForm onSubmit={handleSubmit}>

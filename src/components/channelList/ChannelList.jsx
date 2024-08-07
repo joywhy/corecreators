@@ -9,6 +9,7 @@ const ChannelList = ({ changeList, list }) => {
     channel: '',
   };
   if (!list) {
+    // changeList([{ ...basic }]);
     list = [{ ...basic }];
   }
   const changeChannelType = (item, idx) => {

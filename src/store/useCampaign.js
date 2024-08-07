@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { CAMPAIGN_STRUCTURE } from '../constants';
+import { CAMPAIGN_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
 
 //  CAMPAIGN_STRUCTURE = {
 //   name: '캠페인명',
@@ -17,9 +17,15 @@ export const useCampaign = create((set) => ({
   error: null,
   getList: async (count) => {
     set({ loading: true });
-    const campaign = await req('getList', { count: count });
-    console.log(campaign);
+    let campaign = await req('getList', { count: count });
 
+    campaign = campaign.map((camp) => {
+      if (!camp.creatorList) {
+        return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return camp;
+      }
+    });
     set({ campaign, loading: false });
 
     if (campaign.length <= 0) {

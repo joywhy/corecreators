@@ -5,13 +5,19 @@ export default function useForm({ initialValues, validate, onSubmit }) {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
-  const handleChange = (e, name) => {
+  const handleChange = (e) => {
     setValues({
       ...values,
-      [name ? name : e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
+  const handleChangeData = (newData, name) => {
+    setValues({
+      ...values,
+      [name]: newData,
+    });
+  };
   const handleBlur = (e) => {
     setTouched({
       ...touched,
@@ -53,5 +59,6 @@ export default function useForm({ initialValues, validate, onSubmit }) {
     handleChange,
     handleBlur,
     handleSubmit,
+    handleChangeData,
   };
 }
