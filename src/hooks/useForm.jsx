@@ -5,10 +5,10 @@ export default function useForm({ initialValues, validate, onSubmit }) {
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
-  const handleChange = (e) => {
+  const handleChange = (e, name) => {
     setValues({
       ...values,
-      [e.target.name]: e.target.value,
+      [name ? name : e.target.name]: e.target.value,
     });
   };
 

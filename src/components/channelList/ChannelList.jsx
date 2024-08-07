@@ -8,6 +8,9 @@ const ChannelList = ({ changeList, list }) => {
     channelType: 'instargram',
     channel: '',
   };
+  if (!list) {
+    list = [{ ...basic }];
+  }
   const changeChannelType = (item, idx) => {
     let newList = list.map((chan, index) => {
       return index === idx ? { ...chan, channelType: item } : chan;
