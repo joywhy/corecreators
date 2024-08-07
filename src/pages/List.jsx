@@ -17,6 +17,7 @@ import styled from 'styled-components';
 const List = () => {
   const [index, setIndex] = useState(0);
   const { loading, campaign, error, getList, changeList } = useCampaign();
+  const [isCreatedReady, setIsCreatedReady] = useState(true);
   const list = [
     {
       name: '00캠페인',
@@ -122,12 +123,16 @@ const List = () => {
             index={index}
             addList={createForm}
             height={height}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
           />
         )}
         <Contents
           changeContent={changeList}
           content={List[index]}
           index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
         />
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}

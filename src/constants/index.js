@@ -45,9 +45,9 @@ export const CAMPAIGN_STRUCTURE = {
   userNo: 1,
   creatorList: [],
   // channelList: [{ ...CHANNEL_STRUCTURE }],
-  channelList: [],
+  channelList: [{ ...CHANNEL_STRUCTURE }],
   no: 0,
-  date: '2024.07.27',
+  date: '',
   memo: '메모',
 };
 export const responsiveWidth = 1200;

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 export default function useForm({ initialValues, validate, onSubmit }) {
+  console.log(initialValues);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -18,6 +19,12 @@ export default function useForm({ initialValues, validate, onSubmit }) {
       [name]: newData,
     });
   };
+  const changeNewForm = (newForm) => {
+    setValues({
+      ...newForm,
+    });
+  };
+
   const handleBlur = (e) => {
     setTouched({
       ...touched,
@@ -60,5 +67,6 @@ export default function useForm({ initialValues, validate, onSubmit }) {
     handleBlur,
     handleSubmit,
     handleChangeData,
+    changeNewForm,
   };
 }

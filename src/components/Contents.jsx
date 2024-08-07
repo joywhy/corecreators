@@ -7,7 +7,13 @@ import { responsiveWidthMiddle } from '../constants/index.js';
 import { useUserInfo } from '../store/userInfoStore.js';
 import { useHasManagerPermission } from '../hooks/useHasManagerPermission.jsx';
 
-const Contents = ({ content, index, changeContent }) => {
+const Contents = ({
+  content,
+  index,
+  changeContent,
+  setIsCreatedReady,
+  isCreatedReady,
+}) => {
   //가데이터
   const creatorList = [
     {
@@ -29,13 +35,13 @@ const Contents = ({ content, index, changeContent }) => {
       percent: '80%',
     },
   ];
-
   const { userInfo, rememberUser } = useUserInfo();
   let { isManager, userType, advertiser } = useHasManagerPermission();
+  let { height, width } = useWindowDimensions();
+
   useEffect(() => {
     rememberUser();
   }, []);
-  let { height, width } = useWindowDimensions();
 
   const handleBackCick = () => {
     alert('뒤로가기');
@@ -50,13 +56,15 @@ const Contents = ({ content, index, changeContent }) => {
       )}
       {isManager ? (
         <CampaignForm
-          content={content}
-          name={content.name}
-          advertiser={advertiser}
-          memo={content.memo}
-          channelList={content.channelList}
-          changeContent={changeContent}
+          // content={content}
+          // name={content.name}
+          // advertiser={advertiser}
+          // memo={content.memo}
+          // channelList={content.channelList}
+          // changeContent={changeContent}
           index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
         />
       ) : (
         <CreatorList list={creatorList} index={index} />
