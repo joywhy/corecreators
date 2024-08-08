@@ -32,6 +32,23 @@ export const useCampaign = create((set) => ({
       set({ error: true, loading: false });
     }
   },
+  getMemberCampaignList : async (no ,startCount,endCount) => {
+    set({ loading: true });
+    let campaign =  await req('getList', {userNo: no, count: startCount, max: endCount});
+
+    campaign = campaign.map((camp) => {
+      if (!camp.creatorList) {
+        return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return camp;
+      }
+    });
+    set({ campaign, loading: false });
+
+    if (campaign.length <= 0) {
+      set({ error: true, loading: false });
+    }
+  },
   changeList: async (newContent, index) => {
     set({ loading: true });
     await req('setList', { ...newContent,no: index,creatorList :null});

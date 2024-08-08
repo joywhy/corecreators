@@ -12,11 +12,13 @@ import {
   CAMPAIGN_STRUCTURE as basicList,
 } from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
+import { useUserInfo } from '../store/userInfoStore.js';
 import styled from 'styled-components';
 
 const List = () => {
   const [index, setIndex] = useState(0);
-  const { loading, campaign, error, getList, changeList } = useCampaign();
+  const { loading, campaign, error, getList, changeList ,getMemberCampaignList} = useCampaign();
+  const {userInfo,rememberUser}= useUserInfo();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const list = [
     {
@@ -76,13 +78,24 @@ const List = () => {
       memo: '메모',
     },
   ];
-
-  const [List, setList] = useState([{ ...basicList }]);
+  // let initialList = 
+  // const [List, setList] = useState([{ ...basicList }]);
   let { height, width } = useWindowDimensions();
 
-  useEffect(() => {
+  const getCampaignsByUsertype = () =>{
+    let no = window.localStorage.getItem("no");
+    let cate = window.localStorage.getItem("cate");
+  console.log(no);
+  console.log(cate);
+  if(cate==="거래처"){
+    getMemberCampaignList(no ,10,10)
+  }else if(cate==="최고관리자"){
     getList(10);
-  }, []);
+  }
+  }
+  useEffect(() => {
+    getCampaignsByUsertype();
+  },[]);
   // const changeList = (newContent) => {
   //   let newList = List.map((content, idx) => {
   //     return index === idx ? newContent : content;
@@ -110,7 +123,6 @@ const List = () => {
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
     );
   }
-  // console.log(List);
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -118,7 +130,7 @@ const List = () => {
         {width > responsiveWidthMiddle && (
           <Nav
             deleteList={deleteList}
-            List={campaign}
+            // List={list}
             setIndex={setIndex}
             index={index}
             addList={createForm}
@@ -129,7 +141,7 @@ const List = () => {
         )}
         <Contents
           changeContent={changeList}
-          content={List[index]}
+          content={campaign[index]}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
@@ -143,13 +155,11 @@ const List = () => {
 const StyledDiv = styled.div`
   width: 100%;
   display: flex;
-
   @media only screen and (max-width: 1200px) {
     & {
       display: block;
       flex-direction: column;
       align-items: end;
-      /* justify-content: end; */
     }
   }
 `;

@@ -33,7 +33,7 @@ const Li = ({
     <StyledLi className={isActive ? 'active' : ''} onClick={onClick}>
       <h1 className="text14 title"> {title}</h1>
 
-      <p className="date text10">{date}</p>
+      <p className="date text10">{new Date(date).format('Y.M.D')}</p>
     </StyledLi>
   );
 };

@@ -6,11 +6,8 @@ import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
 import { useCampaign } from '../../store/useCampaign';
 const Nav = ({
   title = '캠페인',
-  // List = [],
   index,
   setIndex,
-  // addList,
-  // deleteList,
   height,
   setIsCreatedReady,
   isCreatedReady,
@@ -101,7 +98,6 @@ const Header = ({
   const CreateForm = () => {
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
-      // console.log(campaign.length);
       setIndex(campaign.length);
     }
   };
