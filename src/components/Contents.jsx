@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CampaignForm from './common/CampaignForm.jsx';
 import styled from 'styled-components';
 
@@ -7,13 +7,7 @@ import { responsiveWidthMiddle } from '../constants/index.js';
 import { useUserInfo } from '../store/userInfoStore.js';
 import { useHasManagerPermission } from '../hooks/useHasManagerPermission.jsx';
 
-const Contents = ({
-  content,
-  index,
-  changeContent,
-  setIsCreatedReady,
-  isCreatedReady,
-}) => {
+const Contents = ({ index, setIsCreatedReady, isCreatedReady }) => {
   //가데이터
   const creatorList = [
     {
@@ -36,7 +30,7 @@ const Contents = ({
     },
   ];
   const { userInfo, rememberUser } = useUserInfo();
-  let { isManager, userType, advertiser } = useHasManagerPermission();
+  let { isManager } = useHasManagerPermission();
   let { height, width } = useWindowDimensions();
 
   useEffect(() => {
@@ -56,12 +50,6 @@ const Contents = ({
       )}
       {isManager ? (
         <CampaignForm
-          // content={content}
-          // name={content.name}
-          // advertiser={advertiser}
-          // memo={content.memo}
-          // channelList={content.channelList}
-          // changeContent={changeContent}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
