@@ -18,7 +18,7 @@ import styled from 'styled-components';
 const List = () => {
   const [index, setIndex] = useState(0);
   const { loading, campaign, error, getList, changeList ,getMemberCampaignList} = useCampaign();
-  const {userInfo,rememberUser}= useUserInfo();
+  // const {userInfo,rememberUser}= useUserInfo();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const list = [
     {
@@ -85,8 +85,8 @@ const List = () => {
   const getCampaignsByUsertype = () =>{
     let no = window.localStorage.getItem("no");
     let cate = window.localStorage.getItem("cate");
-  console.log(no);
-  console.log(cate);
+  // console.log(no);
+  // console.log(cate);
   if(cate==="거래처"){
     getMemberCampaignList(no ,10,10)
   }else if(cate==="최고관리자"){
@@ -104,9 +104,6 @@ const List = () => {
   // };
   const [newCampaign, setNewCampagin] = useState({ ...basicList });
   const createForm = () => {
-    // const
-    // let newList = [...List, { ...basicList }];
-    // setList(newList);
     setIndex(campaign.length);
   };
   const deleteList = (idx) => {

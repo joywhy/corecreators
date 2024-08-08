@@ -7,7 +7,7 @@ import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 import { useUserInfo } from '../../store/userInfoStore.js';
 const Aside = () => {
   const { userInfo, rememberUser } = useUserInfo();
-  let isManager = userInfo.cate ==="최고관리자";
+  let isManager = window.localStorage.getItem("cate") ==="최고관리자";
   useEffect(() => {
     // rememberUser();
   }, []);
