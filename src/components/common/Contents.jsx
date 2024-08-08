@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidthMiddle } from '../constants/index.js';
 import { useUserInfo } from '../store/userInfoStore.js';
-import { useHasManagerPermission } from '../hooks/useHasManagerPermission.jsx';
+import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 
 const Contents = ({ content, index, changeContent }) => {
   //가데이터
