@@ -8,8 +8,8 @@ import { CAMPAIGN_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
 const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
-  // const
-  const { campaign, changeList } = useCampaign();
+
+  const { campaign, changeList,setList } = useCampaign();
   let initialValues =
     campaign.length === index
       ? {
@@ -20,12 +20,12 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
           ...campaign[index],
           advertiser: campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주',
         };
-  console.log(initialValues);
+  // console.log(initialValues);
 
   const handleSubmitCampaign = () => {
     if (campaign.length === index) {
       setIsCreatedReady(true);
-      changeList(values, index);
+      setList(values);
       //전송
       return;
     }
@@ -53,7 +53,7 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
 
   useEffect(() => {
     // handleChangeData(initialValues);
-    console.log(initialValues);
+    // console.log(initialValues);
     changeNewForm(initialValues);
     return () => {};
   }, [index]);
@@ -95,7 +95,7 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
 };
 
 const StyledForm = styled.form`
-position: relative
+position: relative;
 width: 100%;
 text-align: center;
 display: flex;

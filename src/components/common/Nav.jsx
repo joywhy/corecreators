@@ -101,7 +101,7 @@ const Header = ({
   const CreateForm = () => {
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
-      console.log(campaign.length);
+      // console.log(campaign.length);
       setIndex(campaign.length);
     }
   };

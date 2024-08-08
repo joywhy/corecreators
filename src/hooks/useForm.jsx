@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 export default function useForm({ initialValues, validate, onSubmit }) {
-  console.log(initialValues);
+  // console.log(initialValues);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
