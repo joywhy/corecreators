@@ -6,22 +6,29 @@ import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
 import { useCampaign } from '../../store/useCampaign';
 const Nav = ({
   title = '캠페인',
-  List = [],
   index,
   setIndex,
-  addList,
-  deleteList,
   height,
+  setIsCreatedReady,
+  isCreatedReady,
 }) => {
   const [isModal, setIsModal] = useState(false);
   let { isManager } = useHasManagerPermission();
-
   const { loading, campaign, error } = useCampaign();
   //가데이터
-  let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
+  let advertiser = '리을컴퍼니';
   return (
     <StyledDiv style={{ height: height - 70 }}>
-      <Header title={title} addList={addList} isManager={isManager} />
+      <Header
+        title={title}
+        // addList={addList}
+        isManager={isManager}
+        index={index}
+        campaign={campaign}
+        setIndex={setIndex}
+        isCreatedReady={isCreatedReady}
+        setIsCreatedReady={setIsCreatedReady}
+      />
       <nav>
         <ul>
           {campaign.map((campaign, idx) => {
@@ -71,14 +78,29 @@ const Nav = ({
   );
 };
 
-const Header = ({ title, addList, isManager }) => {
+const Header = ({
+  title,
+  addList,
+  isManager,
+  campaign,
+  index,
+  setIndex,
+  setIsCreatedReady,
+  isCreatedReady,
+}) => {
   const [isSearch, setIsSearch] = useState(false);
   const [value, setValue] = useState('');
+  // const [isCreatedReady, setIsCreatedReady] = useState(true);
 
   const handleCLick = () => {
     setIsSearch((prev) => !prev);
   };
-
+  const CreateForm = () => {
+    if (isCreatedReady) {
+      setIsCreatedReady((prev) => !prev);
+      setIndex(campaign.length);
+    }
+  };
   if (isSearch) {
     return (
       <StyledHeader2>
@@ -96,7 +118,7 @@ const Header = ({ title, addList, isManager }) => {
           <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
         </button>
         {isManager ? (
-          <div onClick={addList}>
+          <div onClick={CreateForm}>
             <img src="/src/assets/common/cross_icon.svg" alt="추가 아이콘" />
           </div>
         ) : (

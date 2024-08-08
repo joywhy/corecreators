@@ -32,9 +32,26 @@ export const useCampaign = create((set) => ({
       set({ error: true, loading: false });
     }
   },
+  getMemberCampaignList : async (no ,startCount,endCount) => {
+    set({ loading: true });
+    let campaign =  await req('getList', {userNo: no, count: startCount, max: endCount});
+
+    campaign = campaign.map((camp) => {
+      if (!camp.creatorList) {
+        return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return camp;
+      }
+    });
+    set({ campaign, loading: false });
+
+    if (campaign.length <= 0) {
+      set({ error: true, loading: false });
+    }
+  },
   changeList: async (newContent, index) => {
     set({ loading: true });
-
+    await req('setList', { ...newContent,no: index,creatorList :null});
     set((state) => ({
       campaign: state.campaign.map((content, idx) => {
         return index === idx ? newContent : content;
@@ -42,6 +59,17 @@ export const useCampaign = create((set) => ({
       loading: false,
     }));
   },
+   setList : async (newForm) => {
+    set({ loading: true });
+    console.log({ ...newForm,creatorList :null});
+    await req('setList', { ...newForm,creatorList :null});
+    set((state) => ({
+      campaign: [{ ...newForm,no:0,creatorList :null}].concat(state.campaign),
+      loading: false,
+    }));
+
+  },
+  //변경 요망
   deleteList: (idx) => {
     const newList = campaign.filter((_, index) => index !== idx);
 

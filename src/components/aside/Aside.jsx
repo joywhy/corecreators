@@ -7,11 +7,9 @@ import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 import { useUserInfo } from '../../store/userInfoStore.js';
 const Aside = () => {
   const { userInfo, rememberUser } = useUserInfo();
-
-  let { isManager, userType } = useHasManagerPermission();
-  // console.log(isManager);
+  let isManager = window.localStorage.getItem("cate") ==="최고관리자";
   useEffect(() => {
-    rememberUser();
+    // rememberUser();
   }, []);
 
   let { height, width } = useWindowDimensions();

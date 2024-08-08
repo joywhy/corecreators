@@ -1,4 +1,17 @@
 import { create } from 'zustand';
+// import {persist} from "zustand/middleware";
+// {
+// bno: null,
+// cate : "거래처",
+// mail : "admin@lieul.com",
+// memo : null,
+// name : "박재천",
+// nick : "리을컴퍼니",
+// no : 2,
+// tel : "070-7630-1111",
+// token : "eyJ0aW1lIjoxNzIzMDkxMTQwOTU5LCJkYXRhIjoiYkc5allXeG9iM04wWHpVeE56TWV5SnVieUk2TW4wIn0"
+// }
+
 
 export const useUserInfo = create((set) => ({
   loading: false,
@@ -14,6 +27,8 @@ export const useUserInfo = create((set) => ({
       pw: await password(pass),
     });
     console.log(userInfo);
+    window.localStorage.setItem("no", userInfo.no)
+    window.localStorage.setItem("cate", userInfo.cate)
     cookie.my = userInfo.token;
     delete userInfo.token;
 

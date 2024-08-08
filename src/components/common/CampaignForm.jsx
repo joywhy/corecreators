@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
 
 import { useCampaign } from '../../store/useCampaign.js';
 import useForm from '../../hooks/useForm.jsx';
+import { CAMPAIGN_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
-const CampaignForm = ({ index }) => {
-  // const
-  const { campaign, changeList } = useCampaign();
-  let advertiser = campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주';
+const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
+
+  const { campaign, changeList,setList } = useCampaign();
+  let initialValues =
+    campaign.length === index
+      ? {
+          ...CAMPAIGN_STRUCTURE,
+          advertiser: CAMPAIGN_STRUCTURE.userNo === 1 ? '리을컴퍼니' : '광고주',
+        }
+      : {
+          ...campaign[index],
+          advertiser: campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주',
+        };
+  // console.log(initialValues);
+
   const handleSubmitCampaign = () => {
+    if (campaign.length === index) {
+      setIsCreatedReady(true);
+      setList(values);
+      //전송
+      return;
+    }
     changeList(values, index);
+    // 전송
   };
   const validateCampaignInput = () => {
     return {};
   };
 
-  const {
+  let {
     values,
     errors,
     touched,
@@ -25,12 +44,20 @@ const CampaignForm = ({ index }) => {
     handleBlur,
     handleSubmit,
     handleChangeData,
+    changeNewForm,
   } = useForm({
-    initialValues: { ...campaign[index], advertiser: advertiser },
+    initialValues,
     validate: validateCampaignInput,
     onSubmit: handleSubmitCampaign,
   });
-  console.log(values);
+
+  useEffect(() => {
+    // handleChangeData(initialValues);
+    // console.log(initialValues);
+    changeNewForm(initialValues);
+    return () => {};
+  }, [index]);
+
   const changeChannelList = (newList) => {
     handleChangeData(newList, 'channelList');
   };
@@ -68,7 +95,7 @@ const CampaignForm = ({ index }) => {
 };
 
 const StyledForm = styled.form`
-position: relative
+position: relative;
 width: 100%;
 text-align: center;
 display: flex;
