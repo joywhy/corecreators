@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, forwardRef, useRef, useEffect } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
 import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
@@ -13,9 +13,22 @@ const Nav = ({
 }) => {
   const [isModal, setIsModal] = useState(false);
   let { isManager } = useHasManagerPermission();
-  const { campaign, searchList } = useCampaign();
+  const { campaign, searchList, deleteList } = useCampaign();
+  // console.log(campaign);
   //가데이터
   let advertiser = '리을컴퍼니';
+  const liRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (liRef.current && !liRef.current.contains(event.target)) {
+      setIsModal(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   return (
     <StyledDiv style={{ height: height - 70 }}>
       <Header
@@ -37,7 +50,8 @@ const Nav = ({
             const handleDelete = () => {
               deleteList(idx);
               setIsModal(false);
-              if (idx === 0 && idx === index) {
+              let isfirstElementDeleted = idx === 0 && idx === index;
+              if (isfirstElementDeleted) {
                 setIndex(0);
               } else if (idx <= index) {
                 setIndex(index - 1);
@@ -57,6 +71,7 @@ const Nav = ({
                   title={campaign.name}
                   advertiser={advertiser}
                   key={idx + campaign.name}
+                  ref={liRef}
                 />
                 {isModal === idx && (
                   <div

@@ -26,7 +26,7 @@ export const useCampaign = create((set) => ({
         return camp;
       }
     });
-    set({ campaign, loading: false });
+    set({ campaign: campaign, loading: false });
 
     if (campaign.length <= 0) {
       set({ error: true, loading: false });
@@ -94,14 +94,21 @@ export const useCampaign = create((set) => ({
     });
     set({ campaign, loading: false });
   },
-  //변경 요망
-  deleteList: (idx) => {
-    const newList = campaign.filter((_, index) => index !== idx);
 
-    if (newList.length === 0) {
-      set({ campaign: [{ ...CAMPAIGN_STRUCTURE }] });
-    } else {
-      set({ campaign: newList });
-    }
+  deleteList: (idx) => {
+    const newList = state.campaign.filter((_, index) => index !== idx);
+
+    // if (newList.length === 0) {
+    //   set({ campaign: [{ ...CAMPAIGN_STRUCTURE }] });
+    // } else {
+    //   set({ campaign: newList });
+    // }
+    console.log(idx);
+    set((state) => ({
+      campaign:
+        state.campaign.filter((_, index) => index !== idx).length === 0
+          ? [{ ...CAMPAIGN_STRUCTURE }]
+          : state.campagin.filter((_, index) => index !== idx).length === 0,
+    }));
   },
 }));
