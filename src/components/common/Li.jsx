@@ -6,7 +6,6 @@ const Li = forwardRef(function component(
   { date = '2024.7.7', isActive, advertiser, onClick, title, onContextMenu },
   ref
 ) {
-  // let { isManager, userType } = useHasManagerPermission();
   let isManager = getUserInfoCate() === '최고관리자';
   if (isManager) {
     return (

@@ -14,7 +14,6 @@ const Nav = ({
   const [isModal, setIsModal] = useState(false);
   let { isManager } = useHasManagerPermission();
   const { campaign, searchList, deleteList } = useCampaign();
-  // console.log(campaign);
   //가데이터
   let advertiser = '리을컴퍼니';
   const liRef = useRef(null);
