@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
 import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
-// import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 import { useCampaign } from '../../store/useCampaign';
 const Nav = ({
   title = '캠페인',
@@ -21,9 +20,7 @@ const Nav = ({
     <StyledDiv style={{ height: height - 70 }}>
       <Header
         title={title}
-        // addList={addList}
         isManager={isManager}
-        index={index}
         campaign={campaign}
         setIndex={setIndex}
         isCreatedReady={isCreatedReady}
@@ -80,31 +77,51 @@ const Nav = ({
 
 const Header = ({
   title,
-  addList,
   isManager,
   campaign,
-  index,
   setIndex,
   setIsCreatedReady,
   isCreatedReady,
 }) => {
-  const [isSearch, setIsSearch] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState('');
-  // const [isCreatedReady, setIsCreatedReady] = useState(true);
 
   const handleCLick = () => {
-    setIsSearch((prev) => !prev);
+    setShowInput(true);
   };
+
   const CreateForm = () => {
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
       setIndex(campaign.length);
     }
   };
-  if (isSearch) {
+  console.log(showInput);
+  const inputRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setShowInput(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  if (showInput) {
     return (
-      <StyledHeader2>
-        <input placeholder="Search..." />
+      <StyledHeader2 ref={inputRef}>
+        <input
+          // ref={inputRef}
+          placeholder="Search..."
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.vaule);
+          }}
+        />
         <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
       </StyledHeader2>
     );
@@ -131,9 +148,7 @@ const Header = ({
 
 const StyledContainer = styled.div`
   position: relative;
-  /* border:1px solid red; */
   width: 100%;
-  /* height:50px; */
 
   & .modal {
     position: absolute;
@@ -156,7 +171,8 @@ const StyledDiv = styled.div`
   width: 100%;
   border-right: 1px solid var(--gray-10);
   overflow: scroll;
-  @media only screen and (max-width: 1200px) {
+
+  @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
       overflow: scroll;
@@ -172,18 +188,22 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 0 10px;
   box-sizing: border-box;
+
   & div {
     display: flex;
+
+    & img {
+      height: 100%;
+    }
+
     & img:nth-child(1) {
       margin-right: 11px;
     }
   }
+
   & button {
     background-color: white;
     border: none;
-    & img {
-      height: 100%;
-    }
   }
 `;
 const StyledHeader2 = styled.header`
@@ -204,13 +224,14 @@ const StyledHeader2 = styled.header`
     border: none;
     width: 100%;
   }
+
   & input:focus {
     outline: 2px solid var(--main-red);
   }
+
   & img {
     position: absolute;
     top: 15px;
-    /* transform: x; */
     left: 20px;
   }
 `;
