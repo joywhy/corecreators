@@ -96,19 +96,21 @@ export const useCampaign = create((set) => ({
   },
 
   deleteList: (idx) => {
-    const newList = state.campaign.filter((_, index) => index !== idx);
+    // const newList = state.campaign.filter((_, index) => index !== idx);
 
-    // if (newList.length === 0) {
-    //   set({ campaign: [{ ...CAMPAIGN_STRUCTURE }] });
-    // } else {
-    //   set({ campaign: newList });
-    // }
+    // // if (newList.length === 0) {
+    // //   set({ campaign: [{ ...CAMPAIGN_STRUCTURE }] });
+    // // } else {
+    // //   set({ campaign: newList });
+    // // }
     console.log(idx);
-    set((state) => ({
-      campaign:
-        state.campaign.filter((_, index) => index !== idx).length === 0
-          ? [{ ...CAMPAIGN_STRUCTURE }]
-          : state.campagin.filter((_, index) => index !== idx).length === 0,
-    }));
+    set((state) => {
+      const newList = state.campaign.filter((_, index) => index !== idx);
+      if (newList.length === 0) {
+        return { campaign: [{ ...CAMPAIGN_STRUCTURE }] };
+      } else {
+        return { campaign: newList };
+      }
+    });
   },
 }));

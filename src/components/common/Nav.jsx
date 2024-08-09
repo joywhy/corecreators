@@ -17,6 +17,7 @@ const Nav = ({
   //가데이터
   let advertiser = '리을컴퍼니';
   const liRef = useRef(null);
+  // const deleteRef = useRef(null);
   const handleClickOutside = (event) => {
     if (liRef.current && !liRef.current.contains(event.target)) {
       setIsModal(false);
@@ -43,10 +44,15 @@ const Nav = ({
         <ul>
           {campaign.map((campaign, idx) => {
             const isActive = idx === index;
-            const handleClick = () => {
+            const handleClick = (e) => {
+              e.stopPropagation();
               setIndex(idx);
             };
-            const handleDelete = () => {
+            const handleDelete = (e) => {
+              e.stopPropagation();
+              console.log('삭제');
+              console.log(idx);
+              // console.log('삭제');
               deleteList(idx);
               setIsModal(false);
               let isfirstElementDeleted = idx === 0 && idx === index;
@@ -57,6 +63,8 @@ const Nav = ({
               }
             };
             const onClickDeleteChattingRoom = (e) => {
+              console.log('ehd');
+              e.stopPropagation();
               e.preventDefault();
               setIsModal(idx);
             };
@@ -77,6 +85,7 @@ const Nav = ({
                     className="modal"
                     onClick={handleDelete}
                     key={idx + '모달'}
+                    // ref={deleteRef}
                   >
                     삭제하기
                   </div>
