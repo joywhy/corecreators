@@ -8,8 +8,7 @@ import { CAMPAIGN_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
 const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
-
-  const { campaign, changeList,setList } = useCampaign();
+  const { campaign, changeList, setList } = useCampaign();
   let initialValues =
     campaign.length === index
       ? {
@@ -52,8 +51,6 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
   });
 
   useEffect(() => {
-    // handleChangeData(initialValues);
-    // console.log(initialValues);
     changeNewForm(initialValues);
     return () => {};
   }, [index]);
@@ -95,42 +92,45 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
 };
 
 const StyledForm = styled.form`
-position: relative;
-width: 100%;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 20px;
-box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 
-& >input {
- width: 100%;
- height: 40px;
- border-radius:5px;
- border: none;
- font-size: 20px;
- margin-bottom: 17px;
- padding: 0 10px;
- box-sizing: border-box;
- background-color: #F5F5F5;
- font-size: 14px;
-color: black;
-  &:focus {outline: 2px solid var(--main-mint);}
- }
- & textarea {
+  & > input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    font-size: 20px;
+    margin-bottom: 17px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    font-size: 14px;
+    color: black;
+    &:focus {
+      outline: 2px solid var(--main-mint);
+    }
+  }
+  & textarea {
     width: 100%;
     border: none;
     resize: none;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #F5F5F5;
-    margin:10px 0;
+    background-color: #f5f5f5;
+    margin: 10px 0;
     border-radius: 5px;
-     height: 260px;
-    &:focus {outline: 2px solid var(--main-mint);}
-  
-}
+    height: 260px;
+    &:focus {
+      outline: 2px solid var(--main-mint);
+    }
+  }
 `;
 
 export default CampaignForm;

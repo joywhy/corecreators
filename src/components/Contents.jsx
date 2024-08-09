@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CampaignForm from './common/CampaignForm.jsx';
 import styled from 'styled-components';
 
@@ -7,13 +7,7 @@ import { responsiveWidthMiddle } from '../constants/index.js';
 import { useUserInfo } from '../store/userInfoStore.js';
 import { useHasManagerPermission } from '../hooks/useHasManagerPermission.jsx';
 
-const Contents = ({
-  content,
-  index,
-  changeContent,
-  setIsCreatedReady,
-  isCreatedReady,
-}) => {
+const Contents = ({ index, setIsCreatedReady, isCreatedReady }) => {
   //가데이터
   const creatorList = [
     {
@@ -36,7 +30,7 @@ const Contents = ({
     },
   ];
   const { userInfo, rememberUser } = useUserInfo();
-  let { isManager, userType, advertiser } = useHasManagerPermission();
+  let { isManager } = useHasManagerPermission();
   let { height, width } = useWindowDimensions();
 
   useEffect(() => {
@@ -49,19 +43,13 @@ const Contents = ({
   return (
     <StyledDiv style={{ height: height - 70 }}>
       {width < responsiveWidthMiddle && (
-        <div className="backButton" onClick={handleBackCick}>
+        <div className="back-button" onClick={handleBackCick}>
           <img src="/src/assets/common/back_icon.svg" alt="뒤로가기" />
           뒤로가기
         </div>
       )}
       {isManager ? (
         <CampaignForm
-          // content={content}
-          // name={content.name}
-          // advertiser={advertiser}
-          // memo={content.memo}
-          // channelList={content.channelList}
-          // changeContent={changeContent}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
@@ -103,7 +91,7 @@ const Li = (props) => {
   return (
     <StyledLi>
       <div className="profile">
-        <div className="imgWrapper">
+        <div className="img-wrapper">
           <img src={img} alt="유저" />
           <img className="icon" src={icon} alt="유저" />
         </div>
@@ -125,18 +113,21 @@ const Li = (props) => {
 const StyledDiv = styled.div`
   flex-grow: 7;
   overflow: scroll;
-  @media only screen and (max-width: 1200px) {
+
+  @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
+
       /* border:1px solid red; */
       overflow: scroll;
     }
   }
-  & .backButton {
+
+  & .back-button {
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
-    padding: 10px 10px 0px 10px;
+    padding: 10px 10px 0;
 
     & img {
       /* border: 1px solid red; */
@@ -151,6 +142,7 @@ const StyledContainer = styled.div`
     display: flex;
     justify-content: end;
     margin-bottom: 5px;
+
     & span {
       margin-left: 20px;
       font-size: 10px;
@@ -166,20 +158,24 @@ const StyledLi = styled.li`
   align-items: center;
   box-sizing: border-box;
   padding: 10px;
+
   &:hover {
     background-color: var(--gray-10);
   }
+
   & .profile {
     display: flex;
 
-    & .imgWrapper {
+    & .img-wrapper {
       position: relative;
       width: 56px;
       height: 47px;
+
       & img {
         position: absolute;
         display: block;
       }
+
       & img.icon {
         left: 30px;
         bottom: 0;
@@ -191,10 +187,12 @@ const StyledLi = styled.li`
       flex-direction: column;
       justify-content: end;
       margin-left: 18px;
+
       & p {
         font-size: 13px;
         color: #818181;
       }
+
       & h2 {
         font-size: 16px;
         font-weight: bold;
@@ -202,10 +200,12 @@ const StyledLi = styled.li`
       }
     }
   }
+
   & .des {
     display: flex;
     width: 300px;
   }
+
   & span {
     display: block;
     max-width: 100px;

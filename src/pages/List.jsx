@@ -13,12 +13,19 @@ import {
 } from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
 import { useUserInfo } from '../store/userInfoStore.js';
+import { getUserInfoNo, getUserInfoCate } from '../utils';
 import styled from 'styled-components';
 
 const List = () => {
   const [index, setIndex] = useState(0);
-  const { loading, campaign, error, getList, changeList ,getMemberCampaignList} = useCampaign();
-  // const {userInfo,rememberUser}= useUserInfo();
+  const {
+    loading,
+    campaign,
+    error,
+    getList,
+    changeList,
+    getMemberCampaignList,
+  } = useCampaign();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const list = [
     {
@@ -78,31 +85,19 @@ const List = () => {
       memo: '메모',
     },
   ];
-  // let initialList = 
-  // const [List, setList] = useState([{ ...basicList }]);
   let { height, width } = useWindowDimensions();
-
-  const getCampaignsByUsertype = () =>{
-    let no = window.localStorage.getItem("no");
-    let cate = window.localStorage.getItem("cate");
-  // console.log(no);
-  // console.log(cate);
-  if(cate==="거래처"){
-    getMemberCampaignList(no ,10,10)
-  }else if(cate==="최고관리자"){
-    getList(10);
-  }
-  }
-  useEffect(() => {
-    getCampaignsByUsertype();
-  },[]);
-  // const changeList = (newContent) => {
-  //   let newList = List.map((content, idx) => {
-  //     return index === idx ? newContent : content;
-  //   });
-  //   setList(newList);
-  // };
   const [newCampaign, setNewCampagin] = useState({ ...basicList });
+
+  const getCampaignsByUsertype = () => {
+    let no = getUserInfoNo();
+    let cate = getUserInfoCate();
+    if (cate === '거래처') {
+      getMemberCampaignList(no, 10, 10);
+    } else if (cate === '최고관리자') {
+      getList(10);
+    }
+  };
+
   const createForm = () => {
     setIndex(campaign.length);
   };
@@ -115,6 +110,10 @@ const List = () => {
       setList(newList);
     }
   };
+  useEffect(() => {
+    getCampaignsByUsertype();
+  }, []);
+
   if (loading) {
     return (
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
@@ -152,7 +151,8 @@ const List = () => {
 const StyledDiv = styled.div`
   width: 100%;
   display: flex;
-  @media only screen and (max-width: 1200px) {
+
+  @media only screen and (width <= 1200px) {
     & {
       display: block;
       flex-direction: column;

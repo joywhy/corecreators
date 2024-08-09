@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef, useRef, useEffect } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
 import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
-// import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
 import { useCampaign } from '../../store/useCampaign';
 const Nav = ({
   title = '캠페인',
@@ -14,17 +13,29 @@ const Nav = ({
 }) => {
   const [isModal, setIsModal] = useState(false);
   let { isManager } = useHasManagerPermission();
-  const { loading, campaign, error } = useCampaign();
+  const { campaign, searchList, deleteList } = useCampaign();
   //가데이터
   let advertiser = '리을컴퍼니';
+  const liRef = useRef(null);
+  // const deleteRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (liRef.current && !liRef.current.contains(event.target)) {
+      setIsModal(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   return (
     <StyledDiv style={{ height: height - 70 }}>
       <Header
         title={title}
-        // addList={addList}
         isManager={isManager}
-        index={index}
         campaign={campaign}
+        searchList={searchList}
         setIndex={setIndex}
         isCreatedReady={isCreatedReady}
         setIsCreatedReady={setIsCreatedReady}
@@ -33,19 +44,27 @@ const Nav = ({
         <ul>
           {campaign.map((campaign, idx) => {
             const isActive = idx === index;
-            const handleClick = () => {
+            const handleClick = (e) => {
+              // e.stopPropagation();
               setIndex(idx);
             };
-            const handleDelete = () => {
+            const handleDelete = (e) => {
+              e.stopPropagation();
+              console.log('삭제');
+              console.log(idx);
+              // console.log('삭제');
               deleteList(idx);
               setIsModal(false);
-              if (idx === 0 && idx === index) {
+              let isfirstElementDeleted = idx === 0 && idx === index;
+              if (isfirstElementDeleted) {
                 setIndex(0);
               } else if (idx <= index) {
                 setIndex(index - 1);
               }
             };
             const onClickDeleteChattingRoom = (e) => {
+              console.log('ehd');
+              // e.stopPropagation();
               e.preventDefault();
               setIsModal(idx);
             };
@@ -59,12 +78,14 @@ const Nav = ({
                   title={campaign.name}
                   advertiser={advertiser}
                   key={idx + campaign.name}
+                  ref={liRef}
                 />
                 {isModal === idx && (
                   <div
                     className="modal"
                     onClick={handleDelete}
                     key={idx + '모달'}
+                    // ref={deleteRef}
                   >
                     삭제하기
                   </div>
@@ -80,20 +101,19 @@ const Nav = ({
 
 const Header = ({
   title,
-  addList,
   isManager,
   campaign,
-  index,
+  searchList,
   setIndex,
   setIsCreatedReady,
   isCreatedReady,
 }) => {
-  const [isSearch, setIsSearch] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState('');
-  // const [isCreatedReady, setIsCreatedReady] = useState(true);
+  const inputRef = useRef(null);
 
   const handleCLick = () => {
-    setIsSearch((prev) => !prev);
+    setShowInput(true);
   };
   const CreateForm = () => {
     if (isCreatedReady) {
@@ -101,11 +121,41 @@ const Header = ({
       setIndex(campaign.length);
     }
   };
-  if (isSearch) {
+  const handleClickOutside = (event) => {
+    if (inputRef.current && !inputRef.current.contains(event.target)) {
+      setShowInput(false);
+    }
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log(value);
+    searchList(value);
+  };
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  if (showInput) {
     return (
-      <StyledHeader2>
-        <input placeholder="Search..." />
-        <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
+      <StyledHeader2 ref={inputRef}>
+        <input
+          placeholder="Search..."
+          value={value}
+          onChange={(event) => {
+            setValue(event.target.value);
+          }}
+          onKeyPress={handleKeyPress}
+        />
+        <div onClick={handleSubmit}>
+          <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
+        </div>
       </StyledHeader2>
     );
   }
@@ -131,9 +181,7 @@ const Header = ({
 
 const StyledContainer = styled.div`
   position: relative;
-  /* border:1px solid red; */
   width: 100%;
-  /* height:50px; */
 
   & .modal {
     position: absolute;
@@ -156,7 +204,8 @@ const StyledDiv = styled.div`
   width: 100%;
   border-right: 1px solid var(--gray-10);
   overflow: scroll;
-  @media only screen and (max-width: 1200px) {
+
+  @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
       overflow: scroll;
@@ -172,18 +221,22 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 0 10px;
   box-sizing: border-box;
+
   & div {
     display: flex;
+
+    & img {
+      height: 100%;
+    }
+
     & img:nth-child(1) {
       margin-right: 11px;
     }
   }
+
   & button {
     background-color: white;
     border: none;
-    & img {
-      height: 100%;
-    }
   }
 `;
 const StyledHeader2 = styled.header`
@@ -204,13 +257,14 @@ const StyledHeader2 = styled.header`
     border: none;
     width: 100%;
   }
+
   & input:focus {
     outline: 2px solid var(--main-red);
   }
+
   & img {
     position: absolute;
     top: 15px;
-    /* transform: x; */
     left: 20px;
   }
 `;

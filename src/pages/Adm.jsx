@@ -27,15 +27,17 @@ const Adm = () => {
 const StyledDiv = styled.div`
   width: 100%;
   display: flex;
-  @media only screen and (max-width: 1200px) {
+
+  @media only screen and (width <= 1200px) {
     & {
       display: block;
     }
   }
+
   & .content {
     height: 100%;
 
-    @media only screen and (max-width: 1200px) {
+    @media only screen and (width <= 1200px) {
       & {
         height: calc(100vh - 70px);
       }
