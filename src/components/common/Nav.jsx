@@ -13,7 +13,7 @@ const Nav = ({
 }) => {
   const [isModal, setIsModal] = useState(false);
   let { isManager } = useHasManagerPermission();
-  const { loading, campaign, error } = useCampaign();
+  const { campaign, searchList } = useCampaign();
   //가데이터
   let advertiser = '리을컴퍼니';
   return (
@@ -22,6 +22,7 @@ const Nav = ({
         title={title}
         isManager={isManager}
         campaign={campaign}
+        searchList={searchList}
         setIndex={setIndex}
         isCreatedReady={isCreatedReady}
         setIsCreatedReady={setIsCreatedReady}
@@ -79,34 +80,41 @@ const Header = ({
   title,
   isManager,
   campaign,
+  searchList,
   setIndex,
   setIsCreatedReady,
   isCreatedReady,
 }) => {
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState('');
+  const inputRef = useRef(null);
 
   const handleCLick = () => {
     setShowInput(true);
   };
-
   const CreateForm = () => {
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
       setIndex(campaign.length);
     }
   };
-  console.log(showInput);
-  const inputRef = useRef(null);
   const handleClickOutside = (event) => {
     if (inputRef.current && !inputRef.current.contains(event.target)) {
       setShowInput(false);
     }
   };
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit();
+    }
+  };
 
+  const handleSubmit = () => {
+    console.log(value);
+    searchList(value);
+  };
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -115,14 +123,16 @@ const Header = ({
     return (
       <StyledHeader2 ref={inputRef}>
         <input
-          // ref={inputRef}
           placeholder="Search..."
           value={value}
           onChange={(event) => {
-            setValue(event.target.vaule);
+            setValue(event.target.value);
           }}
+          onKeyPress={handleKeyPress}
         />
-        <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
+        <div onClick={handleSubmit}>
+          <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
+        </div>
       </StyledHeader2>
     );
   }

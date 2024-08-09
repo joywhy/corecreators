@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { CAMPAIGN_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
-
+import { getUserInfoNo } from '../utils';
 //  CAMPAIGN_STRUCTURE = {
 //   name: '캠페인명',
 //   userNo: 1,
@@ -32,9 +32,13 @@ export const useCampaign = create((set) => ({
       set({ error: true, loading: false });
     }
   },
-  getMemberCampaignList : async (no ,startCount,endCount) => {
+  getMemberCampaignList: async (no, startCount, endCount) => {
     set({ loading: true });
-    let campaign =  await req('getList', {userNo: no, count: startCount, max: endCount});
+    let campaign = await req('getList', {
+      userNo: no,
+      count: startCount,
+      max: endCount,
+    });
 
     campaign = campaign.map((camp) => {
       if (!camp.creatorList) {
@@ -51,7 +55,7 @@ export const useCampaign = create((set) => ({
   },
   changeList: async (newContent, index) => {
     set({ loading: true });
-    await req('setList', { ...newContent,no: index,creatorList :null});
+    await req('setList', { ...newContent, no: index, creatorList: null });
     set((state) => ({
       campaign: state.campaign.map((content, idx) => {
         return index === idx ? newContent : content;
@@ -59,15 +63,36 @@ export const useCampaign = create((set) => ({
       loading: false,
     }));
   },
-   setList : async (newForm) => {
+  setList: async (newForm) => {
     set({ loading: true });
-    console.log({ ...newForm,creatorList :null});
-    await req('setList', { ...newForm,creatorList :null});
+
+    console.log({ ...newForm, creatorList: null });
+    await req('setList', { ...newForm, creatorList: null });
     set((state) => ({
-      campaign: [{ ...newForm,no:0,creatorList :null}].concat(state.campaign),
+      campaign: [{ ...newForm, no: 0, creatorList: null }].concat(
+        state.campaign
+      ),
       loading: false,
     }));
+  },
+  searchList: async (input) => {
+    set({ loading: true });
+    let no = getUserInfoNo();
 
+    let campaign = await req('getList', {
+      userNo: no,
+      search: input,
+      count: 10,
+      max: 30,
+    });
+    campaign = campaign.map((camp) => {
+      if (!camp.creatorList) {
+        return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return camp;
+      }
+    });
+    set({ campaign, loading: false });
   },
   //변경 요망
   deleteList: (idx) => {

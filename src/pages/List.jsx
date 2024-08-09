@@ -13,6 +13,7 @@ import {
 } from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
 import { useUserInfo } from '../store/userInfoStore.js';
+import { getUserInfoNo, getUserInfoCate } from '../utils';
 import styled from 'styled-components';
 
 const List = () => {
@@ -25,7 +26,6 @@ const List = () => {
     changeList,
     getMemberCampaignList,
   } = useCampaign();
-  // const {userInfo,rememberUser}= useUserInfo();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const list = [
     {
@@ -85,31 +85,19 @@ const List = () => {
       memo: '메모',
     },
   ];
-  // let initialList =
-  // const [List, setList] = useState([{ ...basicList }]);
   let { height, width } = useWindowDimensions();
+  const [newCampaign, setNewCampagin] = useState({ ...basicList });
 
   const getCampaignsByUsertype = () => {
-    let no = window.localStorage.getItem('no');
-    let cate = window.localStorage.getItem('cate');
-    // console.log(no);
-    // console.log(cate);
+    let no = getUserInfoNo();
+    let cate = getUserInfoCate();
     if (cate === '거래처') {
       getMemberCampaignList(no, 10, 10);
     } else if (cate === '최고관리자') {
       getList(10);
     }
   };
-  useEffect(() => {
-    getCampaignsByUsertype();
-  }, []);
-  // const changeList = (newContent) => {
-  //   let newList = List.map((content, idx) => {
-  //     return index === idx ? newContent : content;
-  //   });
-  //   setList(newList);
-  // };
-  const [newCampaign, setNewCampagin] = useState({ ...basicList });
+
   const createForm = () => {
     setIndex(campaign.length);
   };
@@ -122,6 +110,10 @@ const List = () => {
       setList(newList);
     }
   };
+  useEffect(() => {
+    getCampaignsByUsertype();
+  }, []);
+
   if (loading) {
     return (
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>

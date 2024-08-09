@@ -22,6 +22,12 @@ export const getWindowDimensions = () => {
 export const hasManagerPermission = () => {
   return window.localStorage.getItem('cate') === '최고관리자';
 };
+export const getUserInfoNo = () => {
+  return window.localStorage.getItem('no');
+};
+export const getUserInfoCate = () => {
+  return window.localStorage.getItem('cate');
+};
 export const validateLoginInput = ({ email, password }) => {
   const errors = {};
 
