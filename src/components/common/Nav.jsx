@@ -45,7 +45,7 @@ const Nav = ({
           {campaign.map((campaign, idx) => {
             const isActive = idx === index;
             const handleClick = (e) => {
-              e.stopPropagation();
+              // e.stopPropagation();
               setIndex(idx);
             };
             const handleDelete = (e) => {
@@ -64,7 +64,7 @@ const Nav = ({
             };
             const onClickDeleteChattingRoom = (e) => {
               console.log('ehd');
-              e.stopPropagation();
+              // e.stopPropagation();
               e.preventDefault();
               setIsModal(idx);
             };
