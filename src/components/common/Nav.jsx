@@ -1,8 +1,8 @@
-import React, { useState, forwardRef, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Li from './Li';
 import styled from 'styled-components';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission';
 import { useCampaign } from '../../store/useCampaign';
+import { getUserInfoCate } from '../../utils';
 const Nav = ({
   title = '캠페인',
   index,
@@ -12,14 +12,20 @@ const Nav = ({
   isCreatedReady,
 }) => {
   const [isModal, setIsModal] = useState(false);
-  let { isManager } = useHasManagerPermission();
   const { campaign, searchList, deleteList } = useCampaign();
+
+  let isManager = getUserInfoCate() === '최고관리자';
   //가데이터
   let advertiser = '리을컴퍼니';
   const liRef = useRef(null);
-  // const deleteRef = useRef(null);
+  const deleteRef = useRef(null);
+
   const handleClickOutside = (event) => {
-    if (liRef.current && !liRef.current.contains(event.target)) {
+    if (
+      liRef.current &&
+      !liRef.current.contains(event.target) &&
+      !deleteRef.current.contains(event.target)
+    ) {
       setIsModal(false);
     }
   };
@@ -42,30 +48,33 @@ const Nav = ({
       />
       <nav>
         <ul>
-          {campaign.map((campaign, idx) => {
+          {campaign.map((campaign, idx, arr) => {
             const isActive = idx === index;
+            const modalActive = idx === isModal;
             const handleClick = (e) => {
               // e.stopPropagation();
               setIndex(idx);
             };
             const handleDelete = (e) => {
-              e.stopPropagation();
-              console.log('삭제');
-              console.log(idx);
-              // console.log('삭제');
+              let isfirstElementDeleted = isModal === 0;
+              let isPrevElementDeleted = idx < index;
+
               deleteList(idx);
               setIsModal(false);
-              let isfirstElementDeleted = idx === 0 && idx === index;
-              if (isfirstElementDeleted) {
+
+              if (isfirstElementDeleted && isActive) {
                 setIndex(0);
-              } else if (idx <= index) {
+              } else if (arr.length - 1 === index && isModal === index) {
+                console.log('ehdwkr');
+                setIndex(index - 1);
+              } else if (isModal < index && index !== 0) {
                 setIndex(index - 1);
               }
             };
+
             const onClickDeleteChattingRoom = (e) => {
-              console.log('ehd');
-              // e.stopPropagation();
               e.preventDefault();
+              console.log('우클릭 동작');
               setIsModal(idx);
             };
             return (
@@ -79,16 +88,17 @@ const Nav = ({
                   advertiser={advertiser}
                   key={idx + campaign.name}
                   ref={liRef}
+                  modalActive={modalActive}
                 />
                 {isModal === idx && (
-                  <div
+                  <button
                     className="modal"
                     onClick={handleDelete}
                     key={idx + '모달'}
-                    // ref={deleteRef}
+                    ref={deleteRef}
                   >
                     삭제하기
-                  </div>
+                  </button>
                 )}
               </StyledContainer>
             );

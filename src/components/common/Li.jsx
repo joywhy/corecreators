@@ -3,14 +3,25 @@ import { getUserInfoCate } from '../../utils';
 import styled from 'styled-components';
 
 const Li = forwardRef(function component(
-  { date = '2024.7.7', isActive, advertiser, onClick, title, onContextMenu },
+  {
+    date = '2024.7.7',
+    isActive,
+    advertiser,
+    onClick,
+    title,
+    onContextMenu,
+    // className,
+    modalActive,
+  },
   ref
 ) {
   let isManager = getUserInfoCate() === '최고관리자';
   if (isManager) {
     return (
       <StyledLi
-        className={isActive ? 'active ' : ''}
+        className={
+          isActive ? (modalActive ? 'active  modal-actvie' : 'active') : ''
+        }
         onClick={onClick}
         onContextMenu={onContextMenu}
         ref={ref}
@@ -41,6 +52,10 @@ const StyledLi = styled.li`
   align-items: center;
   box-sizing: border-box;
   padding: 10px;
+
+  &.modal-actvie {
+    pointer-events: none;
+  }
 
   &.active,
   &:hover {
