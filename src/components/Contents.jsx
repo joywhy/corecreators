@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CampaignForm from './common/CampaignForm.jsx';
 import styled from 'styled-components';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidthMiddle } from '../constants/index.js';
 import { useUserInfo } from '../store/userInfoStore.js';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
-import { getUserInfoCate } from './../../utils';
+import { useHasManagerPermission } from '../hooks/useHasManagerPermission.jsx';
 
-const Contents = ({ index }) => {
+const Contents = ({ index, setIsCreatedReady, isCreatedReady }) => {
   //가데이터
   const creatorList = [
     {
@@ -30,15 +29,17 @@ const Contents = ({ index }) => {
       percent: '80%',
     },
   ];
-  const { campagin } = useCampaign();
-  let isManager = getUserInfoCate() === '최고관리자';
-  const advertiser = '관리자';
+  const { userInfo, rememberUser } = useUserInfo();
+  let { isManager } = useHasManagerPermission();
   let { height, width } = useWindowDimensions();
+
+  useEffect(() => {
+    rememberUser();
+  }, []);
 
   const handleBackCick = () => {
     alert('뒤로가기');
   };
-  console.log(campagin, index);
   return (
     <StyledDiv style={{ height: height - 70 }}>
       {width < responsiveWidthMiddle && (
@@ -48,7 +49,11 @@ const Contents = ({ index }) => {
         </div>
       )}
       {isManager ? (
-        <CampaignForm index={index} />
+        <CampaignForm
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+        />
       ) : (
         <CreatorList list={creatorList} index={index} />
       )}

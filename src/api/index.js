@@ -8,5 +8,12 @@ export async function getUserInfo(userinput) {
     mail: email,
     pw: await password(pass),
   });
+  cookie.my = userInfo.token;
+  delete userInfo.token;
   return userInfo;
 }
+
+export async function rememberUser() {
+  return await req('login', { token: cookie.my });
+}
+//

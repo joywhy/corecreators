@@ -154,7 +154,6 @@ assign(self, {
 
 		if(!cookie.my) return;
     await ws.reload();
-		// DATA.my = await req('  ');
   },
 
 	cookie: new Proxy({}, {
@@ -162,7 +161,7 @@ assign(self, {
 			return localStorage.getItem(`cookie/${key}`);
 		},
 		set(target, key, val){
-			fetch(`//${DB_HOST}`, {
+			fetch(`https://${DB_HOST}`, {
 				method: 'POST',
 				credentials: "include",
 				body: JSON.stringify({[key]: val}),
@@ -171,7 +170,7 @@ assign(self, {
 			return true;
 		},
 		deleteProperty(target, key){
-			fetch(`//${DB_HOST}`, {
+			fetch(`https://${DB_HOST}`, {
 				method: 'POST',
 				credentials: "include",
 				body: JSON.stringify({[key]: null}),
@@ -184,4 +183,3 @@ assign(self, {
 	async password(text){return [...new Uint8Array(await crypto.subtle.digest('SHA-1',new TextEncoder('utf-8').encode(text)))].map(v => v.toString(16).padStart(2, '0')).join('')},
 
 });
-onready();

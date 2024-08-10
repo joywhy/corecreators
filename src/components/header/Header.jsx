@@ -1,52 +1,68 @@
-
-
-import Button from "../common/Button";
-import Logo from "../common/Logo.jsx";
-
+import { useEffect } from 'react';
+import Button from '../common/Button';
+import Logo from '../common/Logo.jsx';
+import { useUserInfo } from '../../store/userInfoStore.js';
 
 import styled from 'styled-components';
 
+const Header = ({ isLogin }) => {
+  const { userInfo, rememberUser } = useUserInfo();
 
-const Header = () => {
-  let token = window.localStorage.getItem("token");
+  useEffect(() => {
+    rememberUser();
+  }, []);
 
-  let isLogin = token?true:false;
-  // console.log( isLogin );
-  
-    return (
-        <StyledHeader>
-           <Logo src="src/assets/logo.svg"/>
-          {isLogin?
-          <div className="rightside">
-           <span>{`${window.localStorage.getItem("name")}님`}</span> 
-           <Button   type="logout" primary>로그아웃</Button>
-           </div>
-           :<Button   type="login" primary>로그인</Button>}
-        </StyledHeader>
-   );
+  const navigateToLogin = () => {
+    location.href = '/login';
+  };
+
+  return (
+    <StyledHeader>
+      <Logo src="src/assets/logo.svg" />
+      {isLogin ? (
+        <LogindHeader name={userInfo.name} />
+      ) : (
+        <Button type="login" primary onClick={navigateToLogin}>
+          로그인
+        </Button>
+      )}
+    </StyledHeader>
+  );
 };
 
-const StyledHeader = styled.header`
-position:relative;
-left: 50%;
-transform: translateX(-50%);
-display:flex;
-justify-content: space-between;
-align-items: flex-end;
-flex-wrap: wrap;
-max-width: var(--home-max-width);
-width: 80%;
-height:258px;
-padding-bottom : 17px;
-
-@media only screen and (max-width: 1200px) {
-    & {
-     /* max-width: 1500px; */
+const LogindHeader = ({ name }) => {
+  const openConfirm = () => {
+    const result = confirm('로그아웃 하시겠습니까?');
+    if (result) {
+      delete cookie.my;
+      location.reload(true);
     }
+  };
+  return (
+    <div className="rightside">
+      <span>{`${name}님`}</span>
+      <Button type="logout" primary onClick={openConfirm}>
+        로그아웃
+      </Button>
+    </div>
+  );
+};
+const StyledHeader = styled.header`
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  max-width: var(--home-max-width);
+  width: 80%;
+  height: 258px;
+  padding-bottom: 17px;
+
+  & .rightside span {
+    margin-right: 20px;
   }
-& .rightside span{
- margin-right: 20px;
-}
 `;
 
 export default Header;

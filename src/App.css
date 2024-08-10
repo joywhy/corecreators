@@ -1,11 +1,8 @@
-/* 
-:root {
-  --main-font-color: #000f22; 
-  --home-max-width: 1174px;
-  } */
-
-/*
-// div {
-// 	color: var(--main-font-color);  
-// }
-*/
+/* & input {
+  padding-left: 35px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+} */
