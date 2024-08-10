@@ -15,6 +15,7 @@ const Header = ({ isLogin }) => {
   const navigateToLogin = () => {
     location.href = '/login';
   };
+
   return (
     <StyledHeader>
       <Logo src="src/assets/logo.svg" />
@@ -30,10 +31,17 @@ const Header = ({ isLogin }) => {
 };
 
 const LogindHeader = ({ name }) => {
+  const openConfirm = () => {
+    const result = confirm('로그아웃 하시겠습니까?');
+    if (result) {
+      delete cookie.my;
+      location.reload(true);
+    }
+  };
   return (
     <div className="rightside">
       <span>{`${name}님`}</span>
-      <Button type="logout" primary>
+      <Button type="logout" primary onClick={openConfirm}>
         로그아웃
       </Button>
     </div>
@@ -51,6 +59,7 @@ const StyledHeader = styled.header`
   width: 80%;
   height: 258px;
   padding-bottom: 17px;
+
   & .rightside span {
     margin-right: 20px;
   }

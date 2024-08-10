@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
 
@@ -8,19 +8,23 @@ import { CAMPAIGN_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
 const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
+  //삭제해서 한 상태값을 렌더링해야함
   const { campaign, changeList, setList } = useCampaign();
-  let initialValues =
-    campaign.length === index
-      ? {
-          ...CAMPAIGN_STRUCTURE,
-          advertiser: CAMPAIGN_STRUCTURE.userNo === 1 ? '리을컴퍼니' : '광고주',
-        }
-      : {
-          ...campaign[index],
-          advertiser: campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주',
-        };
-  // console.log(initialValues);
-
+  // console.log(campaign);
+  let initialValues = useMemo(
+    () =>
+      campaign.length === index
+        ? {
+            ...CAMPAIGN_STRUCTURE,
+            advertiser:
+              CAMPAIGN_STRUCTURE.userNo === 1 ? '리을컴퍼니' : '광고주',
+          }
+        : {
+            ...campaign[index],
+            advertiser: campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주',
+          },
+    [campaign, index]
+  );
   const handleSubmitCampaign = () => {
     if (campaign.length === index) {
       setIsCreatedReady(true);
@@ -54,6 +58,11 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
     changeNewForm(initialValues);
     return () => {};
   }, [index]);
+
+  useEffect(() => {
+    changeNewForm(initialValues);
+    return () => {};
+  }, [initialValues]);
 
   const changeChannelList = (newList) => {
     handleChangeData(newList, 'channelList');
@@ -106,17 +115,18 @@ const StyledForm = styled.form`
     height: 40px;
     border-radius: 5px;
     border: none;
-    font-size: 20px;
     margin-bottom: 17px;
     padding: 0 10px;
     box-sizing: border-box;
     background-color: #f5f5f5;
     font-size: 14px;
     color: black;
+
     &:focus {
       outline: 2px solid var(--main-mint);
     }
   }
+
   & textarea {
     width: 100%;
     border: none;
@@ -127,6 +137,7 @@ const StyledForm = styled.form`
     margin: 10px 0;
     border-radius: 5px;
     height: 260px;
+
     &:focus {
       outline: 2px solid var(--main-mint);
     }
