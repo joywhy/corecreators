@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Logo from '../common/Logo.jsx';
 import { navigateToPath, handleClickLogout } from '../../utils/index.js';
-// import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 import styled from 'styled-components';
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
-import { useUserInfo } from '../../store/userInfoStore.js';
 const Aside = () => {
   let isManager = window.localStorage.getItem('cate') === '최고관리자';
   let { height, width } = useWindowDimensions();

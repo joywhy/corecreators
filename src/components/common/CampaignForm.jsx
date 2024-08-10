@@ -21,7 +21,7 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
           }
         : {
             ...campaign[index],
-            advertiser: campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주',
+            advertiser: campaign[index]?.userNo === 1 ? '리을컴퍼니' : '광고주',
           },
     [campaign, index]
   );

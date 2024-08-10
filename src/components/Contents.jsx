@@ -39,7 +39,7 @@ const Contents = ({ index }) => {
     alert('뒤로가기');
   };
   return (
-    <StyledDiv style={{ height: height - 70 }}>
+    <StyledDiv>
       {width < responsiveWidthMiddle && (
         <div className="back-button" onClick={handleBackCick}>
           <img src="/src/assets/common/back_icon.svg" alt="뒤로가기" />
@@ -107,12 +107,11 @@ const Li = (props) => {
 const StyledDiv = styled.div`
   flex-grow: 7;
   overflow: scroll;
+  height: 100vh;
 
   @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
-
-      /* border:1px solid red; */
       overflow: scroll;
     }
   }
