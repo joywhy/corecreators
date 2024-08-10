@@ -10,6 +10,7 @@ import styled from 'styled-components';
 const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
   //삭제해서 한 상태값을 렌더링해야함
   const { campaign, changeList, setList } = useCampaign();
+  // console.log(campaign);
   let initialValues = useMemo(
     () =>
       campaign.length === index
@@ -24,11 +25,6 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
           },
     [campaign, index]
   );
-  console.log(campaign);
-  console.log(initialValues);
-
-  // useEffect(() => {}, [campaign]);
-
   const handleSubmitCampaign = () => {
     if (campaign.length === index) {
       setIsCreatedReady(true);
