@@ -3,9 +3,14 @@ import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
-import Contents from '../components/Contents.jsx';
+import ReportContents from '../components/ReportContents.jsx';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-import { responsiveWidth, responsiveWidthMiddle } from '../constants';
+import {
+  responsiveWidth,
+  responsiveWidthMiddle,
+  REPORT_STRUCTURE,
+} from '../constants';
+
 import styled from 'styled-components';
 
 const Report = () => {
@@ -93,8 +98,13 @@ const Report = () => {
             deleteList={deleteList}
           />
         )}
-        {/* <Contents/> */}
-        <div className="content">report</div>
+        <ReportContents
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          content={report[index]}
+          basic={REPORT_STRUCTURE}
+        />
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>

@@ -2,40 +2,45 @@ import React, { useEffect, useMemo } from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
 
-import { useCampaign } from '../../store/useCampaign.js';
 import useForm from '../../hooks/useForm.jsx';
-import { CAMPAIGN_STRUCTURE } from '../../constants';
+// import { CAMPAIGN_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
-const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
-  //삭제해서 한 상태값을 렌더링해야함
-  const { campaign, changeList, setList } = useCampaign();
-  // console.log(campaign);
+const CampaignForm = ({
+  index,
+  setIsCreatedReady,
+  isCreatedReady,
+  list,
+  changeList,
+  setList,
+  basic,
+}) => {
   let initialValues = useMemo(
     () =>
-      campaign.length === index
+      list.length === index
         ? {
-            ...CAMPAIGN_STRUCTURE,
-            advertiser:
-              CAMPAIGN_STRUCTURE.userNo === 1 ? '리을컴퍼니' : '광고주',
+            ...basic,
+            advertiser: basic.userNo === 1 ? '리을컴퍼니' : '광고주',
           }
         : {
-            ...campaign[index],
-            advertiser: campaign[index]?.userNo === 1 ? '리을컴퍼니' : '광고주',
+            ...list[index],
+            advertiser: list[index]?.userNo === 1 ? '리을컴퍼니' : '광고주',
           },
-    [campaign, index]
+    [list, index]
   );
   const handleSubmitCampaign = () => {
-    if (campaign.length === index) {
+    if (list.length === index) {
       setIsCreatedReady(true);
       setList(values);
       //전송
       return;
+    } else {
+      changeList(values, index);
     }
-    changeList(values, index);
+
     // 전송
   };
-  const validateCampaignInput = () => {
+  const validateInput = () => {
     return {};
   };
 
@@ -50,7 +55,7 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
     changeNewForm,
   } = useForm({
     initialValues,
-    validate: validateCampaignInput,
+    validate: validateInput,
     onSubmit: handleSubmitCampaign,
   });
 

@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidthMiddle } from '../constants/index.js';
 // import { useUserInfo } from '../store/userInfoStore.js';
-import { getUserInfoCate } from '../utils';
 import { useCampaign } from '../store/useCampaign.js';
+import { getUserInfoCate } from '../utils';
+import { CAMPAIGN_STRUCTURE } from '../constants';
 
-const Contents = ({ index }) => {
+const Contents = ({ index, isCreatedReady, setIsCreatedReady }) => {
   //가데이터
   const creatorList = [
     {
@@ -30,10 +31,10 @@ const Contents = ({ index }) => {
       percent: '80%',
     },
   ];
-  const { campaign } = useCampaign();
+  const { campaign, changeList, setList } = useCampaign();
   let isManager = getUserInfoCate() === '최고관리자';
   const advertiser = '관리자';
-  let { height, width } = useWindowDimensions();
+  let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
     alert('뒤로가기');
@@ -47,7 +48,15 @@ const Contents = ({ index }) => {
         </div>
       )}
       {isManager ? (
-        <CampaignForm index={index} />
+        <CampaignForm
+          list={campaign}
+          changeList={changeList}
+          setList={setList}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          basic={CAMPAIGN_STRUCTURE}
+        />
       ) : (
         <CreatorList list={creatorList} index={index} />
       )}

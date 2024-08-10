@@ -67,7 +67,10 @@ export const useCampaign = create((set) => ({
     set({ loading: true });
 
     console.log({ ...newForm, creatorList: null });
-    await req('setList', { ...newForm, creatorList: null });
+    let newwForm = { ...newForm, creatorList: null };
+    delete newwForm.channelList;
+    console.log(newwForm);
+    await req('setList', newwForm);
     set((state) => ({
       campaign: [{ ...newForm, no: 0, creatorList: null }].concat(
         state.campaign
