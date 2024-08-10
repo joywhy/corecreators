@@ -82,7 +82,7 @@ const List = () => {
   //     memo: '메모',
   //   },
   // ];
-  let { height, width } = useWindowDimensions();
+  let { width } = useWindowDimensions();
 
   const getCampaignsByUsertype = () => {
     let no = getUserInfoNo();
@@ -114,7 +114,7 @@ const List = () => {
             index={index}
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
-            campaign={campaign}
+            list={campaign}
             searchList={searchList}
             deleteList={deleteList}
           />

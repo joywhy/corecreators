@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Li from './Li';
 import NavWrapper from '../wrapper/NavWrapper';
-import { useCampaign } from '../../store/useCampaign';
+
 import { getUserInfoCate } from '../../utils';
 
 import styled from 'styled-components';
@@ -11,7 +11,7 @@ const Nav = ({
   setIndex,
   setIsCreatedReady,
   isCreatedReady,
-  campaign,
+  list,
   searchList,
   deleteList,
 }) => {
@@ -42,7 +42,7 @@ const Nav = ({
       <Header
         title={title}
         isManager={isManager}
-        campaign={campaign}
+        list={list}
         searchList={searchList}
         setIndex={setIndex}
         isCreatedReady={isCreatedReady}
@@ -50,7 +50,7 @@ const Nav = ({
       />
       <nav>
         <ul>
-          {campaign.map((campaign, idx, arr) => {
+          {list.map((campaign, idx, arr) => {
             const isActive = idx === index;
             const modalActive = idx === isModal;
             const handleClick = (e) => {
@@ -113,7 +113,7 @@ const Nav = ({
 const Header = ({
   title,
   isManager,
-  campaign,
+  list,
   searchList,
   setIndex,
   setIsCreatedReady,
@@ -129,7 +129,7 @@ const Header = ({
   const CreateForm = () => {
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
-      setIndex(campaign.length);
+      setIndex(list.length);
     }
   };
   const handleClickOutside = (event) => {
