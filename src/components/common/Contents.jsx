@@ -4,8 +4,7 @@ import styled from 'styled-components';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidthMiddle } from '../constants/index.js';
-import { useUserInfo } from '../store/userInfoStore.js';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
+// import { useUserInfo } from '../store/userInfoStore.js';
 import { getUserInfoCate } from './../../utils';
 
 const Contents = ({ index }) => {
