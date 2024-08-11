@@ -35,7 +35,7 @@ const CampaignForm = ({
   const handleSubmitCampaign = async () => {
     if (list.length === index) {
       setIsCreatedReady(true);
-      console.log(values);
+      // console.log(values);
       // let newForm = JSON.parse(JSON.stringify(values));
       // newForm.userNo = 2;
       // newForm.creatorList = null;
@@ -72,7 +72,7 @@ const CampaignForm = ({
     validate: validateInput,
     onSubmit: handleSubmitCampaign,
   });
-  console.log(values);
+  // console.log(values);
 
   useEffect(() => {
     changeNewForm(initialValues);

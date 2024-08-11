@@ -82,6 +82,7 @@ const Report = () => {
   const deleteList = (name) => {
     console.log(name);
   };
+  const userNo = ['리을컴퍼니', '리을컴퍼니'];
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -96,6 +97,7 @@ const Report = () => {
             list={report}
             searchList={searchList}
             deleteList={deleteList}
+            userNo={userNo}
           />
         )}
         <ReportContents
