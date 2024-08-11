@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const NavWrapper = ({ children }) => {
-  return <StyledDiv>{children}</StyledDiv>;
+const NavWrapper = ({ children, isOpenNav }) => {
+  return (
+    <StyledDiv className={isOpenNav ? 'isshow' : ''}>{children}</StyledDiv>
+  );
 };
 
 export default NavWrapper;
@@ -19,6 +21,15 @@ const StyledDiv = styled.div`
     & {
       height: calc(100vh - 70px);
       overflow: scroll;
+    }
+  }
+
+  @media only screen and (width <= 750px) {
+    &.isshow {
+      max-width: 100vw;
+      width: 100vw;
+
+      /* border: 1px solid red; */
     }
   }
 `;

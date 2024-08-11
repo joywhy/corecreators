@@ -15,6 +15,7 @@ const Nav = ({
   searchList,
   deleteList,
   setIsOpenNav,
+  isOpenNav,
 }) => {
   const [isModal, setIsModal] = useState(false);
   let isManager = getUserInfoCate() === '최고관리자';
@@ -39,7 +40,7 @@ const Nav = ({
     };
   }, []);
   return (
-    <NavWrapper>
+    <NavWrapper isOpenNav={isOpenNav}>
       <Header
         title={title}
         isManager={isManager}

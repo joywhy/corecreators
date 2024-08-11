@@ -118,6 +118,7 @@ const List = () => {
             list={campaign}
             searchList={searchList}
             deleteList={deleteList}
+            isOpenNav={isOpenNav}
           />
         )}
         {width <= responsiveWidthMiddle && isOpenNav && (
@@ -132,6 +133,7 @@ const List = () => {
             searchList={searchList}
             deleteList={deleteList}
             setIsOpenNav={setIsOpenNav}
+            isOpenNav={isOpenNav}
           />
         )}
         {width <= responsiveWidthMiddle && !isOpenNav && (
