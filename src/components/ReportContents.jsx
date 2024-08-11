@@ -12,6 +12,7 @@ const ReportContents = ({
   isCreatedReady,
   setIsCreatedReady,
   content,
+  setIsOpenNav,
 }) => {
   //가데이터
   const reportList = [
@@ -45,7 +46,8 @@ const ReportContents = ({
   let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
-    alert('뒤로가기');
+    // alert('뒤로가기');
+    setIsOpenNav(true);
   };
   return (
     <StyledDiv>

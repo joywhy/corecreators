@@ -8,12 +8,14 @@ import Contents from '../components/Contents.jsx';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth, responsiveWidthMiddle } from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
+import { useUser } from '../store/useUser.js';
 import { getUserInfoNo, getUserInfoCate } from '../utils';
 import styled from 'styled-components';
 
 const List = () => {
   const [index, setIndex] = useState(0); //사용자가 보고있는 목록의 인덱스
   const {
+    userNo,
     loading,
     getList,
     changeList,
@@ -22,6 +24,7 @@ const List = () => {
     searchList,
     deleteList,
   } = useCampaign();
+  const { users, userNoList, getUserNo, getUserNoList } = useUser();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const [isOpenNav, setIsOpenNav] = useState(false);
   //가데이터
@@ -96,14 +99,29 @@ const List = () => {
   };
 
   useEffect(() => {
-    getCampaignsByUsertype();
+    const fun = async () => {
+      await getCampaignsByUsertype();
+      getUserNo(10);
+      // await getUserNoList(campaign);
+    };
+    fun();
   }, []);
+  // useEffect(() => {
+  //   const fun = async () => {
+  //     // await getCampaignsByUsertype();
+  //     // getUserNo(10);
+  //     await getUserNoList(campaign);
+  //   };
+  //   fun();
+  // }, []);
 
+  // console.log(userNoList);
   if (loading) {
     return (
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
     );
   }
+
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -119,6 +137,9 @@ const List = () => {
             searchList={searchList}
             deleteList={deleteList}
             isOpenNav={isOpenNav}
+            setIsOpenNav={setIsOpenNav}
+            userNoList={userNoList}
+            userNo={userNo}
           />
         )}
         {width <= responsiveWidthMiddle && isOpenNav && (
@@ -134,6 +155,8 @@ const List = () => {
             deleteList={deleteList}
             setIsOpenNav={setIsOpenNav}
             isOpenNav={isOpenNav}
+            userNoList={userNoList}
+            userNo={userNo}
           />
         )}
         {width <= responsiveWidthMiddle && !isOpenNav && (

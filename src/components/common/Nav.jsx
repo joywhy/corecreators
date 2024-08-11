@@ -3,7 +3,7 @@ import Li from './Li';
 import NavWrapper from '../wrapper/NavWrapper';
 
 import { getUserInfoCate } from '../../utils';
-
+import { useUser } from '../../store/useUser';
 import styled from 'styled-components';
 const Nav = ({
   title = '캠페인',
@@ -16,11 +16,15 @@ const Nav = ({
   deleteList,
   setIsOpenNav,
   isOpenNav,
+  userNo,
+  // userNoList,
 }) => {
+  // console.log(list);
+  const { users, userNoList, getUserNo, getUserNoList } = useUser();
   const [isModal, setIsModal] = useState(false);
   let isManager = getUserInfoCate() === '최고관리자';
   //가데이터
-  let advertiser = '리을컴퍼니';
+
   const liRef = useRef(null);
   const deleteRef = useRef(null);
 
@@ -39,6 +43,14 @@ const Nav = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  const getadvertiser = async (no) => {
+    console.log(no);
+    const name = getUserNo(no);
+
+    return name;
+  };
+
   return (
     <NavWrapper isOpenNav={isOpenNav}>
       <Header
@@ -55,6 +67,8 @@ const Nav = ({
           {list.map((campaign, idx, arr) => {
             const isActive = idx === index;
             const modalActive = idx === isModal;
+            let no = campaign.userNo;
+            let advertiser = userNo[idx];
             const handleClick = (e) => {
               // e.stopPropagation();
               setIndex(idx);
@@ -62,7 +76,7 @@ const Nav = ({
             };
             const handleDelete = (e) => {
               let isfirstElementDeleted = isModal === 0;
-              deleteList(idx);
+              deleteList(campaign.no, idx);
               setIsModal(false);
 
               if (isfirstElementDeleted && isActive) {
@@ -81,6 +95,7 @@ const Nav = ({
               e.preventDefault();
               setIsModal(idx);
             };
+
             return (
               <StyledContainer key={idx + campaign.name}>
                 <Li

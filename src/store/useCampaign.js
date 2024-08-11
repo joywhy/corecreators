@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { useUser } from './useUser';
 import { CAMPAIGN_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
 import { getUserInfoNo } from '../utils';
 //  CAMPAIGN_STRUCTURE = {
@@ -15,13 +16,32 @@ export const useCampaign = create((set) => ({
   loading: false,
   campaign: [{ ...CAMPAIGN_STRUCTURE }],
   error: null,
+  userNo: [],
   getList: async (count) => {
     set({ loading: true });
     let campaign = await req('getList', { count: count });
 
+    const userIds = campaign.map((campaign) => campaign.userNo);
+    // console.log(userIds);
+    userIds.forEach(async (no) => {
+      const userResponse = await req('getUser', { noList: [no] });
+      // const userData = await userResponse.json();
+      // console.log(userResponse);
+      set((state) => {
+        // console.log(state.userNo);
+        return { userNo: [...state.userNo].concat([userResponse[0].nick]) };
+      });
+    });
+
     campaign = campaign.map((camp) => {
+      // 광고주 구하기
+      // let advertiser = camp.userNo
+      //camp.creatorList null 일때 기본 배열넣기
       if (!camp.creatorList) {
         return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
+
+        // } else if (camp.creatorList) {
+        // const creatorList = [1, 2, 4];
       } else {
         return camp;
       }
@@ -110,7 +130,8 @@ export const useCampaign = create((set) => ({
     set({ campaign, loading: false });
   },
 
-  deleteList: (idx) => {
+  deleteList: async (no, idx) => {
+    await req('deleteList', { no });
     set((state) => {
       const newList = state.campaign.filter((_, index) => index !== idx);
       if (newList.length === 0) {

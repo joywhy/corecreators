@@ -9,8 +9,6 @@ export const handleClickLogout = () => {
   location.href = '/';
 };
 
-// 로그인체크 userInfo.no
-// 권한체크 userInfo.cate
 export const isLogin = () => {
   return cookie.my ? true : false;
 };
