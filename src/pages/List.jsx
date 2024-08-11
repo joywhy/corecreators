@@ -1,33 +1,29 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
-import MainWrapper from '../components/common/MainWrapper.jsx';
+import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
 import Contents from '../components/Contents.jsx';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth, responsiveWidthMiddle } from '../constants';
-import {
-  CHANNEL_STRUCTURE as basic,
-  CAMPAIGN_STRUCTURE as basicList,
-} from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
-import { useUserInfo } from '../store/userInfoStore.js';
 import { getUserInfoNo, getUserInfoCate } from '../utils';
 import styled from 'styled-components';
 
 const List = () => {
-  const [index, setIndex] = useState(0);
-  const [isChangedZeroIndex, SetisChangedZeroIndex] = useState(false);
+  const [index, setIndex] = useState(0); //사용자가 보고있는 목록의 인덱스
   const {
     loading,
-    campaign,
-    error,
     getList,
     changeList,
     getMemberCampaignList,
+    campaign,
+    searchList,
+    deleteList,
   } = useCampaign();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
+  const [isOpenNav, setIsOpenNav] = useState(false);
   //가데이터
   // const list = [
   //   {
@@ -87,7 +83,7 @@ const List = () => {
   //     memo: '메모',
   //   },
   // ];
-  let { height, width } = useWindowDimensions();
+  let { width } = useWindowDimensions();
 
   const getCampaignsByUsertype = () => {
     let no = getUserInfoNo();
@@ -95,7 +91,7 @@ const List = () => {
     if (cate === '거래처') {
       getMemberCampaignList(no, 10, 10);
     } else if (cate === '최고관리자') {
-      getList(10);
+      getList(30);
     }
   };
 
@@ -114,20 +110,52 @@ const List = () => {
       <MainWrapper>
         {width > responsiveWidthMiddle && (
           <Nav
+            title="캠페인"
             setIndex={setIndex}
             index={index}
-            height={height}
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
+            list={campaign}
+            searchList={searchList}
+            deleteList={deleteList}
+            isOpenNav={isOpenNav}
           />
         )}
-        <Contents
-          changeContent={changeList}
-          content={campaign[index]}
-          index={index}
-          isCreatedReady={isCreatedReady}
-          setIsCreatedReady={setIsCreatedReady}
-        />
+        {width <= responsiveWidthMiddle && isOpenNav && (
+          <Nav
+            style={{ width: '100vw' }}
+            title="캠페인"
+            setIndex={setIndex}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            list={campaign}
+            searchList={searchList}
+            deleteList={deleteList}
+            setIsOpenNav={setIsOpenNav}
+            isOpenNav={isOpenNav}
+          />
+        )}
+        {width <= responsiveWidthMiddle && !isOpenNav && (
+          <Contents
+            changeContent={changeList}
+            content={campaign[index]}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
+        {width > responsiveWidthMiddle && (
+          <Contents
+            changeContent={changeList}
+            content={campaign[index]}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>

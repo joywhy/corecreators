@@ -55,19 +55,22 @@ const StyledUl = styled.ul`
   justify-content: space-between;
   margin-top: 189px;
   flex-wrap: wrap;
-  @media only screen and (max-width: 1200px) {
+
+  @media only screen and (width <= 1200px) {
     & {
       width: 80%;
       margin-top: 50px;
     }
   }
-  @media only screen and (max-width: 750px) {
+
+  @media only screen and (width <= 750px) {
     & {
       justify-content: center;
       margin-top: 50px;
     }
   }
-  @media only screen and (max-width: 280px) {
+
+  @media only screen and (width <= 280px) {
     & {
       margin-top: 50px;
     }
@@ -76,8 +79,7 @@ const StyledUl = styled.ul`
 // card css
 const StyledLi = styled.li`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   max-width: 300px;
   width: 100%;
   margin-bottom: 20px;
@@ -87,11 +89,13 @@ const StyledLi = styled.li`
     width: 100%;
     height: 200px;
   }
+
   & > h1 {
     font-weight: bold;
     margin-top: 30px;
     text-align: center;
   }
+
   & > p {
     margin-top: 16px;
     text-align: center;

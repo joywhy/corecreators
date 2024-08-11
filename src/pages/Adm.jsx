@@ -1,7 +1,7 @@
 import React from 'react';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
-import MainWrapper from '../components/common/MainWrapper.jsx';
+import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
 // import Contents from '../components/Contents.jsx';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';

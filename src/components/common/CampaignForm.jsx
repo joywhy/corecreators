@@ -2,43 +2,62 @@ import React, { useEffect, useMemo } from 'react';
 import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
 
-import { useCampaign } from '../../store/useCampaign.js';
 import useForm from '../../hooks/useForm.jsx';
-import { CAMPAIGN_STRUCTURE } from '../../constants';
+// import { CAMPAIGN_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
-const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
-  //삭제해서 한 상태값을 렌더링해야함
-  const { campaign, changeList, setList } = useCampaign();
-  // console.log(campaign);
+const CampaignForm = ({
+  index,
+  setIsCreatedReady,
+  isCreatedReady,
+  list,
+  changeList,
+  setList,
+  basic,
+}) => {
   let initialValues = useMemo(
     () =>
-      campaign.length === index
+      list.length === index
         ? {
-            ...CAMPAIGN_STRUCTURE,
-            advertiser:
-              CAMPAIGN_STRUCTURE.userNo === 1 ? '리을컴퍼니' : '광고주',
+            ...basic,
+            advertiser: basic.userNo === 1 ? '리을컴퍼니' : '광고주',
           }
         : {
-            ...campaign[index],
-            advertiser: campaign[index].userNo === 1 ? '리을컴퍼니' : '광고주',
+            ...list[index],
+            advertiser: list[index]?.userNo === 1 ? '리을컴퍼니' : '광고주',
           },
-    [campaign, index]
+    [list, index]
   );
-  const handleSubmitCampaign = () => {
-    if (campaign.length === index) {
-      setIsCreatedReady(true);
-      setList(values);
-      //전송
-      return;
-    }
-    changeList(values, index);
-    // 전송
-  };
-  const validateCampaignInput = () => {
+
+  const validateInput = () => {
     return {};
   };
+  const handleSubmitCampaign = async () => {
+    if (list.length === index) {
+      setIsCreatedReady(true);
+      console.log(values);
+      // let newForm = JSON.parse(JSON.stringify(values));
+      // newForm.userNo = 2;
+      // newForm.creatorList = null;
 
+      // delete newForm.channelList;
+      // delete newForm.date;
+      // delete newForm.no;
+      // delete newForm.advertiser;
+      // delete newForm.await_i;
+      // console.log(newForm);
+
+      await setList(values);
+      //전송
+      return;
+    } else {
+      console.log(index);
+      console.log(values);
+      changeList(values, index);
+    }
+
+    // 전송
+  };
   let {
     values,
     errors,
@@ -50,9 +69,10 @@ const CampaignForm = ({ index, setIsCreatedReady, isCreatedReady }) => {
     changeNewForm,
   } = useForm({
     initialValues,
-    validate: validateCampaignInput,
+    validate: validateInput,
     onSubmit: handleSubmitCampaign,
   });
+  console.log(values);
 
   useEffect(() => {
     changeNewForm(initialValues);

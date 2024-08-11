@@ -1,19 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Li from './Li';
-import styled from 'styled-components';
-import { useCampaign } from '../../store/useCampaign';
+import NavWrapper from '../wrapper/NavWrapper';
+
 import { getUserInfoCate } from '../../utils';
+
+import styled from 'styled-components';
 const Nav = ({
   title = '캠페인',
   index,
   setIndex,
-  height,
   setIsCreatedReady,
   isCreatedReady,
+  list,
+  searchList,
+  deleteList,
+  setIsOpenNav,
+  isOpenNav,
 }) => {
   const [isModal, setIsModal] = useState(false);
-  const { campaign, searchList, deleteList } = useCampaign();
-
   let isManager = getUserInfoCate() === '최고관리자';
   //가데이터
   let advertiser = '리을컴퍼니';
@@ -36,11 +40,11 @@ const Nav = ({
     };
   }, []);
   return (
-    <StyledDiv style={{ height: height - 70 }}>
+    <NavWrapper isOpenNav={isOpenNav}>
       <Header
         title={title}
         isManager={isManager}
-        campaign={campaign}
+        list={list}
         searchList={searchList}
         setIndex={setIndex}
         isCreatedReady={isCreatedReady}
@@ -48,33 +52,33 @@ const Nav = ({
       />
       <nav>
         <ul>
-          {campaign.map((campaign, idx, arr) => {
+          {list.map((campaign, idx, arr) => {
             const isActive = idx === index;
             const modalActive = idx === isModal;
             const handleClick = (e) => {
               // e.stopPropagation();
               setIndex(idx);
+              setIsOpenNav(false);
             };
             const handleDelete = (e) => {
               let isfirstElementDeleted = isModal === 0;
-              let isPrevElementDeleted = idx < index;
-
               deleteList(idx);
               setIsModal(false);
 
               if (isfirstElementDeleted && isActive) {
+                //0번째목록을 보고있고 0번째목록을 삭제할때
                 setIndex(0);
               } else if (arr.length - 1 === index && isModal === index) {
-                console.log('ehdwkr');
+                //마지막목록을 보고있고 마지막목록을 삭제할때
                 setIndex(index - 1);
               } else if (isModal < index && index !== 0) {
+                //보고있는 목록보다 지우려는 목록의 인덱스가 작을때
                 setIndex(index - 1);
               }
             };
 
             const onClickDeleteChattingRoom = (e) => {
               e.preventDefault();
-              console.log('우클릭 동작');
               setIsModal(idx);
             };
             return (
@@ -105,14 +109,14 @@ const Nav = ({
           })}
         </ul>
       </nav>
-    </StyledDiv>
+    </NavWrapper>
   );
 };
 
 const Header = ({
   title,
   isManager,
-  campaign,
+  list,
   searchList,
   setIndex,
   setIsCreatedReady,
@@ -128,7 +132,7 @@ const Header = ({
   const CreateForm = () => {
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
-      setIndex(campaign.length);
+      setIndex(list.length);
     }
   };
   const handleClickOutside = (event) => {
@@ -208,30 +212,16 @@ const StyledContainer = styled.div`
     border: 1px solid black;
   }
 `;
-const StyledDiv = styled.div`
-  max-width: 300px;
-  flex-grow: 3;
-  width: 100%;
-  border-right: 1px solid var(--gray-10);
-  overflow: scroll;
-
-  @media only screen and (width <= 1200px) {
-    & {
-      height: calc(100vh - 70px);
-      overflow: scroll;
-    }
-  }
-`;
-
 const StyledHeader = styled.header`
-  display: flex;
   width: 100%;
   height: 47px;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
   box-sizing: border-box;
 
+  /* 오른쪽  검색, + 버튼 wrap */
   & div {
     display: flex;
 
