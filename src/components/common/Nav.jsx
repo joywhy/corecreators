@@ -14,6 +14,7 @@ const Nav = ({
   list,
   searchList,
   deleteList,
+  setIsOpenNav,
 }) => {
   const [isModal, setIsModal] = useState(false);
   let isManager = getUserInfoCate() === '최고관리자';
@@ -56,6 +57,7 @@ const Nav = ({
             const handleClick = (e) => {
               // e.stopPropagation();
               setIndex(idx);
+              setIsOpenNav(false);
             };
             const handleDelete = (e) => {
               let isfirstElementDeleted = isModal === 0;

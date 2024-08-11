@@ -23,6 +23,7 @@ const List = () => {
     deleteList,
   } = useCampaign();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
+  const [isOpenNav, setIsOpenNav] = useState(false);
   //가데이터
   // const list = [
   //   {
@@ -119,13 +120,40 @@ const List = () => {
             deleteList={deleteList}
           />
         )}
-        <Contents
-          changeContent={changeList}
-          content={campaign[index]}
-          index={index}
-          isCreatedReady={isCreatedReady}
-          setIsCreatedReady={setIsCreatedReady}
-        />
+        {width <= responsiveWidthMiddle && isOpenNav && (
+          <Nav
+            style={{ width: '100vw' }}
+            title="캠페인"
+            setIndex={setIndex}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            list={campaign}
+            searchList={searchList}
+            deleteList={deleteList}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
+        {width <= responsiveWidthMiddle && !isOpenNav && (
+          <Contents
+            changeContent={changeList}
+            content={campaign[index]}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
+        {width > responsiveWidthMiddle && (
+          <Contents
+            changeContent={changeList}
+            content={campaign[index]}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>

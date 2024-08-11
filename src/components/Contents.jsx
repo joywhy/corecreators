@@ -9,7 +9,12 @@ import { useCampaign } from '../store/useCampaign.js';
 import { getUserInfoCate } from '../utils';
 import { CAMPAIGN_STRUCTURE } from '../constants';
 
-const Contents = ({ index, isCreatedReady, setIsCreatedReady }) => {
+const Contents = ({
+  index,
+  isCreatedReady,
+  setIsCreatedReady,
+  setIsOpenNav,
+}) => {
   //가데이터
   const creatorList = [
     {
@@ -37,7 +42,8 @@ const Contents = ({ index, isCreatedReady, setIsCreatedReady }) => {
   let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
-    alert('뒤로가기');
+    // alert('뒤로가기');
+    setIsOpenNav(true);
   };
   return (
     <StyledDiv>

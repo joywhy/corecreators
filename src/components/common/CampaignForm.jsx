@@ -28,22 +28,36 @@ const CampaignForm = ({
           },
     [list, index]
   );
-  const handleSubmitCampaign = () => {
+
+  const validateInput = () => {
+    return {};
+  };
+  const handleSubmitCampaign = async () => {
     if (list.length === index) {
       setIsCreatedReady(true);
-      setList(values);
+      console.log(values);
+      // let newForm = JSON.parse(JSON.stringify(values));
+      // newForm.userNo = 2;
+      // newForm.creatorList = null;
+
+      // delete newForm.channelList;
+      // delete newForm.date;
+      // delete newForm.no;
+      // delete newForm.advertiser;
+      // delete newForm.await_i;
+      // console.log(newForm);
+
+      await setList(values);
       //전송
       return;
     } else {
+      console.log(index);
+      console.log(values);
       changeList(values, index);
     }
 
     // 전송
   };
-  const validateInput = () => {
-    return {};
-  };
-
   let {
     values,
     errors,
@@ -58,6 +72,7 @@ const CampaignForm = ({
     validate: validateInput,
     onSubmit: handleSubmitCampaign,
   });
+  console.log(values);
 
   useEffect(() => {
     changeNewForm(initialValues);

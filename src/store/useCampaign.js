@@ -55,7 +55,7 @@ export const useCampaign = create((set) => ({
   },
   changeList: async (newContent, index) => {
     set({ loading: true });
-    await req('setList', { ...newContent, no: index, creatorList: null });
+    await req('setList', { ...newContent, creatorList: null });
     set((state) => ({
       campaign: state.campaign.map((content, idx) => {
         return index === idx ? newContent : content;
@@ -63,18 +63,30 @@ export const useCampaign = create((set) => ({
       loading: false,
     }));
   },
+  //새로 등록
   setList: async (newForm) => {
     set({ loading: true });
 
-    console.log({ ...newForm, creatorList: null });
-    let newwForm = { ...newForm, creatorList: null };
-    delete newwForm.channelList;
-    console.log(newwForm);
-    await req('setList', newwForm);
+    console.log(newForm);
+    newForm.userNo = 2;
+    newForm.creatorList = null;
+
+    delete newForm.channelList;
+    delete newForm.date;
+    delete newForm.no;
+    delete newForm.advertiser;
+    if ('await_i' in newForm) {
+      delete newForm.await_i;
+    }
+    console.log(newForm);
+
+    const { no } = await req('setList', newForm);
+    console.log(no);
+
     set((state) => ({
-      campaign: [{ ...newForm, no: 0, creatorList: null }].concat(
-        state.campaign
-      ),
+      campaign: [
+        { ...newForm, no: no, creatorList: [{ ...CHANNEL_STRUCTURE }] },
+      ].concat(state.campaign),
       loading: false,
     }));
   },
@@ -99,14 +111,6 @@ export const useCampaign = create((set) => ({
   },
 
   deleteList: (idx) => {
-    // const newList = state.campaign.filter((_, index) => index !== idx);
-
-    // // if (newList.length === 0) {
-    // //   set({ campaign: [{ ...CAMPAIGN_STRUCTURE }] });
-    // // } else {
-    // //   set({ campaign: newList });
-    // // }
-    console.log(idx);
     set((state) => {
       const newList = state.campaign.filter((_, index) => index !== idx);
       if (newList.length === 0) {
