@@ -42,4 +42,19 @@ const StyleDiv = styled.div`
     color: #5d5d5d;
   }
 `;
+
+const SearchBox = () => {
+  return (
+    <form onSubmit={() => submitSearchTerm(routingPage)}>
+      <img />
+      <input
+      //   id="searchTerm"
+      //   placeholder={}
+      //   onChange={}
+      //   value={}
+      //   onSubmit={submitSearchTerm}
+      />
+    </form>
+  );
+};
 export default Search;
