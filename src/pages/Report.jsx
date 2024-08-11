@@ -17,6 +17,7 @@ const Report = () => {
   let { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [isCreatedReady, setIsCreatedReady] = useState(true);
+  const [isOpenNav, setIsOpenNav] = useState(false);
   const report = [
     {
       name: '00캠페인',
@@ -97,16 +98,46 @@ const Report = () => {
             list={report}
             searchList={searchList}
             deleteList={deleteList}
+            setIsOpenNav={setIsOpenNav}
+            isOpenNav={isOpenNav}
             userNo={userNo}
           />
         )}
-        <ReportContents
-          index={index}
-          isCreatedReady={isCreatedReady}
-          setIsCreatedReady={setIsCreatedReady}
-          content={report[index]}
-          basic={REPORT_STRUCTURE}
-        />
+        {width <= responsiveWidthMiddle && isOpenNav && (
+          <Nav
+            title="보고서"
+            setIndex={setIndex}
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            list={report}
+            searchList={searchList}
+            deleteList={deleteList}
+            setIsOpenNav={setIsOpenNav}
+            isOpenNav={isOpenNav}
+            userNo={userNo}
+          />
+        )}
+        {width <= responsiveWidthMiddle && !isOpenNav && (
+          <ReportContents
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            content={report[index]}
+            basic={REPORT_STRUCTURE}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
+        {width > responsiveWidthMiddle && (
+          <ReportContents
+            index={index}
+            isCreatedReady={isCreatedReady}
+            setIsCreatedReady={setIsCreatedReady}
+            content={report[index]}
+            basic={REPORT_STRUCTURE}
+            setIsOpenNav={setIsOpenNav}
+          />
+        )}
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>
