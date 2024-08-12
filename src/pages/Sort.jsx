@@ -3,7 +3,7 @@ import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Button from '../components/common/Button.jsx';
-import Search from '../components/Search.jsx';
+import Search from '../components/search/Search.jsx';
 
 import styled from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
