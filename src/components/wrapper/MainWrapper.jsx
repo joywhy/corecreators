@@ -17,21 +17,26 @@ const StyledMain = styled.main`
   justify-content: center;
   align-items: center;
   background-color: var(--gray-40);
+  height: 100vh;
+  overflow: hidden;
 
   & section {
     display: flex;
     max-width: 1000px;
     width: 100%;
-    max-height: 1000px;
+    /* max-height: 1000px; */
     height: 100%;
     border-radius: 10px;
     background-color: var(--white);
     overflow: hidden;
+    margin-top: 20px;
+    box-sizing: border-box;
   }
 
-  @media only screen and (width <= 800px) {
+  @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
+      /* border:1px solid red; */
     }
   }
 `;

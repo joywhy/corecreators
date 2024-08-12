@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
+
 import ReactApexChart from 'react-apexcharts';
+import styled from 'styled-components';
 
+export  const ApexChart = ({series,xaxis,colors= ["#088FFC","#04E298","#FFB119"]}) => {
 
-export  const ApexChart = () => {
+    // const defaultColors = ["#088FFC","#04E298","FFB119"];
     const [chartState, setChartState] = useState({
-      series: [
-        {
-          name: '조회수',
-          data: [31, 40, 50, 66, 70, 109, 200],
-        },
-        {
-          name: '좋아요',
-          data: [11, 32, 45, 52, 64, 72, 100],
-        },
-        {
-            name: '댓글',
-            data: [1, 5, 10, 30, 32, 40, 50],
-          },
-      ],
+      series: series,
       options: {
         chart: {
-          height: 500,
+          height: 250,
           type: 'area',
         },
         dataLabels: {
@@ -29,41 +19,36 @@ export  const ApexChart = () => {
         stroke: {
           curve: 'smooth',
         },
-        xaxis: {
-          type: 'datetime',
-          categories: [
-            '2024-01-19T00:00:00.000Z',
-            '2024-02-19T01:30:00.000Z',
-            '2024-03-19T02:30:00.000Z',
-            '2024-04-19T03:30:00.000Z',
-            '2024-05-19T04:30:00.000Z',
-            '2024-06-19T05:30:00.000Z',
-            '2024-07-19T06:30:00.000Z',
-          ],
-        },
+        xaxis: xaxis,
         tooltip: {
           x: {
             format: 'dd/MM/yy HH:mm',
           },
         },
+        fill: {
+            colors: colors
+          },
+        colors: colors
       },
+
     });
   
     return (
-      <div>
+      <StyledDiv>
         <div id="chart">
           <ReactApexChart
             options={chartState.options}
             series={chartState.series}
             type="area"
-            height={500}
+            height={250}
           />
         </div>
         <div id="html-dist"></div>
-      </div>
+      </StyledDiv>
     );
   };
   
-//   const domContainer = document.querySelector('#app');
-//   const root = createRoot(domContainer); 
-//   root.render(<ApexChart />);
+
+  const StyledDiv = styled.div`
+  margin-top: 20px;
+  `;

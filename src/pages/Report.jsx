@@ -88,7 +88,7 @@ const Report = () => {
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
       <MainWrapper>
-        {width > responsiveWidthMiddle && (
+        {width > 1000 && (
           <Nav
             title="보고서"
             setIndex={setIndex}
@@ -103,7 +103,7 @@ const Report = () => {
             userNo={userNo}
           />
         )}
-        {width <= responsiveWidthMiddle && isOpenNav && (
+        {width <= 1000 && isOpenNav && (
           <Nav
             title="보고서"
             setIndex={setIndex}
@@ -118,7 +118,7 @@ const Report = () => {
             userNo={userNo}
           />
         )}
-        {width <= responsiveWidthMiddle && !isOpenNav && (
+        {width <= 1000 && !isOpenNav && (
           <ReportContents
             index={index}
             isCreatedReady={isCreatedReady}
@@ -128,7 +128,7 @@ const Report = () => {
             setIsOpenNav={setIsOpenNav}
           />
         )}
-        {width > responsiveWidthMiddle && (
+        {width > 1000 && (
           <ReportContents
             index={index}
             isCreatedReady={isCreatedReady}

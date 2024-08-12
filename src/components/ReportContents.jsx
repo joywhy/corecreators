@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{useState} from 'react';
 import CampaignForm from './common/CampaignForm.jsx';
+import {ApexChart} from "../components/Chart.jsx"
 import styled from 'styled-components';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
@@ -51,7 +52,7 @@ const ReportContents = ({
   };
   return (
     <StyledDiv>
-      {width < responsiveWidthMiddle && (
+      {width < 1000 && (
         <div className="back-button" onClick={handleBackCick}>
           <img src="/src/assets/common/back_icon.svg" alt="뒤로가기" />
           뒤로가기
@@ -91,9 +92,53 @@ const Li = (props) => {
   //   },
   const { reportImg, title, name, cate, img, icon, like, view, comment } =
     props;
+  const [isOpen,setIsOpen] = useState(false);
+   const charts =[ 
+    {
+    series :[{name: '조회수', data: [1300, 1500, 3000, 3500, 4000, 4700, 6000],}],
+    xaxis: {
+      type: 'datetime',
+      categories: [
+        '2024-01-19T00:00:00.000Z',
+        '2024-02-19T01:30:00.000Z',
+        '2024-03-19T02:30:00.000Z',
+        '2024-04-19T03:30:00.000Z',
+        '2024-05-19T04:30:00.000Z',
+        '2024-06-19T05:30:00.000Z',
+        '2024-07-19T06:30:00.000Z',
+      ],
+    },
+    colors:["#ff4f19"],
+   },
+  {
+    series :[
+      {
+        name: '좋아요',
+        data: [11, 32, 45, 52, 64, 72, 100],
+      },
+      {
+          name: '댓글',
+          data: [1, 5, 10, 30, 32, 40, 50],
+        },
+],
+xaxis: {
+  type: 'datetime',
+  categories: [
+    '2024-01-19T00:00:00.000Z',
+    '2024-02-19T01:30:00.000Z',
+    '2024-03-19T02:30:00.000Z',
+    '2024-04-19T03:30:00.000Z',
+    '2024-05-19T04:30:00.000Z',
+    '2024-06-19T05:30:00.000Z',
+    '2024-07-19T06:30:00.000Z',
+  ],
+},
+}
+];
+
   return (
-    <StyledLi>
-      <button>
+    <StyledLi className={isOpen?"chart-open":""} >
+      <button onClick={()=>{setIsOpen((prev)=>!prev)}}  className={isOpen?"chart-open":""}  >
       <div className="profile">
         <div className="img-wrapper">
           <img src={reportImg} alt="보고서 이미지" />
@@ -124,6 +169,9 @@ const Li = (props) => {
         </span>
       </div>
       </button>
+    {isOpen&&(
+     charts.map((chart,idx)=> <ApexChart series={chart.series} xaxis={chart.xaxis} colors={chart.colors?chart.colors:undefined} key ={idx+"차트"}/>)
+    )}
     </StyledLi>
   );
 };
@@ -156,17 +204,33 @@ const StyledLi = styled.li`
   box-sizing: border-box;
   padding: 10px;
   list-style: none;
+  margin-top: 10px;
+ 
   &:hover {
     background-color: #f5f5f5;
   }
-
+  &.chart-open {
+    height:  650px;
+    background-color: #f5f5f5;
+  }
   & button {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border:none;
   background-color: white;
+  @media only screen and (width <= 1000px) {
+    & {
+      /* height: calc(100vh - 70px);
+      overflow: scroll; */
+      /* border:1px solid red; */
+      width: 100%;
+    }
+  }
   &:hover {
+    background-color: #f5f5f5;
+  }
+  &.chart-open {
     background-color: #f5f5f5;
   }
   }
