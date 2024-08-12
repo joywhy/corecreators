@@ -33,7 +33,6 @@ const LoginForm = () => {
   const handleSubmitLogin = async () => {
     console.log(values);
     await sendLoginRequest(values);
-
     if (error) {
       alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.');
     } else {

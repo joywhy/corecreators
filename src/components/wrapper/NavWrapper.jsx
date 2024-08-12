@@ -28,8 +28,6 @@ const StyledDiv = styled.div`
     &.isshow {
       max-width: 100vw;
       width: 100vw;
-
-      /* border: 1px solid red; */
     }
   }
 `;

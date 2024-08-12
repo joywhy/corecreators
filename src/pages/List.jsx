@@ -9,8 +9,8 @@ import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth, responsiveWidthMiddle } from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
 import { useUser } from '../store/useUser.js';
-// import { useUserInfo } from '../store/userInfoStore.js';
 import { getUserInfoNo, getUserInfoCate } from '../utils';
+
 import styled from 'styled-components';
 
 const List = () => {
@@ -26,7 +26,6 @@ const List = () => {
     deleteList,
   } = useCampaign();
   const { users, userNoList, getUserNo, getUserNoList } = useUser();
-  // const {} = useUserInfo();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const [isOpenNav, setIsOpenNav] = useState(false);
   //가데이터

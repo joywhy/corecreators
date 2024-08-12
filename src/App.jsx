@@ -12,10 +12,9 @@ import './App.css';
 
 function App() {
   const {rememberUser} = useUserInfo();
-useEffect(()=>{
-  rememberUser();
-
-},[])
+  useEffect(()=>{
+    rememberUser();
+  },[])
   return (
     <>
       <Routes>

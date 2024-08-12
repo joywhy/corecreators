@@ -31,8 +31,8 @@ const Nav = ({
   const handleClickOutside = (event) => {
     if (
       liRef.current &&
-      !liRef.current.contains(event.target) &&
-      !deleteRef.current.contains(event.target)
+      liRef.current != event.target &&
+      deleteRef.current != event.target
     ) {
       setIsModal(false);
     }

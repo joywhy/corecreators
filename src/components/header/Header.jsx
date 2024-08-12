@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Button from '../common/Button';
 import Logo from '../common/Logo.jsx';
 import { useUserInfo } from '../../store/userInfoStore.js';
@@ -7,10 +6,6 @@ import styled from 'styled-components';
 
 const Header = ({ isLogin }) => {
   const { userInfo, rememberUser } = useUserInfo();
-
-  useEffect(() => {
-    rememberUser();
-  }, []);
 
   const navigateToLogin = () => {
     location.href = '/login';

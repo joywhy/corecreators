@@ -40,6 +40,7 @@ export const useUserInfo = create((set) => ({
   },
   rememberUser: async () => {
     if (cookie.my) {
+      console.trace(cookie.my);
       set({ loading: true });
       const userInfo = await req('login', { token: cookie.my });
 
