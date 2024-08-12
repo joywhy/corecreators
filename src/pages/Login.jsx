@@ -79,10 +79,10 @@ const LoginForm = () => {
 
 const DetailSetting = () => {
   return (
-    <StyledDIv className="detailSettings">
+    <StyledDIv className="detail-settings">
       <div className="check_wrap">
-        <input type="checkbox" id="check_btn" />
-        <label htmlFor="check_btn">
+        <input type="checkbox" id="check-btn" />
+        <label htmlFor="check-btn">
           <span>로그인 상태 유지</span>
         </label>
       </div>
@@ -103,16 +103,18 @@ const StyledDiv = styled.div`
   align-items: center;
   background-color: black;
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (width <= 800px) {
     & {
       width: 100vw;
       height: calc(100vh * 0.3);
     }
+
     & img {
       width: 50%;
     }
   }
-  @media only screen and (max-width: 280px) {
+
+  @media only screen and (width <= 280px) {
     & {
       width: 100vw;
       height: calc(100vh * 0.3);
@@ -128,7 +130,8 @@ const StyledrightDiv = styled(StyledDiv)`
   justify-content: center;
   background-color: white;
   flex-direction: column;
-  @media only screen and (max-width: 800px) {
+
+  @media only screen and (width <= 800px) {
     & {
       position: absolute;
       margin-top: 300px;
@@ -145,12 +148,14 @@ const StyledrightDiv = styled(StyledDiv)`
   & p {
     margin-top: 20px;
     text-align: center;
-    @media only screen and (max-width: 400px) {
+
+    @media only screen and (width <= 400px) {
       & {
         width: 80%;
       }
     }
   }
+
   & p:nth-of-type(1) {
     margin-top: 79px;
   }
@@ -163,10 +168,6 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
 
-  & > input:nth-of-type(1) {
-    margin-top: 61px;
-  }
-
   & > input {
     width: 100%;
     height: 56px;
@@ -177,30 +178,36 @@ const StyledForm = styled.form`
     padding: 0 20px;
     box-sizing: border-box;
 
-    @media only screen and (max-width: 400px) {
+    @media only screen and (width <= 400px) {
       & {
         width: 80%;
       }
     }
+
     &:focus {
       outline: 2px solid var(--main-red);
     }
   }
 
-  & div.detailSettings {
+  & > input:nth-of-type(1) {
+    margin-top: 61px;
+  }
+
+  & div.detail-settings {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 30px;
     width: 100%;
 
-    @media only screen and (max-width: 400px) {
+    @media only screen and (width <= 400px) {
       & {
         width: 80%;
         font-size: 13px;
       }
     }
   }
+
   & span {
     position: relative;
     top: -5px;
@@ -211,7 +218,8 @@ const StyledForm = styled.form`
     line-height: 20px;
     color: red;
     font-size: 13px;
-    @media only screen and (max-width: 400px) {
+
+    @media only screen and (width <= 400px) {
       & {
         width: 80%;
       }
@@ -232,11 +240,13 @@ const StyledForm = styled.form`
     border: none;
     margin-top: 20px;
     color: var(--white);
-    @media only screen and (max-width: 400px) {
+
+    @media only screen and (width <= 400px) {
       & {
         width: 80%;
       }
     }
+
     &:hover {
       background: var(--black);
     }
@@ -248,20 +258,21 @@ const StyledDIv = styled.div`
     display: flex;
     flex-wrap: nowrap;
   }
+
   & span {
     color: var(--black);
   }
 
-  & input#check_btn {
+  & input#check-btn {
     display: none;
   }
 
-  & input#check_btn + label {
+  & input#check-btn + label {
     cursor: pointer;
     display: flex;
   }
 
-  & input#check_btn + label > span {
+  & input#check-btn + label > span {
     padding-left: 5px;
     display: block;
     position: relative;
@@ -269,7 +280,7 @@ const StyledDIv = styled.div`
   }
 
   /* label:before에 체크하기 전 */
-  & input#check_btn + label:before {
+  & input#check-btn + label::before {
     content: '';
     display: inline-block;
     width: 16px;
@@ -279,8 +290,8 @@ const StyledDIv = styled.div`
     vertical-align: middle;
   }
 
-  /* label:before에 체크 후*/
-  & input#check_btn:checked + label:before {
+  /* label:before에 체크 후 */
+  & input#check-btn:checked + label::before {
     content: '';
     background-color: #ff5d5a;
     border-color: #ff5d5a;

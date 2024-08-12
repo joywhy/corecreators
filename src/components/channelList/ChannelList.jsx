@@ -78,7 +78,7 @@ const Channel = ({ changeType, changeChannel, value, deleteChannel, idx }) => {
         onChange={(e) => changeChannel(e.target.value)}
       />
       {idx !== 0 ? (
-        <div className="deleteIcon" onClick={deleteChannel}>
+        <div className="delete-icon" onClick={deleteChannel}>
           <img
             className="delete"
             src="src/assets/common/delete_icon.svg"
@@ -102,6 +102,7 @@ const StyleTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   & h3 {
     text-align: left;
     font-size: 16px;
@@ -120,6 +121,7 @@ const StyleChannerl = styled.li`
   margin-top: 10px;
   display: flex;
   align-items: center;
+
   & input {
     margin-left: 10px;
     flex-grow: 1;
@@ -131,19 +133,23 @@ const StyleChannerl = styled.li`
     font-size: 14px;
     color: black;
     border-radius: 5px;
+
     &:focus {
       outline: 2px solid var(--main-mint);
     }
   }
-  & .deleteIcon {
+
+  & .delete-icon {
     /* border:1px solid red; */
     height: 40px;
     display: flex;
     align-items: center;
   }
+
   & img.delete {
     height: 5px;
     padding: 0 10px;
+
     /* line-height:100%; */
   }
 `;

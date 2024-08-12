@@ -1,17 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Logo from '../common/Logo.jsx';
 import { navigateToPath, handleClickLogout } from '../../utils/index.js';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
 import styled from 'styled-components';
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
-import { useUserInfo } from '../../store/userInfoStore.js';
 const Aside = () => {
-  const { userInfo, rememberUser } = useUserInfo();
-  let isManager = window.localStorage.getItem("cate") ==="최고관리자";
-  useEffect(() => {
-    // rememberUser();
-  }, []);
-
+  let isManager = window.localStorage.getItem('cate') === '최고관리자';
   let { height, width } = useWindowDimensions();
   let navList = [
     {
@@ -50,7 +43,12 @@ const Aside = () => {
       (nav) => nav.title !== '회원' && nav.title !== '접속내역'
     );
   }
-
+  const openConfirm = () => {
+    const result = confirm('로그아웃 하시겠습니까?');
+    if (result) {
+      handleClickLogout();
+    }
+  };
   return (
     <StyledAside stye={{ height: height }}>
       <div>
@@ -67,7 +65,7 @@ const Aside = () => {
           </ul>
         </nav>
       </div>
-      <button onClick={handleClickLogout}>로그아웃</button>
+      <button onClick={openConfirm}>로그아웃</button>
     </StyledAside>
   );
 };
@@ -79,7 +77,7 @@ const Li = ({ title, path, iconUrl, iconActiveUrl, isActive }) => {
     navigateToPath(path);
   };
   return (
-    <StyledLi className={isActive ? 'isActive' : ''} onClick={handleClick}>
+    <StyledLi className={isActive ? 'is-active' : ''} onClick={handleClick}>
       <img src={imgUrl} alt={`${title} 이미지`} />
       <p>{title}</p>
     </StyledLi>
@@ -90,30 +88,23 @@ const StyledAside = styled.aside`
   max-width: 250px;
   width: 100%;
   background-color: var(--black);
-  /* height: {props => props.height ? height : 100%}; */
   height: 100vh;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-between;
   padding: 30px 20px;
   box-sizing: border-box;
 
-  /* @media only screen and (max-width: 700px) {
-    & {
-      width: 80%;
-      margin-top: 50px;
-    }
-  } */
   & a {
     margin-top: 80px;
     width: 80%;
+
     & img {
       width: 157px;
     }
   }
+
   & nav {
-    /* border: 1px solid red; */
     margin-top: 80px;
     max-width: 220px;
     width: 100%;
@@ -126,6 +117,7 @@ const StyledAside = styled.aside`
       line-height: 36px;
     }
   }
+
   & button {
     font-size: 16px;
     color: white;
@@ -140,16 +132,14 @@ const StyledAside = styled.aside`
 
 const StyledLi = styled.li`
   max-width: 100%;
-  /* border: 1px solid red; */
   height: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
   padding-left: 8px;
-  /* line-height: 50px; */
 
-  &.isActive {
+  &.is-active {
     color: var(--red-20);
     background-color: var(--gray-70);
   }
@@ -160,7 +150,6 @@ const StyledLi = styled.li`
 
   & img {
     margin-right: 12px;
-    /* border: 1px solid red; */
   }
 `;
 

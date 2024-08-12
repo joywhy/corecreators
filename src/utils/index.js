@@ -9,8 +9,6 @@ export const handleClickLogout = () => {
   location.href = '/';
 };
 
-// 로그인체크 userInfo.no
-// 권한체크 userInfo.cate
 export const isLogin = () => {
   return cookie.my ? true : false;
 };
@@ -21,6 +19,12 @@ export const getWindowDimensions = () => {
 
 export const hasManagerPermission = () => {
   return window.localStorage.getItem('cate') === '최고관리자';
+};
+export const getUserInfoNo = () => {
+  return window.localStorage.getItem('no');
+};
+export const getUserInfoCate = () => {
+  return window.localStorage.getItem('cate');
 };
 export const validateLoginInput = ({ email, password }) => {
   const errors = {};

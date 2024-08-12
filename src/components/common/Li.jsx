@@ -1,23 +1,30 @@
-import React from 'react';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
+import React, { forwardRef } from 'react';
+import { getUserInfoCate } from '../../utils';
 import styled from 'styled-components';
 
-const Li = ({
-  date = '2024.7.7',
-  isActive,
-  advertiser,
-  onClick,
-  title,
-  onContextMenu,
-}) => {
-  let { isManager, userType } = useHasManagerPermission();
-
+const Li = forwardRef(function component(
+  {
+    date = '2024.7.7',
+    isActive,
+    advertiser,
+    onClick,
+    title,
+    onContextMenu,
+    // className,
+    modalActive,
+  },
+  ref
+) {
+  let isManager = getUserInfoCate() === '최고관리자';
   if (isManager) {
     return (
       <StyledLi
-        className={isActive ? 'active ' : ''}
+        className={
+          isActive ? (modalActive ? 'active  modal-actvie' : 'active') : ''
+        }
         onClick={onClick}
         onContextMenu={onContextMenu}
+        ref={ref}
       >
         <div className="title">
           <h1 className="text14"> {title}</h1>
@@ -36,7 +43,7 @@ const Li = ({
       <p className="date text10">{new Date(date).format('Y.M.D')}</p>
     </StyledLi>
   );
-};
+});
 
 const StyledLi = styled.li`
   display: flex;
@@ -46,19 +53,24 @@ const StyledLi = styled.li`
   box-sizing: border-box;
   padding: 10px;
 
+  &.modal-actvie {
+    pointer-events: none;
+  }
+
   &.active,
   &:hover {
     background-color: var(--gray-10);
   }
+
+  & p {
+    color: #818181;
+  }
+
   & .title {
     & p {
       color: #818181;
       margin-top: 7px;
     }
-  }
-
-  & p {
-    color: #818181;
   }
 `;
 

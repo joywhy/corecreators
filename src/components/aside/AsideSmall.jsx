@@ -1,11 +1,11 @@
 import React from 'react';
 import Logo from '../common/Logo.jsx';
 import { navigateToPath, handleClickLogout } from '../../utils/index.js';
-import { useHasManagerPermission } from '../../hooks/useHasManagerPermission.jsx';
+import { getUserInfoCate } from '../../utils';
 import styled from 'styled-components';
 
 const Aside = () => {
-  let { isManager, userType } = useHasManagerPermission();
+  let isManager = getUserInfoCate() === '최고관리자';
   let navList = [
     {
       title: '리스트업',
@@ -67,7 +67,7 @@ const Li = ({ title, path, iconUrl, iconActiveUrl, isActive }) => {
     navigateToPath(path);
   };
   return (
-    <StyledLi className={isActive ? 'isActive' : ''} onClick={handleClick}>
+    <StyledLi className={isActive ? 'is-active' : ''} onClick={handleClick}>
       <img src={imgUrl} alt={`${title} 이미지`} />
     </StyledLi>
   );
@@ -77,6 +77,7 @@ const StyledAside = styled.aside`
   width: 100%;
   background-color: var(--black);
   height: 70px;
+
   & ul {
     display: flex;
     justify-content: space-around;
@@ -92,7 +93,8 @@ const StyledLi = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  &.isActive {
+
+  &.is-active {
     color: var(--red-20);
     background-color: var(--gray-70);
   }
@@ -103,6 +105,7 @@ const StyledLi = styled.li`
 
   & img {
     margin-right: 12px;
+
     /* border: 1px solid red; */
   }
 `;

@@ -50,5 +50,14 @@ export const CAMPAIGN_STRUCTURE = {
   date: '',
   memo: '메모',
 };
+export const REPORT_STRUCTURE = {
+  name: '보고서명',
+  userNo: 1,
+  creatorList: [], //? text ?
+  no: 0,
+  date: '',
+  memo: '메모',
+};
+
 export const responsiveWidth = 1200;
 export const responsiveWidthMiddle = 750;

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styled from 'styled-components';
 
 const MainWrapper = ({ children }) => {
@@ -29,7 +28,8 @@ const StyledMain = styled.main`
     background-color: var(--white);
     overflow: hidden;
   }
-  @media only screen and (max-width: 800px) {
+
+  @media only screen and (width <= 800px) {
     & {
       height: calc(100vh - 70px);
     }

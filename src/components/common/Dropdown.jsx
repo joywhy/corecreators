@@ -12,7 +12,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
   return (
     <StyleDropdown>
       <div
-        className="SelectedValue"
+        className="selected-value"
         onClick={() => {
           setIsOpen(!isOpen);
         }}
@@ -26,7 +26,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
         </div>
         <img
           src="/src/assets/common/downArrow_icon.svg"
-          className={isOpen ? 'downArrow reverse ' : 'downArrow'}
+          className={isOpen ? 'down-arrow reverse ' : 'down-arrow'}
           alt="화살표"
         />
       </div>
@@ -54,51 +54,59 @@ const StyleDropdown = styled.div`
   position: relative;
   width: 110px;
   height: 40px;
-  & .SelectedValue {
+
+  & .selected-value {
     position: absolute;
     top: 0;
     left: 0;
-    height: 40px;
     display: flex;
     align-items: center;
     cursor: pointer;
     height: 100%;
     width: 110px;
     justify-content: space-between;
+
     & > div {
       /* border: 1px solid red; */
       display: flex;
       align-items: center;
     }
+
     & span {
       margin: auto 5px;
       font-size: 14px;
     }
-    & img.downArrow.reverse {
+
+    & img.down-arrow.reverse {
       transform: rotate(180deg);
     }
   }
+
   & ul {
-    position: absolute;
     top: 40px;
     left: 0;
+
     /* height: 40px; */
     background-color: white;
     position: relative;
+
     /* border: 1px solid red; */
     z-index: 10;
     font-size: 14px;
+
     & li {
       width: 100%;
       display: flex;
       justify-content: left;
       height: 40px;
       align-items: center;
+
       & img {
         width: 23px;
         margin-right: 5px;
       }
     }
+
     & li:hover {
       background-color: #f5f5f5;
     }
