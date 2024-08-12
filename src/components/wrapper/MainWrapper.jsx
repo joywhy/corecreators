@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const MainWrapper = ({ children }) => {
+const MainWrapper = ({ children, backgroundColor }) => {
   return (
-    <StyledMain>
+    <StyledMain style={{ backgroundColor: backgroundColor }}>
       <section>{children}</section>
     </StyledMain>
   );

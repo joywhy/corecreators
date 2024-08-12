@@ -10,7 +10,7 @@ const Input = ({ placeHolder = 'Search...', value, handleChange }) => {
   );
 };
 
-const StyledInput = styled.Input`
+const StyledInput = styled.input`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
