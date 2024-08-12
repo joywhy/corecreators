@@ -31,6 +31,7 @@ const LoginForm = () => {
   const { error, sendLoginRequest } = useUserInfo();
   const initialValues = { email: '', password: '' };
   const handleSubmitLogin = async () => {
+    console.log(values);
     await sendLoginRequest(values);
 
     if (error) {
