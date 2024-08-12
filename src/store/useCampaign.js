@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { useUser } from './useUser';
 import { CAMPAIGN_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
 import { getUserInfoNo } from '../utils';
+
 //  CAMPAIGN_STRUCTURE = {
 //   name: '캠페인명',
 //   userNo: 1,

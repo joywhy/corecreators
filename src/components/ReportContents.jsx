@@ -41,7 +41,7 @@ const ReportContents = ({
   ];
   const { report, changeList, setList } = useReport();
   let isManager = getUserInfoCate() === '최고관리자';
-  console.log(isManager);
+  // console.log(isManager);
   const advertiser = '관리자';
   let { width } = useWindowDimensions();
 
@@ -69,7 +69,7 @@ const ReportContents = ({
       ) : (
         <StyledContainer>
           {reportList.map((user, idx) => (
-            <Li {...user} key={user.name + 'report'} />
+            <Li {...user} key={user.name + 'report'+idx} />
           ))}
         </StyledContainer>
       )}
@@ -93,6 +93,7 @@ const Li = (props) => {
     props;
   return (
     <StyledLi>
+      <button>
       <div className="profile">
         <div className="img-wrapper">
           <img src={reportImg} alt="보고서 이미지" />
@@ -122,6 +123,7 @@ const Li = (props) => {
           {comment}
         </span>
       </div>
+      </button>
     </StyledLi>
   );
 };
@@ -139,14 +141,9 @@ const StyledDiv = styled.div`
   }
 
   & .back-button {
-    /* border: 1px solid red; */
     display: flex;
     align-items: center;
     padding: 10px 10px 0;
-
-    & img {
-      /* border: 1px solid red; */
-    }
   }
 `;
 
@@ -156,19 +153,23 @@ const StyledContainer = styled.div`
 const StyledLi = styled.li`
   width: 100%;
   border-radius: 10px;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   box-sizing: border-box;
   padding: 10px;
-
-  /* border: 1px solid #e8e8e8; */
-
+  list-style: none;
   &:hover {
     background-color: #f5f5f5;
   }
 
+  & button {
+    display: flex;
+   justify-content: space-between;
+  align-items: center;
+  border:none;
+  background-color: white;
+  &:hover {
+    background-color: #f5f5f5;
+  }
+  }
   & .profile {
     display: flex;
 

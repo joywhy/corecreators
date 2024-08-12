@@ -5,6 +5,7 @@ import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Button from '../components/common/Button.jsx';
 import Search from '../components/Search.jsx';
 
+import {ApexChart} from "../components/Chart.jsx"
 import styled from 'styled-components';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth } from '../constants';
@@ -21,6 +22,7 @@ const Sort = () => {
             <Button>엑셀 업로드</Button>
           </div>
           <Search />
+          <ApexChart/>
         </div>
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}

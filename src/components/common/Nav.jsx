@@ -93,6 +93,7 @@ const Nav = ({
 
             const onClickDeleteChattingRoom = (e) => {
               e.preventDefault();
+              // console.log("ehdwkr");
               setIsModal(idx);
             };
 
@@ -173,7 +174,14 @@ const Header = ({
   }, []);
   if (showInput) {
     return (
-      <StyledHeader2 ref={inputRef}>
+//       <div class="search-wrapper">
+//          <div class="input-holder">
+//             <input type="text" class="search-input" placeholder="Type to search" />
+//              <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+//          </div>
+//          <span class="close" onclick="searchToggle(this, event);"></span>
+//       </div>
+      <StyledHeader2 ref={inputRef} className={showInput?"active":""}>
         <input
           placeholder="Search..."
           value={value}
@@ -218,13 +226,17 @@ const StyledContainer = styled.div`
     left: 100px;
     width: 100px;
     height: 40px;
-    background-color: white;
+    background-color: #1E1E1E;
+    color:var(--gray-10);
     border-radius: 5px;
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+    &:hover {
+      background-color: #4d4d4d;
+    }
   }
 `;
 const StyledHeader = styled.header`
@@ -270,8 +282,15 @@ const StyledHeader2 = styled.header`
     box-sizing: border-box;
     background-color: #d1d1d1;
     border: none;
-    width: 100%;
+    width: 20%;
+    overflow: hidden;
   }
+
+  &.active input {
+    width: 100%;
+   transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+  }
+
 
   & input:focus {
     outline: 2px solid var(--main-red);
