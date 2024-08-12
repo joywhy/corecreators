@@ -161,8 +161,8 @@ const StyledLi = styled.li`
   }
 
   & button {
-    display: flex;
-   justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   border:none;
   background-color: white;
