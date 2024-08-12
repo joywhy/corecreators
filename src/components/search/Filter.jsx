@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-
-export  const Filter = ()=>{
+// const downDown
+export  const Filter = ({ilter,setFilter})=>{
 
     return(
         <StyldForm>
-          <h1>세부필터</h1>
+          <h3>세부필터</h3>
         </StyldForm>
     );
 }
+
+
 
 const StyldForm = styled.form`
 width: 817px;
@@ -23,9 +25,10 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 
-& h1 {
+& h3 {
 font-size: 18px;
-font-weight:normal;
+font-weight:200;
 color: #5D5D5D;
+text-align: center;
 }
 `;

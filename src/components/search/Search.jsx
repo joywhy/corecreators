@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Search = () => {
   const [searchValue,setSearchValue] = useState("");
- 
+  const [filter,setFilter]= useState({});
   return (
     <StyleDiv>
       <h1>
@@ -15,7 +15,7 @@ const Search = () => {
   
       <SearchBox value={searchValue} setValue={setSearchValue}/>
       {/* <button>Search</button> */}
-      <Filter />
+      <Filter value= {filter} setValue={setFilter} f/>
     </StyleDiv>
   );
 };
@@ -25,8 +25,6 @@ const StyleDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* border: 1px solid red; */
 
   & h1 {
     font-size: 32px;
