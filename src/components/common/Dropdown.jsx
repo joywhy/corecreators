@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import styled from 'styled-components';
+import img from '/src/assets/common/downArrow_icon.svg';
 const Dropdown = ({ handleDropDown, list, value }) => {
   let selectedValue = list.filter((data) => value === data.type)[0];
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
           <span>{selectedValue.name}</span>
         </div>
         <img
-          src="/src/assets/common/downArrow_icon.svg"
+          src={img}
           className={isOpen ? 'down-arrow reverse ' : 'down-arrow'}
           alt="화살표"
         />

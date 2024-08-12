@@ -1,7 +1,7 @@
 import Button from '../common/Button';
 import Logo from '../common/Logo.jsx';
 import { useUserInfo } from '../../store/userInfoStore.js';
-
+import img from '/src/assets/logo.svg';
 import styled from 'styled-components';
 
 const Header = ({ isLogin }) => {
@@ -13,7 +13,7 @@ const Header = ({ isLogin }) => {
 
   return (
     <StyledHeader>
-      <Logo src="src/assets/logo.svg" />
+      <Logo src={img} />
       {isLogin ? (
         <LogindHeader name={userInfo.name} />
       ) : (

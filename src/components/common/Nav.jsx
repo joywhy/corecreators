@@ -5,6 +5,8 @@ import NavWrapper from '../wrapper/NavWrapper';
 import { getUserInfoCate } from '../../utils';
 import { useUser } from '../../store/useUser';
 import styled from 'styled-components';
+import searchImg from '/src/assets/search_icon.svg';
+import plusImg from '/src/assets/common/cross_icon.svg';
 const Nav = ({
   title = '캠페인',
   index,
@@ -191,7 +193,7 @@ const Header = ({
           onKeyPress={handleKeyPress}
         />
         <div onClick={handleSubmit}>
-          <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
+          <img src={searchImg} alt="검색아이콘" />
         </div>
       </StyledHeader2>
     );
@@ -202,11 +204,11 @@ const Header = ({
 
       <div>
         <button onClick={handleCLick}>
-          <img src="/src/assets/search_icon.svg" alt="검색아이콘" />
+          <img src={searchImg} alt="검색아이콘" />
         </button>
         {isManager ? (
           <div onClick={CreateForm}>
-            <img src="/src/assets/common/cross_icon.svg" alt="추가 아이콘" />
+            <img src={plusImg} alt="추가 아이콘" />
           </div>
         ) : (
           <div></div>
