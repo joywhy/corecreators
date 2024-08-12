@@ -174,14 +174,14 @@ const Header = ({
   }, []);
   if (showInput) {
     return (
-//       <div class="search-wrapper">
-//          <div class="input-holder">
-//             <input type="text" class="search-input" placeholder="Type to search" />
-//              <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-//          </div>
-//          <span class="close" onclick="searchToggle(this, event);"></span>
-//       </div>
-      <StyledHeader2 ref={inputRef} className={showInput?"active":""}>
+      //       <div class="search-wrapper">
+      //          <div class="input-holder">
+      //             <input type="text" class="search-input" placeholder="Type to search" />
+      //              <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+      //          </div>
+      //          <span class="close" onclick="searchToggle(this, event);"></span>
+      //       </div>
+      <StyledHeader2 ref={inputRef} className={showInput ? 'active' : ''}>
         <input
           placeholder="Search..."
           value={value}
@@ -226,14 +226,15 @@ const StyledContainer = styled.div`
     left: 100px;
     width: 100px;
     height: 40px;
-    background-color: #1E1E1E;
-    color:var(--gray-10);
+    background-color: #1e1e1e;
+    color: var(--gray-10);
     border-radius: 5px;
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid black;
+
     &:hover {
       background-color: #4d4d4d;
     }
@@ -288,9 +289,8 @@ const StyledHeader2 = styled.header`
 
   &.active input {
     width: 100%;
-   transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+    transition: all 0.5s cubic-bezier(0, 0.105, 0.035, 1.57);
   }
-
 
   & input:focus {
     outline: 2px solid var(--main-red);
