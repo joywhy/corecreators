@@ -1,25 +1,34 @@
-import React ,{useState}from 'react';
+import React, { useState } from 'react';
 import { SearchBox } from './SearchBox';
-import {Filter} from "./Filter"
+import { Filter } from './Filter';
 import styled from 'styled-components';
 
 const Search = () => {
-  const [searchValue,setSearchValue] = useState("");
-  const [filter,setFilter]= useState({});
+  const [searchValue, setSearchValue] = useState('');
+  const [filter, setFilter] = useState({
+    type: '',
+    country: '',
+    cate: '',
+    gender: '',
+    age: '',
+    tag: [],
+    minFollower: '',
+    maxFollower: '',
+  });
+
   return (
     <StyleDiv>
       <h1>
         관심있는 크리에이터들을 <br /> 검색해보세요
       </h1>
       <p>원하는 분야의 크리에이터들을 모아볼 수 있어요. 😉</p>
-  
-      <SearchBox value={searchValue} setValue={setSearchValue}/>
+
+      <SearchBox value={searchValue} setValue={setSearchValue} />
       {/* <button>Search</button> */}
-      <Filter value= {filter} setValue={setFilter} f/>
+      <Filter value={filter} setValue={setFilter} f />
     </StyleDiv>
   );
 };
-
 
 const StyleDiv = styled.div`
   display: flex;
@@ -39,6 +48,5 @@ const StyleDiv = styled.div`
     color: #5d5d5d;
   }
 `;
-
 
 export default Search;

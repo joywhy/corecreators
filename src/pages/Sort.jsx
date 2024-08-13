@@ -15,14 +15,14 @@ const Sort = () => {
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
-      <MainWrapper>
+      <Main>
         <div className="content">
           <div className="button-wrapper">
             <Button>엑셀 업로드</Button>
           </div>
           <Search />
         </div>
-      </MainWrapper>
+      </Main>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>
   );
@@ -43,6 +43,7 @@ const StyledDiv = styled.div`
     width: 100%;
     height: 100%;
     background-color: var(--gray-10);
+    overflow: scroll;
 
     @media only screen and (width <= 1200px) {
       & {
@@ -59,6 +60,16 @@ const StyledDiv = styled.div`
         margin: 30px;
       }
     }
+  }
+`;
+const Main = styled(MainWrapper)`
+  /* overflow: scroll; */
+
+  /* overflow: scroll; */
+
+  /* border: 1px solid red; */
+  & section {
+    /* overflow: scroll; */
   }
 `;
 export default Sort;

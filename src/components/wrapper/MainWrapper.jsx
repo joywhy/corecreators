@@ -24,6 +24,7 @@ const StyledMain = styled.main`
     display: flex;
     max-width: 1000px;
     width: 100%;
+
     /* max-height: 1000px; */
     height: 100%;
     border-radius: 10px;
@@ -36,6 +37,7 @@ const StyledMain = styled.main`
   @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
+
       /* border:1px solid red; */
     }
   }
