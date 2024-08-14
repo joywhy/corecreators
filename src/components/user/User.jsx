@@ -29,6 +29,18 @@ const users = [
     memo: '문상협2님에 대한 메모', // 메모
     date: '2024.04.22', // 등록일일
   },
+  {
+    no: 3, // 계정 고유 번호
+    profileImg: '/src/assets/common/defaultProfile.svg',
+    nick: '닉네임3', // 닉네임 or 회사명
+    name: '일반 사용자', // 이름
+    tel: '01012334444', // 연락처
+    cate: '일반', // 분류
+    mail: 'admin2@gmail.com', // 메일
+    bno: '183-42-00547', // 사업자번호
+    memo: '일반사용자님에 대한 메모', // 메모
+    date: '2024.04.25', // 등록일일
+  },
 ];
 const User = () => {
   const [index, setIndex] = useState(0); //사용자가 보고있는 목록의 인덱스
