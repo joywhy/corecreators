@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/wrapper/MainWrapper.jsx';
@@ -41,6 +41,7 @@ const StyledDiv = styled.div`
   }
 
   & .content {
+    width: 100%;
     height: 100%;
 
     @media only screen and (width <= 1200px) {
