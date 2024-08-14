@@ -24,6 +24,48 @@ const creators = [
     ],
     shotsList: [], // 숏폼 코드 리스트
   },
+  {
+    profileImg: '/src/assets/creator/profileImg.jpg',
+    no: 1, // 계정 고유 번호
+    type: '인플루언서', // 유형
+    cate: '인스타그램', // 유튜브, 인스타그램, 틱톡
+    call: '+8201012345678',
+    email: 'bba_na_na@naver.com',
+    id: '@simihaze', // 계정 아이디
+    creatorNo: 1, // 계정 소유자 고유번호
+    fallower: 1234, // 팔로워 수
+    like: 15293, // 팔로워 수
+    comment: 1213, // 팔로워 수,
+    imglist: [
+      '/src/assets/creator/1.jpg',
+      '/src/assets/creator/2.jpg',
+      '/src/assets/creator/3.jpg',
+      '/src/assets/creator/4.jpg',
+      '/src/assets/creator/5.jpg',
+    ],
+    shotsList: [], // 숏폼 코드 리스트
+  },
+  {
+    profileImg: '/src/assets/creator/profileImg.jpg',
+    no: 1, // 계정 고유 번호
+    type: '인플루언서', // 유형
+    cate: '인스타그램', // 유튜브, 인스타그램, 틱톡
+    call: '+8201012345678',
+    email: 'bba_na_na@naver.com',
+    id: '@simihaze', // 계정 아이디
+    creatorNo: 1, // 계정 소유자 고유번호
+    fallower: 1234, // 팔로워 수
+    like: 15293, // 팔로워 수
+    comment: 1213, // 팔로워 수,
+    imglist: [
+      '/src/assets/creator/1.jpg',
+      '/src/assets/creator/2.jpg',
+      '/src/assets/creator/3.jpg',
+      '/src/assets/creator/4.jpg',
+      '/src/assets/creator/5.jpg',
+    ],
+    shotsList: [], // 숏폼 코드 리스트
+  },
 ];
 const getCateImg = (cate) => {
   if (cate === '인스타그램') {
@@ -52,32 +94,45 @@ const SearchResult = () => {
         {creators.map((creator, idx) => {
           let cateImg = getCateImg(creator.cate);
           return (
-            <button key={idx}>
+            <StyleButton key={idx}>
               <div className="header">
-                <div className="Profilewrapper">
-                  <img src={creator.profileImg} alt="프로필 이미지" />
-                  <img src={cateImg} alt="유형" />
+                <div className="wrapper">
+                  <div className="Profilewrapper">
+                    <img src={creator.profileImg} alt="프로필 이미지" />
+                    <img src={cateImg} alt="유형" />
+                  </div>
+                  <div className="title2">
+                    <span>{creator.type}</span>
+                    <span>{creator.id}</span>
+                  </div>
+                  <div className="contect">
+                    <span>{creator.call}</span>
+                    <span>{creator.email}</span>
+                  </div>
                 </div>
-                <div>
-                  <p>{creator.type}</p>
-                  <p>{creator.id}</p>
-                </div>
-                <div>
-                  <p>{creator.call}</p>
-                  <p>{creator.email}</p>
-                </div>
-                <div>
-                  <p>{creator.like}</p>
-                  <p>{creator.comment}</p>
-                  <p>{creator.fallower}</p>
+                <div className="side">
+                  <span>
+                    평균 좋아요 <strong>{creator.like}</strong>
+                  </span>
+                  <span>
+                    평균 댓글 <strong>{creator.comment}</strong>
+                  </span>
+                  <span>
+                    팔로워 <strong>{creator.fallower}</strong>
+                  </span>
                 </div>
               </div>
               <div className="img-wrapper">
                 {creator.imglist.map((img, index) => (
-                  <img key={index} src={img} alt="크리에이터 게시물" />
+                  <img
+                    className="img"
+                    key={index}
+                    src={img}
+                    alt="크리에이터 게시물"
+                  />
                 ))}
               </div>
-            </button>
+            </StyleButton>
           );
         })}
       </div>
@@ -86,18 +141,17 @@ const SearchResult = () => {
 };
 const StyleDiv = styled.div`
   width: 100%;
-
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 54px;
 
   & header {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 54px;
 
     & p.title {
       margin-left: -60px;
@@ -119,6 +173,83 @@ const StyleDiv = styled.div`
       border-radius: 20px;
       background-color: white;
       box-shadow: 0 0 10px #f6c7c6;
+    }
+  }
+`;
+
+const StyleButton = styled.button`
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  margin-top: 40px;
+
+  & .header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 23px;
+
+    & .wrapper {
+      display: flex;
+      height: auto;
+
+      & .Profilewrapper {
+        position: relative;
+        height: auto;
+
+        & img:nth-child(2) {
+          position: absolute;
+          right: -10px;
+          bottom: 0;
+        }
+      }
+
+      & .title2 {
+        margin-left: 20px;
+
+        & span {
+          display: block;
+          height: 20px;
+          font-size: 13px;
+          color: #818181;
+          text-align: left;
+        }
+
+        & span:nth-child(2) {
+          /* border: 1px solid red; */
+          font-size: 16px;
+          font-weight: bold;
+          color: var(--black);
+        }
+      }
+
+      & .contect {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-left: 50px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+      }
+    }
+
+    & .side {
+      display: flex;
+      gap: 20px;
+
+      /* border: 1px solid red; */
+    }
+  }
+
+  & .img-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .img {
+      width: calc(100% / 5);
     }
   }
 `;
