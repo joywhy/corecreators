@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { SearchBox } from './SearchBox';
 import { Filter } from './Filter';
+import SearchResult from './SearchResult';
+
 import { useCreator } from '../../store/useCreator';
+
 import styled from 'styled-components';
 
 const Search = () => {
@@ -18,10 +21,8 @@ const Search = () => {
     maxFollower: 3,
   };
   const [filter, setFilter] = useState(initalFilter);
-  console.log(searchValue);
   const handleSubmit = () => {
-    console.log(filter);
-    // searchCreator(searchValue);
+    searchCreator(searchValue);
   };
   return (
     <StyleDiv>
@@ -37,6 +38,7 @@ const Search = () => {
       />
       {/* <button>Search</button> */}
       <Filter value={filter} setValue={setFilter} inital={initalFilter} />
+      <SearchResult />
     </StyleDiv>
   );
 };

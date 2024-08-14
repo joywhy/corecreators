@@ -139,7 +139,8 @@ const StyldForm = styled.form`
   width: 817px;
 
   /* height: 418px; */
-  margin-bottom: 1000px;
+
+  /* margin-bottom: 1000px; */
   border-radius: 20px;
   background-color: #fff;
   margin-top: 44px;
