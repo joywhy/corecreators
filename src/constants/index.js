@@ -61,3 +61,141 @@ export const REPORT_STRUCTURE = {
 
 export const responsiveWidth = 1200;
 export const responsiveWidthMiddle = 750;
+
+export const country = [
+  {
+    label: '국가',
+    value: '',
+  },
+  {
+    label: '대한민국',
+    value: 'KOR',
+  },
+  {
+    label: '베트남',
+    value: 'VNM',
+  },
+  {
+    label: '태국',
+    value: 'THA',
+  },
+  {
+    label: '인도네시아',
+    value: 'IDN',
+  },
+  {
+    label: '인도',
+    value: 'IND',
+  },
+];
+//개발 진행 중
+export const type = [
+  {
+    label: '매체',
+    value: '',
+  },
+  {
+    label: '인스타그램',
+    value: 'INST',
+  },
+  {
+    label: '유튜브',
+    value: 'YT',
+  },
+  {
+    label: '틱톡',
+    value: 'TT',
+  },
+  {
+    label: '네이버',
+    value: 'NAV',
+  },
+];
+export const gender = [
+  {
+    label: '성별',
+    value: '',
+  },
+  {
+    label: '남성',
+    value: 'MALE',
+  },
+  {
+    label: '여성',
+    value: 'FEMALE',
+  },
+  {
+    label: '분류값 없음',
+    value: 'Not Specified',
+  },
+];
+
+export const age = [
+  {
+    label: '연령대',
+    value: '',
+  },
+  {
+    label: '10대',
+    value: 10,
+  },
+  {
+    label: '20대',
+    value: 20,
+  },
+  {
+    label: '30대',
+    value: 30,
+  },
+  {
+    label: '40대',
+    value: 40,
+  },
+  {
+    label: '50대',
+    value: 50,
+  },
+  {
+    label: '분류값 없음',
+    value: 'Not Specified',
+  },
+];
+export const tag = {
+  title: '분야',
+  list: ['뷰티', '패션', '푸드', '일상', '여행', '키즈'],
+};
+export const cate = {
+  title: '크리에이터 유형',
+  list: ['콘텐츠 메이커', '비주얼 크리에이터', '인플루언서'],
+};
+export const follwer = {
+  title: '팔로워 수',
+  // minFollower: 1,
+  // maxFollower: 3,
+  marks: [
+    {
+      value: 1000,
+      label: '1천',
+    },
+    {
+      value: 10000,
+      label: '1만',
+    },
+    {
+      value: 50000,
+      label: '5만',
+    },
+    {
+      value: 100000,
+      label: '10만',
+    },
+    {
+      value: 200000,
+      label: '20만',
+    },
+    {
+      value: 300000,
+      label: '30만 이상',
+    },
+  ],
+};

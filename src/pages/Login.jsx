@@ -3,7 +3,7 @@ import Logo from '../components/common/Logo';
 import useForm from '../hooks/useForm';
 import { useUserInfo } from '../store/userInfoStore';
 import { validateLoginInput, navigateToPath } from '../utils/index';
-
+import img from '/src/assets/logo_white.svg';
 import styled from 'styled-components';
 
 const Login = () => {
@@ -14,7 +14,7 @@ const Login = () => {
   return (
     <>
       <StyledDiv>
-        <Logo src="src/assets/logo_white.svg" />
+        <Logo src={img} />
       </StyledDiv>
 
       <StyledrightDiv>
@@ -31,8 +31,8 @@ const LoginForm = () => {
   const { error, sendLoginRequest } = useUserInfo();
   const initialValues = { email: '', password: '' };
   const handleSubmitLogin = async () => {
+    console.log(values);
     await sendLoginRequest(values);
-
     if (error) {
       alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.');
     } else {

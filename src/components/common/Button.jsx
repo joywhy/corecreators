@@ -70,7 +70,13 @@ const StyledButton = styled.button`
    ${(props) =>
     props.tertiary &&
     css`
-      color: white;
+      color: var(--black);
+      background-color: white;
+      border: 1px solid var(--gray-10);
+      margin: 0;
+      display: flex;
+
+      /* align-item: center; */
     `}
 
     ${(props) =>

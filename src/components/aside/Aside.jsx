@@ -2,7 +2,10 @@ import React from 'react';
 import Logo from '../common/Logo.jsx';
 import { navigateToPath, handleClickLogout } from '../../utils/index.js';
 import styled from 'styled-components';
+
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
+
+import imgLogo from '/src/assets/logo_white.svg';
 const Aside = () => {
   let isManager = window.localStorage.getItem('cate') === '최고관리자';
   let { height, width } = useWindowDimensions();
@@ -52,7 +55,7 @@ const Aside = () => {
   return (
     <StyledAside stye={{ height: height }}>
       <div>
-        <Logo src="/src/assets/logo_white.svg" />
+        <Logo src={imgLogo} />
         <nav>
           <h1>NAVIGATION</h1>
           <ul>

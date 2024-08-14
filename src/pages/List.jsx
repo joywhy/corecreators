@@ -10,6 +10,7 @@ import { responsiveWidth, responsiveWidthMiddle } from '../constants';
 import { useCampaign } from '../store/useCampaign.js';
 import { useUser } from '../store/useUser.js';
 import { getUserInfoNo, getUserInfoCate } from '../utils';
+
 import styled from 'styled-components';
 
 const List = () => {
@@ -99,23 +100,13 @@ const List = () => {
   };
 
   useEffect(() => {
-    const fun = async () => {
+    const fun = async () => { 
       await getCampaignsByUsertype();
       getUserNo(10);
-      // await getUserNoList(campaign);
     };
     fun();
   }, []);
-  // useEffect(() => {
-  //   const fun = async () => {
-  //     // await getCampaignsByUsertype();
-  //     // getUserNo(10);
-  //     await getUserNoList(campaign);
-  //   };
-  //   fun();
-  // }, []);
-
-  // console.log(userNoList);
+ 
   if (loading) {
     return (
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
@@ -167,6 +158,7 @@ const List = () => {
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
             setIsOpenNav={setIsOpenNav}
+            setIndex={setIndex}
           />
         )}
         {width > responsiveWidthMiddle && (
@@ -177,6 +169,7 @@ const List = () => {
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
             setIsOpenNav={setIsOpenNav}
+            setIndex={setIndex}
           />
         )}
       </MainWrapper>

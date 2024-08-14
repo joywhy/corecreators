@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Dropdown from '../common/Dropdown';
 import { ChannelType } from '../../constants';
 import styled from 'styled-components';
+import plusImg from '/src/assets/common/cross_icon.svg';
+import deleteImg from '/src/assets/common/delete_icon.svg';
 
 const ChannelList = ({ changeList, list }) => {
   let basic = {
@@ -38,7 +40,7 @@ const ChannelList = ({ changeList, list }) => {
       <StyleTitle>
         <h3>채널 리스트</h3>
         <div onClick={addChannel}>
-          <img src="/src/assets/common/cross_icon.svg" alt="추가" />
+          <img src={plusImg} alt="추가" />
         </div>
       </StyleTitle>
 
@@ -79,17 +81,13 @@ const Channel = ({ changeType, changeChannel, value, deleteChannel, idx }) => {
       />
       {idx !== 0 ? (
         <div className="delete-icon" onClick={deleteChannel}>
-          <img
-            className="delete"
-            src="src/assets/common/delete_icon.svg"
-            alt="채널 삭제 아이콘"
-          />
+          <img className="delete" src={deleteImg} alt="채널 삭제 아이콘" />
         </div>
       ) : (
         <img
           style={{ visibility: 'hidden' }}
           className="delete"
-          src="src/assets/common/delete_icon.svg"
+          src={deleteImg}
           alt="채널 삭제 아이콘"
           onClick={deleteChannel}
         />

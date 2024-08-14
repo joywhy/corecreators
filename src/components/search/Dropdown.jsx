@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-
-import styled from 'styled-components';
 import img from '/src/assets/common/downArrow_icon.svg';
-const Dropdown = ({ handleDropDown, list, value }) => {
-  let selectedValue = list.filter((data) => value === data.type)[0];
+import styled from 'styled-components';
+
+const Dropdown = ({ handleDropDown, list, value, name }) => {
+  let selectedValue = list.filter((data) => value === data.value)[0];
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (value) => {
-    handleDropDown(value);
+    handleDropDown(name, value);
     setIsOpen(false);
   };
   return (
@@ -19,11 +19,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
         }}
       >
         <div>
-          <img
-            src={selectedValue.imgUrl}
-            alt={`${selectedValue.name} 이미지`}
-          />
-          <span>{selectedValue.name}</span>
+          <span>{selectedValue.label}</span>
         </div>
         <img
           src={img}
@@ -36,12 +32,11 @@ const Dropdown = ({ handleDropDown, list, value }) => {
           {list.map((item, index) => (
             <li
               onClick={() => {
-                handleClick(item.type);
+                handleClick(item.value);
               }}
               key={index + 'item'}
             >
-              <img src={item.imgUrl} />
-              <span>{item.name}</span>
+              <span>{item.label}</span>
             </li>
           ))}
         </ul>
@@ -51,24 +46,25 @@ const Dropdown = ({ handleDropDown, list, value }) => {
 };
 
 const StyleDropdown = styled.div`
-  /* border: 1px solid red; */
   position: relative;
-  width: 110px;
   height: 40px;
+  flex-grow: 1;
 
   & .selected-value {
-    position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    height: 100%;
-    width: 110px;
     justify-content: space-between;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+    cursor: pointer;
 
     & > div {
-      /* border: 1px solid red; */
       display: flex;
       align-items: center;
     }
@@ -84,16 +80,14 @@ const StyleDropdown = styled.div`
   }
 
   & ul {
-    top: 40px;
+    top: 10px;
     left: 0;
-
-    /* height: 40px; */
     background-color: white;
     position: relative;
-
-    /* border: 1px solid red; */
+    border: 1px solid #e4e4e4;
     z-index: 10;
     font-size: 14px;
+    border-radius: 5px;
 
     & li {
       width: 100%;
@@ -101,11 +95,8 @@ const StyleDropdown = styled.div`
       justify-content: left;
       height: 40px;
       align-items: center;
-
-      & img {
-        width: 23px;
-        margin-right: 5px;
-      }
+      box-sizing: border-box;
+      padding-left: 10px;
     }
 
     & li:hover {
