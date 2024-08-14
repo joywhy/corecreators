@@ -157,7 +157,7 @@ export const age = [
   },
   {
     label: '분류값 없음',
-    value: 'Not Specified',
+    value: 0,
   },
 ];
 export const tag = {
@@ -170,8 +170,6 @@ export const cate = {
 };
 export const follwer = {
   title: '팔로워 수',
-  // minFollower: 1,
-  // maxFollower: 3,
   marks: [
     {
       value: 1000,

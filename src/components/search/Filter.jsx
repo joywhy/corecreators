@@ -25,7 +25,7 @@ import styled from 'styled-components';
 //   minFollower: '',
 //   maxFollower: '',
 // };
-export const Filter = ({ value, setValue }) => {
+export const Filter = ({ value, setValue, inital }) => {
   //드롭다운 handler
   const handleChange = (name, newValue) => {
     setValue({ ...value, [name]: newValue });
@@ -53,6 +53,9 @@ export const Filter = ({ value, setValue }) => {
       minFollower: min,
       maxFollower: max,
     });
+  };
+  const resetFilter = () => {
+    setValue(inital);
   };
   return (
     <StyldForm>
@@ -103,7 +106,7 @@ export const Filter = ({ value, setValue }) => {
       />
       <div className="button-wrapper">
         <Button
-          tertiary
+          tertiary="true"
           style={{
             height: '33px',
             fontSize: '14px',
@@ -112,6 +115,7 @@ export const Filter = ({ value, setValue }) => {
             alignItems: 'center',
             boxShadow: '0px 1px 3px rgba(0,0,0,0.15)',
           }}
+          onClick={resetFilter}
         >
           초기화
           <img src={returnImg} alt="초기화" />
