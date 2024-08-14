@@ -32,6 +32,8 @@ const StyledDiv = styled.div`
   width: 100%;
   display: flex;
 
+  /* border: 1px solid red; */
+
   @media only screen and (width <= 1200px) {
     & {
       display: block;
@@ -39,11 +41,14 @@ const StyledDiv = styled.div`
   }
 
   & .content {
-    max-width: 100%;
-    width: 100%;
+    /* max-width: 3000px; */
     height: 100%;
     background-color: var(--gray-10);
     overflow: scroll;
+
+    /* width: 3000px;/ */
+
+    /* border: 1px solid red; */
 
     @media only screen and (width <= 1200px) {
       & {
@@ -62,14 +67,27 @@ const StyledDiv = styled.div`
     }
   }
 `;
-const Main = styled(MainWrapper)`
-  /* overflow: scroll; */
 
-  /* overflow: scroll; */
+const Main = styled.main`
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-40);
+  height: 100vh;
+  overflow: hidden;
 
-  /* border: 1px solid red; */
-  & section {
-    /* overflow: scroll; */
+  & .content {
+    max-width: 1000px;
+  }
+
+  @media only screen and (width <= 1200px) {
+    & {
+      height: calc(100vh - 70px);
+
+      /* border:1px solid red; */
+    }
   }
 `;
 export default Sort;

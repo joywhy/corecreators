@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { SearchBox } from './SearchBox';
 import { Filter } from './Filter';
+import SearchResult from './SearchResult';
+
+import { useCreator } from '../../store/useCreator';
+
 import styled from 'styled-components';
 
 const Search = () => {
+  const { member, searchCreaotr } = useCreator();
   const [searchValue, setSearchValue] = useState('');
-  const [filter, setFilter] = useState({
+  let initalFilter = {
     type: '',
     country: '',
     cate: '',
@@ -14,8 +19,11 @@ const Search = () => {
     tag: [],
     minFollower: 1,
     maxFollower: 3,
-  });
-
+  };
+  const [filter, setFilter] = useState(initalFilter);
+  const handleSubmit = () => {
+    searchCreator(searchValue);
+  };
   return (
     <StyleDiv>
       <h1>
@@ -23,9 +31,14 @@ const Search = () => {
       </h1>
       <p>원하는 분야의 크리에이터들을 모아볼 수 있어요. 😉</p>
 
-      <SearchBox value={searchValue} setValue={setSearchValue} />
+      <SearchBox
+        value={searchValue}
+        setValue={setSearchValue}
+        handleSubmit={handleSubmit}
+      />
       {/* <button>Search</button> */}
-      <Filter value={filter} setValue={setFilter} f />
+      <Filter value={filter} setValue={setFilter} inital={initalFilter} />
+      <SearchResult />
     </StyleDiv>
   );
 };
