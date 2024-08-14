@@ -16,6 +16,7 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-undef': 'off',
     'react/prop-types': 0,
+    // resolveNestedSelectors: false,
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },

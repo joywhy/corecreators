@@ -12,8 +12,8 @@ const Search = () => {
     gender: '',
     age: '',
     tag: [],
-    minFollower: '',
-    maxFollower: '',
+    minFollower: 1,
+    maxFollower: 3,
   });
 
   return (

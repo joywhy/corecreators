@@ -34,10 +34,9 @@ const CheckBoxes = ({ checkedItemHandler, list, name, checkedList }) => {
 const StyleDiv = styled.div`
   width: 100%;
   display: flex;
-  margin-top: 26px;
+  margin-top: 30px;
   align-items: start;
-
-  /* border: 1px solid red; */
+  color: var(--black);
 
   & h2 {
     width: 126px;
@@ -54,12 +53,8 @@ const StyleDiv = styled.div`
 
     & .checkbox {
       max-width: 100%;
-
-      /* width: 80px; */
       height: 30px;
       line-height: 30px;
-
-      /* border: 1px solid red; */
 
       & input {
         display: none;
@@ -75,6 +70,7 @@ const StyleDiv = styled.div`
         display: block;
         position: relative;
         top: -1px;
+        font-size: 13px;
       }
 
       /* label:before에 체크하기 전 */

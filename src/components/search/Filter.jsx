@@ -1,7 +1,18 @@
 import React from 'react';
 import Dropdown from './Dropdown';
 import CheckBoxes from './CheckBox';
-import { country, type, gender, age, tag, cate } from '../../constants';
+import RangeSilder from './RangeSilder';
+import Button from '../common/Button';
+import {
+  country,
+  type,
+  gender,
+  age,
+  tag,
+  cate,
+  follwer,
+} from '../../constants';
+import returnImg from '/src/assets/common/return.svg';
 import styled from 'styled-components';
 
 // {
@@ -36,7 +47,13 @@ export const Filter = ({ value, setValue }) => {
 
     return;
   };
-
+  const changeRangeSilder = ([min, max]) => {
+    setValue({
+      ...value,
+      minFollower: min,
+      maxFollower: max,
+    });
+  };
   return (
     <StyldForm>
       <h3>세부필터</h3>
@@ -78,13 +95,46 @@ export const Filter = ({ value, setValue }) => {
         name="cate"
         checkedList={value.cate}
       />
+      <RangeSilder
+        list={follwer}
+        minFollower={value.minFollower}
+        maxFollower={value.maxFollower}
+        changeValue={changeRangeSilder}
+      />
+      <div className="button-wrapper">
+        <Button
+          tertiary
+          style={{
+            height: '33px',
+            fontSize: '14px',
+            margin: '0px',
+            display: 'flex',
+            alignItems: 'center',
+            boxShadow: '0px 1px 3px rgba(0,0,0,0.15)',
+          }}
+        >
+          초기화
+          <img src={returnImg} alt="초기화" />
+        </Button>
+        <Button
+          style={{
+            width: ' 65px',
+            height: '33px',
+            fontSize: '13px',
+            margin: '0px',
+          }}
+        >
+          검색
+        </Button>
+      </div>
     </StyldForm>
   );
 };
 
 const StyldForm = styled.form`
   width: 817px;
-  height: 418px;
+
+  /* height: 418px; */
   margin-bottom: 1000px;
   border-radius: 20px;
   background-color: #fff;
@@ -109,4 +159,18 @@ const StyldForm = styled.form`
     justify-content: space-between;
     gap: 20px;
   }
+
+  & .button-wrapper {
+    width: 100%;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+
+    /* border: 1px solid red; */
+    padding: 0;
+  }
 `;
+// const StyledButton = styled(Button)`
+//   margin: 0;
+// `;

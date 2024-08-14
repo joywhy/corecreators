@@ -168,3 +168,34 @@ export const cate = {
   title: '크리에이터 유형',
   list: ['콘텐츠 메이커', '비주얼 크리에이터', '인플루언서'],
 };
+export const follwer = {
+  title: '팔로워 수',
+  // minFollower: 1,
+  // maxFollower: 3,
+  marks: [
+    {
+      value: 1000,
+      label: '1천',
+    },
+    {
+      value: 10000,
+      label: '1만',
+    },
+    {
+      value: 50000,
+      label: '5만',
+    },
+    {
+      value: 100000,
+      label: '10만',
+    },
+    {
+      value: 200000,
+      label: '20만',
+    },
+    {
+      value: 300000,
+      label: '30만 이상',
+    },
+  ],
+};

@@ -1,107 +1,112 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 import styled from 'styled-components';
-// range slider  RangeSilder
-const RangeSilder = ({ isOpen }) => {
-  const [mark, setMark] = useState();
+function valuetext(value) {
+  return `${value}°C`;
+}
+export default function RangeSlider({
+  list,
+  minFollower,
+  maxFollower,
+  changeValue,
+}) {
+  let value = [minFollower, maxFollower];
 
-  useEffect(() => {
-    if (isOpen && mark === '') {
-      setMark('1');
-    }
-  }, [setMark, isOpen, mark]);
-
-  const handleSliderChange = (event) => {
-    setMark(event.target.value);
+  const handleChange = (event, newValue) => {
+    changeValue(newValue);
   };
-
-  const handleChange = (val) => {
-    setMark(val.toString());
-  };
-
-  const labels = Array.from({ length: 5 }, (_, i) => i + 1).map((val) => (
-    <Labels key={val} onClick={() => handleChange(val)}>
-      {val}시간
-    </Labels>
-  ));
 
   return (
-    <SliderContainer>
-      <Slider
-        type="range"
-        min={1}
-        max={5}
-        value={parseInt(mark) || 1}
-        onChange={handleSliderChange}
-      />
-      <Labels>{labels}</Labels>
-    </SliderContainer>
+    <StyledDIv>
+      <h2>{list.title}</h2>
+      <Box sx={{ flexGrow: 1 }}>
+        <DistanceSlider
+          // getAriaLabel={() => 'Temperature range'}
+          aria-labelledby="range-slider"
+          // aria-label="Custom marks"
+          marks={list.marks}
+          min={0}
+          max={5}
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          // getAriaValueText={() => valuetext(list.marks.value)}
+          // color={'error'}
+        />
+        <StyledLabel>
+          {list.marks.map((mark, idx) => (
+            <span key={idx}>{mark.label}</span>
+          ))}
+        </StyledLabel>
+      </Box>
+    </StyledDIv>
   );
-};
-
-export default RangeSilder;
-// slider와 label이 포함된 컨테이너의 스타일 정의
-const SliderContainer = styled.div`
-  border-radius: 3px;
-  display: block;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${colors.white};
-  margin-top: 16px;
-  padding: 20px 70px 16px;
-`;
-
-// slider의 스타일 정의
-const Slider = styled.input`
-  appearance: none;
+}
+const StyledDIv = styled.div`
   width: 100%;
-  height: 14px;
-  border-radius: 10px;
-  background: ${(props) => {
-    const percentage = ((Number(props.value) - 1) / 4) * 100;
-    return `linear-gradient(to right, ${colors.mainColor} 0%, ${colors.mainColor} ${percentage}%, ${colors.grey[100]} ${percentage}%, ${colors.grey[100]} 100%)`;
-  }};
-
-  &:focus {
-    outline: none;
-  }
-
-  &::-webkit-slider-thumb {
-    appearance: none;
-    width: 28px;
-    height: 28px;
-    background-color: ${colors.white};
-    border: 1px solid ${colors.grey[300]};
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  &::-moz-range-thumb {
-    width: 28px;
-    height: 28px;
-    background-color: ${colors.white};
-    border: 1px solid ${colors.grey[300]};
-    border-radius: 50%;
-    cursor: pointer;
-  }
-`;
-
-// 각 label의 컨테이너 스타일 정의
-const Labels = styled.div`
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  margin-top: 30px;
+
+  /* border: 1px solid red; */
+
+  & h2 {
+    font-size: 13px;
+    width: 130px;
+    margin-top: 10px;
+
+    /* border: 1px solid red; */
+  }
 `;
+const DistanceSlider = styled(Slider)`
+  /* margin-left: 10px; */
 
-// 각 label 스타일 정의
-const Label = styled.span`
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-  width: 40px;
+  /* width: 400px; */
 
-  /* font-family: SUIT; */
-  font-style: normal;
-  font-size: 16px;
-  line-height: 1.5;
+  /* border: 1px solid red; */
+  box-sizing: border-box;
+
+  .MuiSlider-thumb {
+    color: #ff5d5a;
+  }
+
+  .MuiSlider-rail {
+    color: #ccc;
+  }
+
+  .MuiSlider-track {
+    color: #ff5d5a;
+  }
+
+  color: #ff5d5a;
+`;
+const StyledLabel = styled.div`
+  width: 105%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #989898;
+  margin-top: -15px;
+  font-size: 13px;
+
+  & span:nth-child(n + 3) {
+    position: relative;
+    left: 10px;
+  }
+
+  & span:nth-child(3) {
+    position: relative;
+    left: 20px;
+  }
+
+  & span:nth-child(4) {
+    position: relative;
+    left: 25px;
+  }
+
+  & span:nth-child(5) {
+    position: relative;
+    left: 30px;
+  }
 `;
