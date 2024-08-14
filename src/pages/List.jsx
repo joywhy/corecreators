@@ -28,65 +28,7 @@ const List = () => {
   const { users, userNoList, getUserNo, getUserNoList } = useUser();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const [isOpenNav, setIsOpenNav] = useState(false);
-  //가데이터
-  // const list = [
-  //   {
-  //     name: '00캠페인',
-  //     userNo: 2,
-  //     creatorList: [
-  //       {
-  //         name: '@pattery_Ledner',
-  //         cate: '콘텐츠 메이커',
-  //         img: '/src/assets/userProfile.png',
-  //         icon: '/src/assets/instargram_icon.svg',
-  //         follower: '134,233',
-  //         view: '15,344',
-  //         percent: '80%',
-  //       },
-  //       {
-  //         name: '@pattery_Ledner',
-  //         cate: '인플루언서',
-  //         img: '/src/assets/userProfile.png',
-  //         icon: '/src/assets/instargram_icon.svg',
-  //         follower: '134,233',
-  //         view: '15,344',
-  //         percent: '80%',
-  //       },
-  //     ],
-  //     channelList: [{ ...basic }],
-  //     no: 1,
-  //     date: '2024.07.27',
-  //     memo: '메모',
-  //   },
-  //   {
-  //     name: '**캠페인',
-  //     userNo: 2,
-  //     creatorList: [
-  //       {
-  //         name: '@patter',
-  //         cate: '콘텐츠 메이커',
-  //         img: '/src/assets/userProfile.png',
-  //         icon: '/src/assets/instargram_icon.svg',
-  //         follower: '134,233',
-  //         view: '15,344',
-  //         percent: '80%',
-  //       },
-  //       {
-  //         name: '@pattery_Ledner',
-  //         cate: '콘텐츠 메이커',
-  //         img: '/src/assets/userProfile.png',
-  //         icon: '/src/assets/instargram_icon.svg',
-  //         follower: '134,233',
-  //         view: '15,344',
-  //         percent: '80%',
-  //       },
-  //     ],
-  //     channelList: [{ ...basic }],
-  //     no: 1,
-  //     date: '2024.07.28',
-  //     memo: '메모',
-  //   },
-  // ];
+
   let { width } = useWindowDimensions();
 
   const getCampaignsByUsertype = () => {
@@ -100,13 +42,13 @@ const List = () => {
   };
 
   useEffect(() => {
-    const fun = async () => { 
+    const fun = async () => {
       await getCampaignsByUsertype();
       getUserNo(10);
     };
     fun();
   }, []);
- 
+
   if (loading) {
     return (
       <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>

@@ -1,9 +1,11 @@
 import React from 'react';
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/wrapper/MainWrapper.jsx';
-import Nav from '../components/common/Nav.jsx';
-// import Contents from '../components/Contents.jsx';
+
+import User from '../components/user/User.jsx';
+import Log from '../components/log/Log.jsx';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import { responsiveWidth } from '../constants';
 
@@ -15,9 +17,13 @@ const Adm = () => {
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
       <MainWrapper>
-        {/* <Nav/> */}
-        {/* <Contents/> */}
-        <div className="content">adm</div>
+        <div className="content">
+          <Routes>
+            <Route path="/user" element={<User />} />
+            <Route path="/log" element={<Log />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
+          </Routes>
+        </div>
       </MainWrapper>
       {width <= responsiveWidth && <AsideSmall />}
     </StyledDiv>
