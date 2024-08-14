@@ -36,6 +36,23 @@ export const ChannelType = [
     imgUrl: '/src/assets/channel/tikkok_icon.svg',
   },
 ];
+export const userType = [
+  {
+    name: '일반',
+    type: '일반',
+    imgUrl: null,
+  },
+  {
+    name: '거래처',
+    type: '거래처',
+    imgUrl: '/src/assets/userType/client.svg',
+  },
+  {
+    name: '최고 관리자',
+    type: '최고 관리자',
+    imgUrl: '/src/assets/userType/manager.svg',
+  },
+];
 export const CHANNEL_STRUCTURE = {
   channelType: 'instargram',
   channel: '',
@@ -88,7 +105,7 @@ export const country = [
     value: 'IND',
   },
 ];
-//개발 진행 중
+
 export const type = [
   {
     label: '매체',

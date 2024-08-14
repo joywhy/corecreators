@@ -19,10 +19,12 @@ const Dropdown = ({ handleDropDown, list, value }) => {
         }}
       >
         <div>
-          <img
-            src={selectedValue.imgUrl}
-            alt={`${selectedValue.name} 이미지`}
-          />
+          {selectedValue && (
+            <img
+              src={selectedValue.imgUrl}
+              alt={`${selectedValue.name} 이미지`}
+            />
+          )}
           <span>{selectedValue.name}</span>
         </div>
         <img
@@ -40,7 +42,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
               }}
               key={index + 'item'}
             >
-              <img src={item.imgUrl} />
+              {item.imgUrl && <img src={item.imgUrl} />}
               <span>{item.name}</span>
             </li>
           ))}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavUser from './NavUser';
+import UserContent from './UserContent';
 import styled from 'styled-components';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { responsiveWidthMiddle } from '../../constants/index';
@@ -68,6 +69,7 @@ const User = () => {
   }, []);
   const searchList = () => {};
   const deleteList = () => {};
+  const changeList = () => {};
   return (
     <StyledDiv>
       {width > responsiveWidthMiddle && (
@@ -86,27 +88,27 @@ const User = () => {
           //   userNo={userNo}
         />
       )}
-      {/* {width <= responsiveWidthMiddle && isOpenNav && (
-        <Nav
+      {width <= responsiveWidthMiddle && isOpenNav && (
+        <NavUser
           style={{ width: '100vw' }}
-          title="캠페인"
+          title="회원"
           setIndex={setIndex}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
-          list={campaign}
+          list={users}
           searchList={searchList}
           deleteList={deleteList}
-          setIsOpenNav={setIsOpenNav}
           isOpenNav={isOpenNav}
-          userNoList={userNoList}
-          userNo={userNo}
+          setIsOpenNav={setIsOpenNav}
+          //   userNoList={userNoList}
+          //   userNo={userNo}
         />
-      )} */}
-      {/* {width <= responsiveWidthMiddle && !isOpenNav && (
-        <Contents
+      )}
+      {width <= responsiveWidthMiddle && !isOpenNav && (
+        <UserContent
           changeContent={changeList}
-          content={campaign[index]}
+          content={users[index]}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
@@ -115,16 +117,16 @@ const User = () => {
         />
       )}
       {width > responsiveWidthMiddle && (
-        <Contents
+        <UserContent
           changeContent={changeList}
-          content={campaign[index]}
+          content={users[index]}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
           setIsOpenNav={setIsOpenNav}
           setIndex={setIndex}
         />
-      )} */}
+      )}
     </StyledDiv>
   );
 };
