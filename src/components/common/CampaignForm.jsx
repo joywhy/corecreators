@@ -14,7 +14,7 @@ const CampaignForm = ({
   changeList,
   setList,
   basic,
-  setIndex
+  setIndex,
 }) => {
   let initialValues = useMemo(
     () =>
@@ -47,14 +47,14 @@ const CampaignForm = ({
       // delete newForm.advertiser;
       // delete newForm.await_i;
       // console.log(newForm);
-     
+
       await setList(values);
       //전송
       setIndex(0);
       return;
     } else {
-      console.log(index);
-      console.log(values);
+      // console.log(index);
+      // console.log(values);
       changeList(values, index);
     }
 

@@ -19,10 +19,12 @@ const Dropdown = ({ handleDropDown, list, value }) => {
         }}
       >
         <div>
-          <img
-            src={selectedValue.imgUrl}
-            alt={`${selectedValue.name} 이미지`}
-          />
+          {selectedValue && (
+            <img
+              src={selectedValue.imgUrl}
+              alt={`${selectedValue.name} 이미지`}
+            />
+          )}
           <span>{selectedValue.name}</span>
         </div>
         <img
@@ -40,7 +42,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
               }}
               key={index + 'item'}
             >
-              <img src={item.imgUrl} />
+              {item.imgUrl && <img src={item.imgUrl} />}
               <span>{item.name}</span>
             </li>
           ))}
@@ -51,10 +53,10 @@ const Dropdown = ({ handleDropDown, list, value }) => {
 };
 
 const StyleDropdown = styled.div`
-  /* border: 1px solid red; */
   position: relative;
-  width: 110px;
+  min-width: 140px;
   height: 40px;
+  box-sizing: border-box;
 
   & .selected-value {
     position: absolute;
@@ -66,9 +68,9 @@ const StyleDropdown = styled.div`
     height: 100%;
     width: 110px;
     justify-content: space-between;
+    padding-left: 5px;
 
     & > div {
-      /* border: 1px solid red; */
       display: flex;
       align-items: center;
     }
@@ -86,12 +88,8 @@ const StyleDropdown = styled.div`
   & ul {
     top: 40px;
     left: 0;
-
-    /* height: 40px; */
     background-color: white;
     position: relative;
-
-    /* border: 1px solid red; */
     z-index: 10;
     font-size: 14px;
 
@@ -101,9 +99,11 @@ const StyleDropdown = styled.div`
       justify-content: left;
       height: 40px;
       align-items: center;
+      padding-left: 5px;
 
       & img {
-        width: 23px;
+        height: 50%;
+        max-width: 18px;
         margin-right: 5px;
       }
     }
