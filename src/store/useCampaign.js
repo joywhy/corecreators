@@ -88,7 +88,7 @@ export const useCampaign = create((set) => ({
   setList: async (newForm) => {
     set({ loading: true });
 
-    console.log(newForm);
+    // console.log(newForm);
     newForm.userNo = 2;
     newForm.creatorList = null;
 
@@ -99,7 +99,7 @@ export const useCampaign = create((set) => ({
     if ('await_i' in newForm) {
       delete newForm.await_i;
     }
-    console.log(newForm);
+    // console.log(newForm);
 
     const { no } = await req('setList', newForm);
     console.log(no);

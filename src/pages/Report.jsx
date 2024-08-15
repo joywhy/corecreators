@@ -5,6 +5,7 @@ import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
 import ReportContents from '../components/ReportContents.jsx';
 import { useReport } from '../store/useReport.js';
+import { getUserInfoNo, getUserInfoCate } from '../utils';
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
 import {
   responsiveWidth,
@@ -77,22 +78,27 @@ const Report = () => {
   //     memo: '메모',
   //   },
   // ];
-  const { report, getReport } = useReport();
+  const { report, getReport, getMemberReportList, searchReport, deleteReport } =
+    useReport();
+  const getReportByUsertype = () => {
+    let no = getUserInfoNo();
+    let cate = getUserInfoCate();
+    if (cate === '거래처') {
+      getMemberReportList(no, 10, 10);
+    } else if (cate === '최고관리자') {
+      getReport(30);
+    }
+  };
+  // console.log(report);
   useEffect(() => {
     const fun = async () => {
-      // await getCampaignsByUsertype();
-      await getReport(10);
+      await getReportByUsertype();
     };
     fun();
   }, []);
-  const searchList = (name) => {
-    console.log(name);
-  };
-  const deleteList = (name) => {
-    console.log(name);
-  };
+
   // console.log(report);
-  const userNo = ['리을컴퍼니', '리을컴퍼니'];
+  const userNo = ['가상컴퍼니', '가상컴퍼니', '가상컴퍼니', '가상컴퍼니'];
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -105,8 +111,8 @@ const Report = () => {
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
             list={report}
-            searchList={searchList}
-            deleteList={deleteList}
+            searchList={searchReport}
+            deleteList={deleteReport}
             setIsOpenNav={setIsOpenNav}
             isOpenNav={isOpenNav}
             userNo={userNo}
@@ -120,8 +126,8 @@ const Report = () => {
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
             list={report}
-            searchList={searchList}
-            deleteList={deleteList}
+            searchList={searchReport}
+            deleteList={deleteReport}
             setIsOpenNav={setIsOpenNav}
             isOpenNav={isOpenNav}
             userNo={userNo}

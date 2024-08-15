@@ -15,7 +15,7 @@ const ReportContents = ({
   content,
   setIsOpenNav,
 }) => {
-  console.log(content);
+  // console.log(content);
   //가데이터
   const reportList = [
     {

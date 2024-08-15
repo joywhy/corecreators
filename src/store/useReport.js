@@ -29,20 +29,20 @@ export const useReport = create((set) => ({
   },
   getMemberReportList: async (no, startCount, endCount) => {
     set({ loading: true });
-    // let campaign = await req('getList', {
-    //   userNo: no,
-    //   count: startCount,
-    //   max: endCount,
-    // });
+    let report = await req('getReport', {
+      userNo: no,
+      count: startCount,
+      max: endCount,
+    });
 
-    // campaign = campaign.map((camp) => {
-    //   if (!camp.creatorList) {
-    //     return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
-    //   } else {
-    //     return camp;
-    //   }
-    // });
-    // set({ campaign, loading: false });
+    report = report.map((data) => {
+      if (!data.linkList || data.linkList === 'null') {
+        return { ...data, linkList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return data;
+      }
+    });
+    set({ report: report, loading: false });
 
     // if (campaign.length <= 0) {
     //   set({ error: true, loading: false });
@@ -60,43 +60,44 @@ export const useReport = create((set) => ({
   },
   setList: async (newForm) => {
     // set({ loading: true });
-    // console.log({ ...newForm, creatorList: null });
-    // await req('setList', { ...newForm, creatorList: null });
+    // console.log({ ...newForm, linkList: null });
+    // await req('setList', { ...newForm, linkList: null });
     // set((state) => ({
-    //   campaign: [{ ...newForm, no: 0, creatorList: null }].concat(
+    //   campaign: [{ ...newForm, no: 0, linkList: null }].concat(
     //     state.campaign
     //   ),
     //   loading: false,
     // }));
   },
-  searchList: async (input) => {
+  searchReport: async (input) => {
     set({ loading: true });
-    // let no = getUserInfoNo();
+    let no = getUserInfoNo();
 
-    // let campaign = await req('getList', {
-    //   userNo: no,
-    //   search: input,
-    //   count: 10,
-    //   max: 30,
-    // });
-    // campaign = campaign.map((camp) => {
-    //   if (!camp.creatorList) {
-    //     return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
-    //   } else {
-    //     return camp;
-    //   }
-    // });
-    // set({ campaign, loading: false });
+    let report = await req('getReport', {
+      userNo: no,
+      search: input,
+      count: 10,
+      max: 30,
+    });
+    report = report.map((data) => {
+      if (!data.linkList || data.linkList === 'null') {
+        return { ...data, linkList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return data;
+      }
+    });
+    set({ report: report, loading: false });
   },
 
-  deleteList: (idx) => {
-    // set((state) => {
-    //   const newList = state.campaign.filter((_, index) => index !== idx);
-    //   if (newList.length === 0) {
-    //     return { campaign: [{ ...CAMPAIGN_STRUCTURE }] };
-    //   } else {
-    //     return { campaign: newList };
-    //   }
-    // });
+  deleteReport: async (no, idx) => {
+    await req('deleteReport', { no });
+    set((state) => {
+      const newList = state.report.filter((_, index) => index !== idx);
+      if (newList.length === 0) {
+        return { report: [{ ...REPORT_STRUCTURE }] };
+      } else {
+        return { report: newList };
+      }
+    });
   },
 }));

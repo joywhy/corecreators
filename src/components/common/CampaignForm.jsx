@@ -16,8 +16,8 @@ const CampaignForm = ({
   basic,
   setIndex,
 }) => {
-  console.log(list);
-  console.log(index);
+  // console.log(list);
+  // console.log(index);
   let initialValues = useMemo(
     () =>
       list.length === index
@@ -31,7 +31,7 @@ const CampaignForm = ({
           },
     [list, index]
   );
-  console.log(initialValues);
+  // console.log(initialValues);
   const validateInput = () => {
     return {};
   };
