@@ -75,6 +75,7 @@ const Nav = ({
               // e.stopPropagation();
               setIndex(idx);
               setIsOpenNav(false);
+              setIsCreatedReady(true);
             };
             const handleDelete = (e) => {
               let isfirstElementDeleted = isModal === 0;
@@ -98,7 +99,7 @@ const Nav = ({
               // console.log("ehdwkr");
               setIsModal(idx);
             };
-
+            // console.log(campaign);
             return (
               <StyledContainer key={idx + campaign.name}>
                 <Li

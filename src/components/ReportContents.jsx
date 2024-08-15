@@ -4,7 +4,7 @@ import { ApexChart } from '../components/Chart.jsx';
 import styled from 'styled-components';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-import { responsiveWidthMiddle } from '../constants/index.js';
+import { responsiveWidthMiddle, REPORT_STRUCTURE } from '../constants/index.js';
 import { useReport } from '../store/useReport.js';
 import { getUserInfoCate } from '../utils';
 
@@ -15,6 +15,7 @@ const ReportContents = ({
   content,
   setIsOpenNav,
 }) => {
+  console.log(content);
   //가데이터
   const reportList = [
     {
@@ -60,12 +61,13 @@ const ReportContents = ({
       )}
       {isManager ? (
         <CampaignForm
-          list={content} //곧 삭제
+          list={report}
           changeList={changeList}
           setList={setList}
           index={index}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
+          basic={REPORT_STRUCTURE}
         />
       ) : (
         <StyledContainer>

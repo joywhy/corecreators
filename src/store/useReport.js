@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { REPORT_STRUCTURE } from '../constants';
+import { REPORT_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
 import { getUserInfoNo } from '../utils';
 // export const REPORT_STRUCTURE = {  //변경여지 0
 //   name: '보고서명',
 //   userNo: 1,
-//   creatorList: [], //? text ?
+//   linkList: [], //? text ?
 //   no: 0,
 //   date: '',
 //   memo: '메모',
@@ -16,20 +16,16 @@ export const useReport = create((set) => ({
   error: null,
   getReport: async (count) => {
     set({ loading: true });
-    // let campaign = await req('getList', { count: count });
+    let report = await req('getReport', { count: count });
 
-    // campaign = campaign.map((camp) => {
-    //   if (!camp.creatorList) {
-    //     return { ...camp, creatorList: [{ ...CHANNEL_STRUCTURE }] };
-    //   } else {
-    //     return camp;
-    //   }
-    // });
-    // set({ campaign: campaign, loading: false });
-
-    // if (campaign.length <= 0) {
-    //   set({ error: true, loading: false });
-    // }
+    report = report.map((data) => {
+      if (!data.linkList || data.linkList === 'null') {
+        return { ...data, linkList: [{ ...CHANNEL_STRUCTURE }] };
+      } else {
+        return data;
+      }
+    });
+    set({ report: report, loading: false });
   },
   getMemberReportList: async (no, startCount, endCount) => {
     set({ loading: true });

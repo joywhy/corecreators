@@ -70,7 +70,7 @@ export const CAMPAIGN_STRUCTURE = {
 export const REPORT_STRUCTURE = {
   name: '보고서명',
   userNo: 1,
-  creatorList: [], //? text ?
+  linkList: [], //? text ?
   no: 0,
   date: '',
   memo: '메모',
