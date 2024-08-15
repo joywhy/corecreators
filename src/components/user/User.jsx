@@ -3,7 +3,7 @@ import NavUser from './NavUser';
 import UserContent from './UserContent';
 import styled from 'styled-components';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
-import { responsiveWidthMiddle } from '../../constants/index';
+import { responsiveWidthMiddle, responsiveWidth } from '../../constants/index';
 //가데이터
 const users = [
   {
@@ -70,6 +70,8 @@ const User = () => {
   const searchList = () => {};
   const deleteList = () => {};
   const changeList = () => {};
+  console.log(responsiveWidthMiddle);
+  console.log(isOpenNav);
   return (
     <StyledDiv>
       {width > responsiveWidthMiddle && (
@@ -116,7 +118,7 @@ const User = () => {
           setIndex={setIndex}
         />
       )}
-      {width > responsiveWidthMiddle && (
+      {width > responsiveWidth && (
         <UserContent
           changeContent={changeList}
           content={users[index]}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import CampaignForm from '../common/CampaignForm.jsx';
 import Button from '../common/Button';
 import Dropdown from '../common/Dropdown';
+import imgUploadUrl from '/src/assets/common/profileUpdate.svg';
 import styled from 'styled-components';
 
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
@@ -65,16 +66,64 @@ const UserContent = ({
       )}
       <StyledForm onSubmit={handleSubmit}>
         <div className="wrapper">
-          <Dropdown handleDropDown={() => {}} list={userType} value="거래처" />
+          <Dropdown
+            handleDropDown={() => {}}
+            list={userType}
+            value="최고 관리자"
+          />
           <input
-            name="name"
-            type="text"
-            value={content.name}
+            name="mail"
+            type="email"
+            value={content.mail}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="캠페인명"
+            placeholder="id or example@email.com"
           />
         </div>
+        <input
+          name="password"
+          type="text"
+          value={content.password ? content.password : null}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="비밀번호"
+        />
+        <StyleButton>
+          <img src={imgUploadUrl} alt="이미지 업로드" />
+        </StyleButton>
+
+        <input
+          name="nick"
+          type="text"
+          value={content.nick ? content.nick : null}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="닉네임 혹은 회사"
+        />
+        <input
+          name="bno"
+          type="text"
+          value={content.bno ? content.bno : null}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="사업자 번호"
+        />
+        <input
+          name="name"
+          type="text"
+          value={content.name ? content.name : null}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="이름"
+        />
+        <input
+          name="call"
+          type="text"
+          value={content.call ? content.call : null}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="전화번호"
+        />
         <textarea
           placeholder="메모"
           name="memo"
@@ -157,4 +206,11 @@ const StyledForm = styled.form`
     }
   }
 `;
+
+const StyleButton = styled.button`
+  border: none;
+  background-color: transparent;
+  margin-bottom: 15px;
+`;
+
 export default UserContent;
