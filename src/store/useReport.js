@@ -66,7 +66,7 @@ export const useReport = create((set) => ({
     delete report.no;
     delete report.advertiser;
     console.log(report);
-    const no = await req('setList', { ...newForm, linkList: null });
+    const no = await req('setReport', { ...newForm, linkList: null });
     set((state) => ({
       report: [{ ...report, no: no, linkList: null }].concat(state.report),
       loading: false,
