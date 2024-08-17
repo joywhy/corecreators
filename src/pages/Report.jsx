@@ -97,7 +97,7 @@ const Report = () => {
     };
     fun();
   }, []);
-  console.log(report);
+  // console.log(report);
   const userNo = ['가상컴퍼니', '가상컴퍼니', '가상컴퍼니', '가상컴퍼니'];
   return (
     <StyledDiv>

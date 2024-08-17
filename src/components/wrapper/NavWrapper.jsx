@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NavWrapper = ({ children, isOpenNav }) => {
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
   const isReportNav = window.location.pathname === '/report';
   return (
     <StyledDiv

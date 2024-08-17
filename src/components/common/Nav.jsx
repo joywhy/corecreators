@@ -21,7 +21,7 @@ const Nav = ({
   userNo,
   // userNoList,
 }) => {
-  // console.log(list);
+  // console.log(isOpenNav);
   const { users, userNoList, getUserNo, getUserNoList } = useUser();
   const [isModal, setIsModal] = useState(false);
   let isManager = getUserInfoCate() === '최고관리자';
@@ -62,6 +62,7 @@ const Nav = ({
         searchList={searchList}
         setIndex={setIndex}
         isCreatedReady={isCreatedReady}
+        setIsOpenNav={setIsOpenNav}
         setIsCreatedReady={setIsCreatedReady}
       />
       <nav>
@@ -138,6 +139,7 @@ const Header = ({
   list,
   searchList,
   setIndex,
+  setIsOpenNav,
   setIsCreatedReady,
   isCreatedReady,
 }) => {
@@ -149,6 +151,7 @@ const Header = ({
     setShowInput(true);
   };
   const CreateForm = () => {
+    setIsOpenNav(false);
     if (isCreatedReady) {
       setIsCreatedReady((prev) => !prev);
       setIndex(list.length);
