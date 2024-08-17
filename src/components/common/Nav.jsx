@@ -75,6 +75,7 @@ const Nav = ({
               // e.stopPropagation();
               setIndex(idx);
               setIsOpenNav(false);
+              setIsCreatedReady(true);
             };
             const handleDelete = (e) => {
               let isfirstElementDeleted = isModal === 0;
@@ -98,7 +99,7 @@ const Nav = ({
               // console.log("ehdwkr");
               setIsModal(idx);
             };
-
+            // console.log(campaign);
             return (
               <StyledContainer key={idx + campaign.name}>
                 <Li
@@ -176,13 +177,6 @@ const Header = ({
   }, []);
   if (showInput) {
     return (
-      //       <div class="search-wrapper">
-      //          <div class="input-holder">
-      //             <input type="text" class="search-input" placeholder="Type to search" />
-      //              <button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
-      //          </div>
-      //          <span class="close" onclick="searchToggle(this, event);"></span>
-      //       </div>
       <StyledHeader2 ref={inputRef} className={showInput ? 'active' : ''}>
         <input
           placeholder="Search..."

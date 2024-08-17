@@ -4,7 +4,7 @@ import { ApexChart } from '../components/Chart.jsx';
 import styled from 'styled-components';
 
 import useWindowDimensions from '../hooks/useWindowDimensions.jsx';
-import { responsiveWidthMiddle } from '../constants/index.js';
+import { responsiveWidthMiddle, REPORT_STRUCTURE } from '../constants/index.js';
 import { useReport } from '../store/useReport.js';
 import { getUserInfoCate } from '../utils';
 
@@ -13,6 +13,7 @@ const ReportContents = ({
   isCreatedReady,
   setIsCreatedReady,
   content,
+  setIndex,
   setIsOpenNav,
 }) => {
   //가데이터
@@ -42,12 +43,10 @@ const ReportContents = ({
   ];
   const { report, changeList, setList } = useReport();
   let isManager = getUserInfoCate() === '최고관리자';
-  // console.log(isManager);
   const advertiser = '관리자';
   let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
-    // alert('뒤로가기');
     setIsOpenNav(true);
   };
   return (
@@ -60,12 +59,14 @@ const ReportContents = ({
       )}
       {isManager ? (
         <CampaignForm
-          list={content} //곧 삭제
+          list={report}
           changeList={changeList}
           setList={setList}
           index={index}
+          setIndex={setIndex}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
+          basic={REPORT_STRUCTURE}
         />
       ) : (
         <StyledContainer>

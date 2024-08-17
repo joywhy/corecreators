@@ -12,7 +12,6 @@ import { create } from 'zustand';
 // token : "eyJ0aW1lIjoxNzIzMDkxMTQwOTU5LCJkYXRhIjoiYkc5allXeG9iM04wWHpVeE56TWV5SnVieUk2TW4wIn0"
 // }
 
-
 export const useUserInfo = create((set) => ({
   loading: false,
   userInfo: {
@@ -26,9 +25,9 @@ export const useUserInfo = create((set) => ({
       mail: email,
       pw: await password(pass),
     });
-    console.log(userInfo);
-    window.localStorage.setItem("no", userInfo.no)
-    window.localStorage.setItem("cate", userInfo.cate)
+    // console.log(userInfo);
+    window.localStorage.setItem('no', userInfo.no);
+    window.localStorage.setItem('cate', userInfo.cate);
     cookie.my = userInfo.token;
     delete userInfo.token;
 
@@ -40,7 +39,7 @@ export const useUserInfo = create((set) => ({
   },
   rememberUser: async () => {
     if (cookie.my) {
-      console.trace(cookie.my);
+      // console.trace(cookie.my);
       set({ loading: true });
       const userInfo = await req('login', { token: cookie.my });
 

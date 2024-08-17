@@ -29,36 +29,20 @@ const CampaignForm = ({
           },
     [list, index]
   );
-
+  // console.log(initialValues);
   const validateInput = () => {
     return {};
   };
   const handleSubmitCampaign = async () => {
     if (list.length === index) {
       setIsCreatedReady(true);
-      // console.log(values);
-      // let newForm = JSON.parse(JSON.stringify(values));
-      // newForm.userNo = 2;
-      // newForm.creatorList = null;
-
-      // delete newForm.channelList;
-      // delete newForm.date;
-      // delete newForm.no;
-      // delete newForm.advertiser;
-      // delete newForm.await_i;
-      // console.log(newForm);
-
       await setList(values);
       //전송
       setIndex(0);
       return;
     } else {
-      // console.log(index);
-      // console.log(values);
       changeList(values, index);
     }
-
-    // 전송
   };
   let {
     values,
@@ -83,6 +67,7 @@ const CampaignForm = ({
 
   useEffect(() => {
     changeNewForm(initialValues);
+
     return () => {};
   }, [initialValues]);
 

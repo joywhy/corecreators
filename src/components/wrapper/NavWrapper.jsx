@@ -2,8 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NavWrapper = ({ children, isOpenNav }) => {
+  console.log(window.location.pathname);
+  const isReportNav = window.location.pathname === '/report';
   return (
-    <StyledDiv className={isOpenNav ? 'isshow' : ''}>{children}</StyledDiv>
+    <StyledDiv
+      className={
+        isOpenNav ? (isReportNav ? 'isshow report-view' : 'isshow') : ''
+      }
+    >
+      {children}
+    </StyledDiv>
   );
 };
 
@@ -26,6 +34,13 @@ const StyledDiv = styled.div`
 
   @media only screen and (width <= 750px) {
     &.isshow {
+      max-width: 100vw;
+      width: 100vw;
+    }
+  }
+
+  @media only screen and (width <= 1000px) {
+    &.report-view {
       max-width: 100vw;
       width: 100vw;
     }
