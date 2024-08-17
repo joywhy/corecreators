@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBox } from './SearchBox';
 import { Filter } from './Filter';
 import SearchResult from './SearchResult';
@@ -8,12 +8,12 @@ import { useCreator } from '../../store/useCreator';
 import styled from 'styled-components';
 
 const Search = () => {
-  const { member, searchCreaotr } = useCreator();
+  const { member, getMember, searchCreaotr } = useCreator();
   const [searchValue, setSearchValue] = useState('');
   let initalFilter = {
     type: '',
     country: '',
-    cate: '',
+    cate: [],
     gender: '',
     age: '',
     tag: [],
@@ -24,6 +24,12 @@ const Search = () => {
   const handleSubmit = () => {
     searchCreator(searchValue);
   };
+  // useEffect(() => {
+  //   const fun = async () => {
+  //     await getMember(30);
+  //   };
+  //   fun();
+  // }, []);
   return (
     <StyleDiv>
       <h1>

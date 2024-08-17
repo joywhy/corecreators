@@ -38,4 +38,14 @@ export const useCreator = create((set) => ({
 
     set({ member: members, loading: false });
   },
+  searchCreaotrwithFilter: async (input) => {
+    set({ loading: true });
+    // console.log(input);
+    const members = await req('getCreator', {
+      search: input,
+    });
+    // console.log(members);
+
+    set({ member: members, loading: false });
+  },
 }));
