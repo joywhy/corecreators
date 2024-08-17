@@ -38,6 +38,17 @@ const StyleDiv = styled.div`
   align-items: start;
   color: var(--black);
 
+  @media only screen and (width <= 700px) {
+    & {
+      flex-direction: column;
+    }
+
+    & h2 {
+      /* width: 100%; */
+      margin-bottom: 20px;
+    }
+  }
+
   & h2 {
     width: 126px;
     font-size: 13px;
@@ -50,6 +61,14 @@ const StyleDiv = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    @media only screen and (width <= 700px) {
+      & {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 20px;
+      }
+    }
 
     & .checkbox {
       max-width: 100%;

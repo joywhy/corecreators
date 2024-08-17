@@ -172,6 +172,14 @@ const StyldForm = styled.form`
   flex-direction: column;
   justify-content: center;
 
+  @media only screen and (width <= 700px) {
+    & {
+      width: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+  }
+
   & h3 {
     font-size: 18px;
     font-weight: 400;
@@ -185,6 +193,12 @@ const StyldForm = styled.form`
     display: flex;
     justify-content: space-between;
     gap: 20px;
+
+    @media only screen and (width <= 700px) {
+      & {
+        flex-wrap: wrap;
+      }
+    }
   }
 
   & .button-wrapper {
@@ -193,11 +207,6 @@ const StyldForm = styled.form`
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-
-    /* border: 1px solid red; */
     padding: 0;
   }
 `;
-// const StyledButton = styled(Button)`
-//   margin: 0;
-// `;

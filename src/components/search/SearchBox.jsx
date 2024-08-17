@@ -1,7 +1,13 @@
 import React from 'react';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 import styled from 'styled-components';
 
 export const SearchBox = ({ value, setValue, handleSubmit }) => {
+  let { width } = useWindowDimensions();
+  let placeholder =
+    width < 400
+      ? '아이디 또는 이름을 입력해보세요!'
+      : '   크리에이터의  아이디 또는 이름을 입력해보세요!';
   const handleChange = (e) => {
     setValue(e.target.value);
   };
@@ -17,7 +23,7 @@ export const SearchBox = ({ value, setValue, handleSubmit }) => {
         className="realInput"
         value={value}
         onChange={handleChange}
-        placeholder="   크리에이터의  아이디 또는 이름을 입력해보세요!"
+        placeholder={placeholder}
         onKeyPress={handleKeyPress}
       />
       <StyleButton onClick={handleSubmit}>
@@ -33,6 +39,13 @@ const StyleDiv = styled.div`
   box-sizing: border-box;
   margin-top: 74px;
 
+  @media only screen and (width <= 500px) {
+    & {
+      width: 80%;
+      box-sizing: border-box;
+    }
+  }
+
   & input.realInput {
     position: absolute;
     top: 2px;
@@ -41,6 +54,12 @@ const StyleDiv = styled.div`
     height: 80%;
     width: 100%;
     background-color: transparent;
+
+    @media only screen and (width <= 450px) {
+      &::placeholder {
+        font-size: 11px;
+      }
+    }
 
     &::placeholder {
       color: #fe5c5a;
@@ -64,6 +83,12 @@ const StyleInput = styled.input`
   background-clip: content-box, border-box;
 
   /* padding-left: 20px; */
+  @media only screen and (width <= 500px) {
+    & {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
 
   &::placeholder {
     color: #fe5c5a;

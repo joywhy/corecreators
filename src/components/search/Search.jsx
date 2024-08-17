@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { SearchBox } from './SearchBox';
 import { Filter } from './Filter';
 import SearchResult from './SearchResult';
-
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { useCreator } from '../../store/useCreator';
 
 import styled from 'styled-components';
 
 const Search = () => {
+  // let { width } = useWindowDimensions();
   const { member, getMember, searchCreaotr } = useCreator();
   const [searchValue, setSearchValue] = useState('');
   let initalFilter = {
@@ -54,17 +55,39 @@ const StyleDiv = styled.div`
   flex-direction: column;
   align-items: center;
 
+  @media only screen and (width <= 700px) {
+    & {
+      width: 100%;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+  }
+
   & h1 {
     font-size: 32px;
     font-weight: bold;
     margin-top: 100px;
     text-align: center;
+
+    @media only screen and (width <= 400px) {
+      & {
+        width: 80%;
+        font-size: 20px;
+      }
+    }
   }
 
   & p {
     margin-top: 31px;
     font-size: 16px;
     color: #5d5d5d;
+
+    @media only screen and (width <= 400px) {
+      & {
+        width: 70%;
+        font-size: 13px;
+      }
+    }
   }
 `;
 

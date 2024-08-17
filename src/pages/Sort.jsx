@@ -1,7 +1,6 @@
 import React from 'react';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
-import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Button from '../components/common/Button.jsx';
 import Search from '../components/search/Search.jsx';
 
@@ -32,8 +31,6 @@ const StyledDiv = styled.div`
   width: 100%;
   display: flex;
 
-  /* border: 1px solid red; */
-
   @media only screen and (width <= 1200px) {
     & {
       display: block;
@@ -41,14 +38,9 @@ const StyledDiv = styled.div`
   }
 
   & .content {
-    /* max-width: 3000px; */
     height: 100%;
     background-color: var(--gray-10);
     overflow: scroll;
-
-    /* width: 3000px;/ */
-
-    /* border: 1px solid red; */
 
     @media only screen and (width <= 1200px) {
       & {
