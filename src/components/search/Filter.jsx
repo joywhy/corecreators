@@ -13,12 +13,13 @@ import {
   follwer,
 } from '../../constants';
 import returnImg from '/src/assets/common/return.svg';
+import { useCreator } from '../../store/useCreator';
 import styled from 'styled-components';
 
 // {
 //   type: null,
 //   country: null,
-//   cate: '',
+//   cate: [],
 //   gender: '',
 //   age: '',
 //   tag: [],
@@ -26,6 +27,7 @@ import styled from 'styled-components';
 //   maxFollower: '',
 // };
 export const Filter = ({ value, setValue, inital }) => {
+  const { searchCreaotrwithFilter } = useCreator();
   //드롭다운 handler
   const handleChange = (name, newValue) => {
     setValue({ ...value, [name]: newValue });
@@ -57,8 +59,31 @@ export const Filter = ({ value, setValue, inital }) => {
   const resetFilter = () => {
     setValue(inital);
   };
+  const removeEmptyProps = (obj, props) => {
+    // console.log(obj[props]);
+    if (obj[props] === '') {
+      delete obj[props];
+    }
+  };
+  const removeEmptyArrayProps = (obj, props) => {
+    // console.log(obj[props]);
+    if (obj[props].length === 0) {
+      delete obj[props];
+    }
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let obj = { ...value };
+    removeEmptyProps(obj, 'age');
+    removeEmptyProps(obj, 'country');
+    removeEmptyProps(obj, 'gender');
+    removeEmptyProps(obj, 'type');
+    removeEmptyArrayProps(obj, 'cate');
+    removeEmptyArrayProps(obj, 'tag');
+    searchCreaotrwithFilter(obj);
+  };
   return (
-    <StyldForm>
+    <StyldForm onSubmit={handleSubmit}>
       <h3>세부필터</h3>
       <div className="dropdown-wrapper">
         <Dropdown
@@ -127,6 +152,7 @@ export const Filter = ({ value, setValue, inital }) => {
             fontSize: '13px',
             margin: '0px',
           }}
+          type="submit"
         >
           검색
         </Button>
@@ -146,6 +172,14 @@ const StyldForm = styled.form`
   flex-direction: column;
   justify-content: center;
 
+  @media only screen and (width <= 700px) {
+    & {
+      width: 100%;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+  }
+
   & h3 {
     font-size: 18px;
     font-weight: 400;
@@ -159,6 +193,12 @@ const StyldForm = styled.form`
     display: flex;
     justify-content: space-between;
     gap: 20px;
+
+    @media only screen and (width <= 700px) {
+      & {
+        flex-wrap: wrap;
+      }
+    }
   }
 
   & .button-wrapper {
@@ -167,11 +207,6 @@ const StyldForm = styled.form`
     display: flex;
     justify-content: flex-end;
     gap: 15px;
-
-    /* border: 1px solid red; */
     padding: 0;
   }
 `;
-// const StyledButton = styled(Button)`
-//   margin: 0;
-// `;

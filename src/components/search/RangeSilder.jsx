@@ -2,9 +2,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import styled from 'styled-components';
-function valuetext(value) {
-  return `${value}°C`;
-}
+
 export default function RangeSlider({
   list,
   minFollower,
@@ -49,7 +47,15 @@ const StyledDIv = styled.div`
   justify-content: space-between;
   margin-top: 30px;
 
-  /* border: 1px solid red; */
+  @media only screen and (width <= 700px) {
+    & {
+      flex-direction: column;
+    }
+
+    & h2 {
+      margin-bottom: 30px;
+    }
+  }
 
   & h2 {
     font-size: 13px;
@@ -60,11 +66,6 @@ const StyledDIv = styled.div`
   }
 `;
 const DistanceSlider = styled(Slider)`
-  /* margin-left: 10px; */
-
-  /* width: 400px; */
-
-  /* border: 1px solid red; */
   box-sizing: border-box;
 
   .MuiSlider-thumb {
@@ -89,6 +90,22 @@ const StyledLabel = styled.div`
   color: #989898;
   margin-top: -15px;
   font-size: 13px;
+
+  @media only screen and (width <= 700px) {
+    & span:nth-child(6) {
+      margin-right: 20px;
+    }
+  }
+
+  @media only screen and (width <= 350px) {
+    & span {
+      font-size: 10px;
+    }
+
+    & span:nth-child(6) {
+      margin-right: 0;
+    }
+  }
 
   & span:nth-child(n + 3) {
     position: relative;

@@ -19,7 +19,7 @@ const Report = () => {
   let { width } = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [isCreatedReady, setIsCreatedReady] = useState(true);
-  const [isOpenNav, setIsOpenNav] = useState(false);
+  const [isOpenNav, setIsOpenNav] = useState(true);
   // const report = [
   //   {
   //     name: '00캠페인',
@@ -83,7 +83,7 @@ const Report = () => {
   const getReportByUsertype = () => {
     let no = getUserInfoNo();
     let cate = getUserInfoCate();
-    console.log(cate, no);
+    // console.log(cate, no);
     if (cate === '거래처') {
       getMemberReportList(no, 10, 10);
     } else if (cate === '최고관리자') {
@@ -97,7 +97,7 @@ const Report = () => {
     };
     fun();
   }, []);
-  console.log(report);
+  // console.log(report);
   const userNo = ['가상컴퍼니', '가상컴퍼니', '가상컴퍼니', '가상컴퍼니'];
   return (
     <StyledDiv>

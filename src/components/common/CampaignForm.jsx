@@ -43,6 +43,7 @@ const CampaignForm = ({
     } else {
       changeList(values, index);
     }
+    alert('완료되었습니다.');
   };
   let {
     values,

@@ -27,8 +27,8 @@ const List = () => {
   } = useCampaign();
   const { users, userNoList, getUserNo, getUserNoList } = useUser();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
-  const [isOpenNav, setIsOpenNav] = useState(false);
-
+  const [isOpenNav, setIsOpenNav] = useState(true);
+  console.log(isOpenNav);
   let { width } = useWindowDimensions();
 
   const getCampaignsByUsertype = () => {
