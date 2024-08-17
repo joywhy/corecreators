@@ -13,9 +13,9 @@ const ReportContents = ({
   isCreatedReady,
   setIsCreatedReady,
   content,
+  setIndex,
   setIsOpenNav,
 }) => {
-  // console.log(content);
   //가데이터
   const reportList = [
     {
@@ -43,12 +43,10 @@ const ReportContents = ({
   ];
   const { report, changeList, setList } = useReport();
   let isManager = getUserInfoCate() === '최고관리자';
-  // console.log(isManager);
   const advertiser = '관리자';
   let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
-    // alert('뒤로가기');
     setIsOpenNav(true);
   };
   return (
@@ -65,6 +63,7 @@ const ReportContents = ({
           changeList={changeList}
           setList={setList}
           index={index}
+          setIndex={setIndex}
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
           basic={REPORT_STRUCTURE}

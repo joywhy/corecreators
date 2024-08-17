@@ -59,15 +59,18 @@ export const useReport = create((set) => ({
     // }));
   },
   setList: async (newForm) => {
-    // set({ loading: true });
-    // console.log({ ...newForm, linkList: null });
-    // await req('setList', { ...newForm, linkList: null });
-    // set((state) => ({
-    //   campaign: [{ ...newForm, no: 0, linkList: null }].concat(
-    //     state.campaign
-    //   ),
-    //   loading: false,
-    // }));
+    set({ loading: true });
+    let report = { ...newForm, linkList: null, userNo: 2 };
+
+    delete report.date;
+    delete report.no;
+    delete report.advertiser;
+    console.log(report);
+    const no = await req('setList', { ...newForm, linkList: null });
+    set((state) => ({
+      report: [{ ...report, no: no, linkList: null }].concat(state.report),
+      loading: false,
+    }));
   },
   searchReport: async (input) => {
     set({ loading: true });

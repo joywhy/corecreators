@@ -89,7 +89,7 @@ const Report = () => {
       getReport(30);
     }
   };
-  // console.log(report);
+
   useEffect(() => {
     const fun = async () => {
       await getReportByUsertype();
@@ -97,7 +97,6 @@ const Report = () => {
     fun();
   }, []);
 
-  // console.log(report);
   const userNo = ['가상컴퍼니', '가상컴퍼니', '가상컴퍼니', '가상컴퍼니'];
   return (
     <StyledDiv>
@@ -136,6 +135,7 @@ const Report = () => {
         {width <= 1000 && !isOpenNav && (
           <ReportContents
             index={index}
+            setIndex={setIndex}
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
             content={report[index]}
@@ -146,6 +146,7 @@ const Report = () => {
         {width > 1000 && (
           <ReportContents
             index={index}
+            setIndex={setIndex}
             isCreatedReady={isCreatedReady}
             setIsCreatedReady={setIsCreatedReady}
             content={report[index]}

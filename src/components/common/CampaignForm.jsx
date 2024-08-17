@@ -16,8 +16,6 @@ const CampaignForm = ({
   basic,
   setIndex,
 }) => {
-  // console.log(list);
-  // console.log(index);
   let initialValues = useMemo(
     () =>
       list.length === index
