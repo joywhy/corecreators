@@ -83,6 +83,7 @@ const Report = () => {
   const getReportByUsertype = () => {
     let no = getUserInfoNo();
     let cate = getUserInfoCate();
+    console.log(cate, no);
     if (cate === '거래처') {
       getMemberReportList(no, 10, 10);
     } else if (cate === '최고관리자') {
@@ -96,7 +97,7 @@ const Report = () => {
     };
     fun();
   }, []);
-
+  console.log(report);
   const userNo = ['가상컴퍼니', '가상컴퍼니', '가상컴퍼니', '가상컴퍼니'];
   return (
     <StyledDiv>

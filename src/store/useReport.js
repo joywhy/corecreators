@@ -49,14 +49,17 @@ export const useReport = create((set) => ({
     // }
   },
   changeList: async (newContent, index) => {
-    // set({ loading: true });
-    // await req('setList', { ...newContent, no: index, creatorList: null });
-    // set((state) => ({
-    //   campaign: state.campaign.map((content, idx) => {
-    //     return index === idx ? newContent : content;
-    //   }),
-    //   loading: false,
-    // }));
+    set({ loading: true });
+    let report = { ...newContent, linkList: null };
+    delete report.advertiser;
+    console.log(report);
+    await req('setReport', report);
+    set((state) => ({
+      report: state.report.map((content, idx) => {
+        return index === idx ? report : content;
+      }),
+      loading: false,
+    }));
   },
   setList: async (newForm) => {
     set({ loading: true });
@@ -67,6 +70,7 @@ export const useReport = create((set) => ({
     delete report.advertiser;
     console.log(report);
     const no = await req('setReport', { ...newForm, linkList: null });
+    console.log(no);
     set((state) => ({
       report: [{ ...report, no: no, linkList: null }].concat(state.report),
       loading: false,
