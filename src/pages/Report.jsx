@@ -78,8 +78,14 @@ const Report = () => {
   //     memo: '메모',
   //   },
   // ];
-  const { report, getReport, getMemberReportList, searchReport, deleteReport } =
-    useReport();
+  const {
+    report,
+    userNo,
+    getReport,
+    getMemberReportList,
+    searchReport,
+    deleteReport,
+  } = useReport();
   const getReportByUsertype = () => {
     let no = getUserInfoNo();
     let cate = getUserInfoCate();
@@ -97,8 +103,6 @@ const Report = () => {
     };
     fun();
   }, []);
-  // console.log(report);
-  const userNo = ['가상컴퍼니', '가상컴퍼니', '가상컴퍼니', '가상컴퍼니'];
   return (
     <StyledDiv>
       {width > responsiveWidth && <Aside />}
@@ -142,6 +146,7 @@ const Report = () => {
             content={report[index]}
             basic={REPORT_STRUCTURE}
             setIsOpenNav={setIsOpenNav}
+            userNo={userNo}
           />
         )}
         {width > 1000 && (
@@ -153,6 +158,7 @@ const Report = () => {
             content={report[index]}
             basic={REPORT_STRUCTURE}
             setIsOpenNav={setIsOpenNav}
+            userNo={userNo}
           />
         )}
       </MainWrapper>

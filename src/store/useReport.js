@@ -1,22 +1,27 @@
 import { create } from 'zustand';
 import { REPORT_STRUCTURE, CHANNEL_STRUCTURE } from '../constants';
 import { getUserInfoNo } from '../utils';
-// export const REPORT_STRUCTURE = {  //변경여지 0
-//   name: '보고서명',
-//   userNo: 1,
-//   linkList: [], //? text ?
-//   no: 0,
-//   date: '',
-//   memo: '메모',
-// };
 
 export const useReport = create((set) => ({
   loading: false,
   report: [{ ...REPORT_STRUCTURE }],
   error: null,
+  userNo: [],
   getReport: async (count) => {
     set({ loading: true });
     let report = await req('getReport', { count: count });
+
+    const userIds = report.map((report) => report.userNo);
+    let users = [];
+    for (let no of userIds) {
+      if (!users[no]) {
+        let userResponse = await req('getUser', { noList: [no] });
+        users[no] = userResponse[0];
+      }
+      set((state) => ({
+        userNo: [...state.userNo, users[no].nick],
+      }));
+    }
 
     report = report.map((data) => {
       if (!data.linkList || data.linkList === 'null') {

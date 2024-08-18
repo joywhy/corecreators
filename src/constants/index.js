@@ -77,9 +77,9 @@ export const REPORT_STRUCTURE = {
 };
 export const USER_STRUCTURE = {
   // no: 1, // 계정 고유 번호
-  nick: '닉네임', // 닉네임 or 회사명
-  name: '이름', // 이름
-  tel: '01012345678', // 연락처
+  nick: '', // 닉네임 or 회사명
+  name: '', // 이름
+  tel: '', // 연락처
   cate: '최고관리자', // 분류
   mail: '', // 메일
   bno: '', // 사업자번호

@@ -18,6 +18,15 @@ export const useUser = create((set) => ({
 
     return users;
   },
+  getUserNo: async (no) => {
+    set({ loading: true });
+    const users = await req('getUser', { noList: [no] });
+    set((state) => {
+      return { users: state.users.concat(users), loading: false };
+    });
+
+    return users;
+  },
   getUserNoList: async (list) => {
     set({ loading: true });
     const noList = list.map((li, idx) => li.userNo);

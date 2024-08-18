@@ -101,6 +101,7 @@ const List = () => {
             setIsCreatedReady={setIsCreatedReady}
             setIsOpenNav={setIsOpenNav}
             setIndex={setIndex}
+            userNo={userNo}
           />
         )}
         {width > responsiveWidthMiddle && (
@@ -112,6 +113,7 @@ const List = () => {
             setIsCreatedReady={setIsCreatedReady}
             setIsOpenNav={setIsOpenNav}
             setIndex={setIndex}
+            userNo={userNo}
           />
         )}
       </MainWrapper>
