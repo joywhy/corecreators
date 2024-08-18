@@ -83,7 +83,7 @@ const UserContent = ({
         <input
           name="password"
           type="text"
-          value={content.password ? content.password : null}
+          value={content.password ? content.password : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="비밀번호"
@@ -95,7 +95,7 @@ const UserContent = ({
         <input
           name="nick"
           type="text"
-          value={content.nick ? content.nick : null}
+          value={content.nick ? content.nick : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="닉네임 혹은 회사"
@@ -103,7 +103,7 @@ const UserContent = ({
         <input
           name="bno"
           type="text"
-          value={content.bno ? content.bno : null}
+          value={content.bno ? content.bno : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="사업자 번호"
@@ -111,7 +111,7 @@ const UserContent = ({
         <input
           name="name"
           type="text"
-          value={content.name ? content.name : null}
+          value={content.name ? content.name : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="이름"
@@ -119,7 +119,7 @@ const UserContent = ({
         <input
           name="call"
           type="text"
-          value={content.call ? content.call : null}
+          value={content.call ? content.call : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="전화번호"

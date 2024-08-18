@@ -57,7 +57,7 @@ const User = () => {
   //   } = useCampaign();
   //   const { users, userNoList, getUserNo, getUserNoList } = useUser();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
-  const [isOpenNav, setIsOpenNav] = useState(false);
+  const [isOpenNav, setIsOpenNav] = useState(true);
 
   let { width } = useWindowDimensions();
   useEffect(() => {
@@ -70,8 +70,9 @@ const User = () => {
   const searchList = () => {};
   const deleteList = () => {};
   const changeList = () => {};
-  console.log(responsiveWidthMiddle);
-  console.log(isOpenNav);
+
+  console.log(width <= responsiveWidthMiddle && !isOpenNav);
+  console.log(width >= responsiveWidthMiddle);
   return (
     <StyledDiv>
       {width > responsiveWidthMiddle && (
@@ -118,7 +119,7 @@ const User = () => {
           setIndex={setIndex}
         />
       )}
-      {width > responsiveWidth && (
+      {width >= responsiveWidthMiddle && ( //750
         <UserContent
           changeContent={changeList}
           content={users[index]}
@@ -137,12 +138,12 @@ const StyledDiv = styled.div`
   width: 100%;
   display: flex;
 
-  @media only screen and (width <= 1200px) {
+  /* @media only screen and (width <= 1200px) {
     & {
       display: block;
       flex-direction: column;
       align-items: end;
     }
-  }
+  } */
 `;
 export default User;
