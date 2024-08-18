@@ -154,7 +154,7 @@ const UserContent = ({
         <input
           name="tel"
           type="text"
-          value={values.call ? values.call : ''}
+          value={values.tel ? values.tel : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="전화번호"

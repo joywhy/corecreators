@@ -15,6 +15,7 @@ const ReportContents = ({
   content,
   setIndex,
   setIsOpenNav,
+  userNo,
 }) => {
   //가데이터
   const reportList = [
@@ -67,6 +68,7 @@ const ReportContents = ({
           isCreatedReady={isCreatedReady}
           setIsCreatedReady={setIsCreatedReady}
           basic={REPORT_STRUCTURE}
+          userNo={userNo[index] ? userNo[index] : ''}
         />
       ) : (
         <StyledContainer>

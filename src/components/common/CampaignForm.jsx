@@ -15,17 +15,18 @@ const CampaignForm = ({
   setList,
   basic,
   setIndex,
+  userNo,
 }) => {
   let initialValues = useMemo(
     () =>
       list.length === index
         ? {
             ...basic,
-            advertiser: basic.userNo === 1 ? '리을컴퍼니' : '광고주',
+            advertiser: '',
           }
         : {
             ...list[index],
-            advertiser: list[index]?.userNo === 1 ? '리을컴퍼니' : '광고주',
+            advertiser: userNo,
           },
     [list, index]
   );

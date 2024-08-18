@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const Search = () => {
   // let { width } = useWindowDimensions();
-  const { member, getMember, searchCreaotr } = useCreator();
+  const { members, getMember, searchCreaotr } = useCreator();
   const [searchValue, setSearchValue] = useState('');
   let initalFilter = {
     type: '',
@@ -25,12 +25,13 @@ const Search = () => {
   const handleSubmit = () => {
     searchCreator(searchValue);
   };
-  // useEffect(() => {
-  //   const fun = async () => {
-  //     await getMember(30);
-  //   };
-  //   fun();
-  // }, []);
+  useEffect(() => {
+    const fun = async () => {
+      await getMember(30);
+    };
+    fun();
+  }, []);
+  // console.log(members);
   return (
     <StyleDiv>
       <h1>
@@ -43,7 +44,6 @@ const Search = () => {
         setValue={setSearchValue}
         handleSubmit={handleSubmit}
       />
-      {/* <button>Search</button> */}
       <Filter value={filter} setValue={setFilter} inital={initalFilter} />
       <SearchResult />
     </StyleDiv>

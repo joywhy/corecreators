@@ -1,5 +1,6 @@
 import React from 'react';
 import search3dImg from '/src/assets/common/search_3d.png';
+import { useCreator } from '../../store/useCreator';
 import styled from 'styled-components';
 //가데이터
 const creators = [
@@ -79,6 +80,8 @@ const getCateImg = (cate) => {
   }
 };
 const SearchResult = () => {
+  const { members } = useCreator();
+
   return (
     <StyleDiv>
       <header>
@@ -87,18 +90,18 @@ const SearchResult = () => {
           <span>검색 결과</span>
         </p>
         <p className="des">
-          {creators.length}명의 크리에이터들이 활발히 활동하고 있어요!
+          {members.length}명의 크리에이터들이 활발히 활동하고 있어요!
         </p>
       </header>
       <div>
-        {creators.map((creator, idx) => {
+        {members.map((creator, idx) => {
           let cateImg = getCateImg(creator.cate);
           return (
             <StyleButton key={idx}>
               <div className="header">
                 <div className="wrapper">
                   <div className="Profilewrapper">
-                    <img src={creator.profileImg} alt="프로필 이미지" />
+                    <img src={creator.img} alt="프로필 이미지" />
                     <img src={cateImg} alt="유형" />
                   </div>
                   <div className="title2">
@@ -118,19 +121,19 @@ const SearchResult = () => {
                     평균 댓글 <strong>{creator.comment}</strong>
                   </span>
                   <span>
-                    팔로워 <strong>{creator.fallower}</strong>
+                    팔로워 <strong>{creator.follower}</strong>
                   </span>
                 </div>
               </div>
               <div className="img-wrapper">
-                {creator.imglist.map((img, index) => (
+                {/* {creator.imglist.map((img, index) => (
                   <img
                     className="img"
                     key={index}
                     src={img}
                     alt="크리에이터 게시물"
                   />
-                ))}
+                ))} */}
               </div>
             </StyleButton>
           );

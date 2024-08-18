@@ -15,6 +15,7 @@ const Contents = ({
   setIsCreatedReady,
   setIsOpenNav,
   setIndex,
+  userNo,
 }) => {
   //가데이터
   const creatorList = [
@@ -63,6 +64,7 @@ const Contents = ({
           setIsCreatedReady={setIsCreatedReady}
           basic={CAMPAIGN_STRUCTURE}
           setIndex={setIndex}
+          userNo={userNo[index]}
         />
       ) : (
         <CreatorList list={creatorList} index={index} />
