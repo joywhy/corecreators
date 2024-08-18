@@ -183,12 +183,28 @@ const StyleButton = styled.button`
   background-color: transparent;
   margin-top: 40px;
 
+  @media only screen and (width <= 1000px) {
+    & {
+      box-sizing: border-box;
+      padding: 20px;
+      font-size: 10px;
+    }
+  }
+
   & .header {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 23px;
+
+    @media only screen and (width <= 580px) {
+      & {
+        flex-wrap: wrap;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+    }
 
     & .wrapper {
       display: flex;
@@ -208,6 +224,12 @@ const StyleButton = styled.button`
       & .title2 {
         margin-left: 20px;
 
+        @media only screen and (width <= 1000px) {
+          & {
+            margin-top: 10px;
+          }
+        }
+
         & span {
           display: block;
           height: 20px;
@@ -217,10 +239,15 @@ const StyleButton = styled.button`
         }
 
         & span:nth-child(2) {
-          /* border: 1px solid red; */
           font-size: 16px;
           font-weight: bold;
           color: var(--black);
+        }
+
+        @media only screen and (width <= 1000px) {
+          & span {
+            font-size: 10px;
+          }
         }
       }
 
@@ -232,6 +259,30 @@ const StyleButton = styled.button`
         font-size: 15px;
         font-weight: bold;
         text-align: left;
+
+        @media only screen and (width <= 1000px) {
+          & {
+            /* font-size: 10px; */
+
+            /* margin-left: 20px; */
+          }
+        }
+
+        @media only screen and (width <= 520px) {
+          & {
+            /* font-size: 10px; */
+
+            margin-left: 20px;
+          }
+        }
+
+        @media only screen and (width <= 400px) {
+          & {
+            font-size: 10px;
+
+            /* margin-left: 20px; */
+          }
+        }
       }
     }
 
@@ -239,7 +290,14 @@ const StyleButton = styled.button`
       display: flex;
       gap: 20px;
 
-      /* border: 1px solid red; */
+      @media only screen and (width <= 580px) {
+        & {
+          /* font-size: 10px; */
+          margin: 20px 0;
+
+          /* margin-left: 20px; */
+        }
+      }
     }
   }
 
@@ -248,8 +306,23 @@ const StyleButton = styled.button`
     align-items: center;
     justify-content: center;
 
+    @media only screen and (width <= 1000px) {
+      & {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    }
+
+    @media only screen and (width <= 600px) {
+      & {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+
     & .img {
-      width: calc(100% / 5);
+      max-width: calc(100% / 5);
+      min-width: 180px;
     }
   }
 `;

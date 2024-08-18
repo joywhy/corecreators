@@ -1,9 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import LiNav from './LiNav';
 import NavWrapper from '../wrapper/NavWrapper';
-
-// import { getUserInfoCate } from '../../utils';
-// import { useUser } from '../../store/useUser';
 import styled from 'styled-components';
 
 import searchImg from '/src/assets/search_icon.svg';
@@ -101,14 +98,14 @@ const NavUser = ({
                   date={user.date}
                   onClick={handleClick}
                   isActive={isActive}
-                  profileImg={user.profileImg}
+                  // profileImg={user.profileImg}
+                  no={user.no}
                   id={user.id ? user.id : undefined}
                   email={user.mail}
                   nick={user.nick}
                   name={user.name}
                   cate={user.cate}
                   key={idx + user.name}
-                  ref={liRef}
                   modalActive={modalActive}
                 />
                 {isModal === idx && (
