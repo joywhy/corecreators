@@ -4,6 +4,10 @@ import styled from 'styled-components';
 import img from '/src/assets/common/downArrow_icon.svg';
 const Dropdown = ({ handleDropDown, list, value }) => {
   let selectedValue = list.filter((data) => value === data.type)[0];
+  // console.log(selectedValue);
+  if (!selectedValue) {
+    selectedValue = list[2];
+  }
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (value) => {
@@ -19,7 +23,7 @@ const Dropdown = ({ handleDropDown, list, value }) => {
         }}
       >
         <div>
-          {selectedValue && (
+          {selectedValue.imgUrl && (
             <img
               src={selectedValue.imgUrl}
               alt={`${selectedValue.name} 이미지`}

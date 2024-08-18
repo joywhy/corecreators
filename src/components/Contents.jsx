@@ -14,7 +14,7 @@ const Contents = ({
   isCreatedReady,
   setIsCreatedReady,
   setIsOpenNav,
-   setIndex
+  setIndex,
 }) => {
   //가데이터
   const creatorList = [
@@ -43,7 +43,6 @@ const Contents = ({
   let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
-    // alert('뒤로가기');
     setIsOpenNav(true);
   };
   return (

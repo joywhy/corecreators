@@ -3,7 +3,7 @@ import Button from './Button';
 import ChannelList from '../channelList/ChannelList.jsx';
 
 import useForm from '../../hooks/useForm.jsx';
-// import { CAMPAIGN_STRUCTURE } from '../../constants';
+// import { USER_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
 
 const CampaignForm = ({

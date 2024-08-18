@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 // import CampaignForm from '../common/CampaignForm.jsx';
 import Button from '../common/Button';
 import Dropdown from '../common/Dropdown';
@@ -6,9 +6,14 @@ import imgUploadUrl from '/src/assets/common/profileUpdate.svg';
 import styled from 'styled-components';
 
 import useWindowDimensions from '../../hooks/useWindowDimensions.jsx';
-import { responsiveWidthMiddle, userType } from '../../constants/index.js';
+import useForm from '../../hooks/useForm.jsx';
+import {
+  responsiveWidthMiddle,
+  userType,
+  USER_STRUCTURE,
+} from '../../constants/index.js';
 
-// import { useCampaign } from '../../store/useCampaign.js';
+import { useUser } from '../../store/useUser.js';
 // import { getUserInfoCate } from '../../utils';
 // import { CAMPAIGN_STRUCTURE } from '../../constants';
 
@@ -20,7 +25,21 @@ const UserContent = ({
   setIsOpenNav,
   setIndex,
 }) => {
-  //   const { campaign, changeList, setList } = useCampaign();
+  const { setUser } = useUser();
+  let initialValues = useMemo(
+    () =>
+      content.length === index
+        ? {
+            ...USER_STRUCTURE,
+            // advertiser: basic.userNo === 1 ? '리을컴퍼니' : '광고주',
+          }
+        : {
+            ...content[index],
+            // advertiser: list[index]?.userNo === 1 ? '리을컴퍼니' : '광고주',
+          },
+    [content, index]
+  );
+  // console.log(initialValues);
   let { width } = useWindowDimensions();
 
   const handleBackCick = () => {
@@ -31,13 +50,13 @@ const UserContent = ({
     return {};
   };
 
-  const handleSubmit = async () => {
-    if (list.length === index) {
+  const handleSubmitUser = async () => {
+    if (content.length === index) {
       setIsCreatedReady(true);
 
-      //   await setList(values);
+      await setUser(values);
       //   //전송
-      //   setIndex(0);
+      setIndex(0);
       return;
     } else {
       //   changeList(values, index);
@@ -45,17 +64,31 @@ const UserContent = ({
   };
 
   useEffect(() => {
-    // changeNewForm(initialValues);
+    changeNewForm(initialValues);
     return () => {};
   }, [index]);
 
-  //   useEffect(() => {
-  //      changeNewForm(initialValues);
-  //     return () => {};
-  //   }, [initialValues]);
-
-  const handleChange = () => {};
-  const handleBlur = () => {};
+  useEffect(() => {
+    changeNewForm(initialValues);
+    return () => {};
+  }, [initialValues]);
+  // const handleChange = () => {};
+  // const handleBlur = () => {};
+  let {
+    values,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    handleChangeData,
+    changeNewForm,
+  } = useForm({
+    initialValues,
+    validate: validateInput,
+    onSubmit: handleSubmitUser,
+  });
+  // console.log(values);
   return (
     <StyledDiv>
       {width < responsiveWidthMiddle && (
@@ -67,23 +100,25 @@ const UserContent = ({
       <StyledForm onSubmit={handleSubmit}>
         <div className="wrapper">
           <Dropdown
-            handleDropDown={() => {}}
+            handleDropDown={(value) => {
+              handleChangeData(value, 'cate');
+            }}
             list={userType}
-            value="최고 관리자"
+            value={values.cate}
           />
           <input
             name="mail"
             type="email"
-            value={content.mail}
+            value={values.mail}
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="id or example@email.com"
           />
         </div>
         <input
-          name="password"
+          name="pw"
           type="text"
-          value={content.password ? content.password : ''}
+          value={values.pw ? values.pw : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="비밀번호"
@@ -95,7 +130,7 @@ const UserContent = ({
         <input
           name="nick"
           type="text"
-          value={content.nick ? content.nick : ''}
+          value={values.nick ? values.nick : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="닉네임 혹은 회사"
@@ -103,7 +138,7 @@ const UserContent = ({
         <input
           name="bno"
           type="text"
-          value={content.bno ? content.bno : ''}
+          value={values.bno ? values.bno : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="사업자 번호"
@@ -111,15 +146,15 @@ const UserContent = ({
         <input
           name="name"
           type="text"
-          value={content.name ? content.name : ''}
+          value={values.name ? values.name : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="이름"
         />
         <input
-          name="call"
+          name="tel"
           type="text"
-          value={content.call ? content.call : ''}
+          value={values.call ? values.call : ''}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder="전화번호"
@@ -127,7 +162,7 @@ const UserContent = ({
         <textarea
           placeholder="메모"
           name="memo"
-          value={!content.memo ? '' : content.memo}
+          value={!values.memo ? '' : values.memo}
           onChange={handleChange}
           onBlur={handleBlur}
         ></textarea>

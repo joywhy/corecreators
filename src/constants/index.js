@@ -48,8 +48,8 @@ export const userType = [
     imgUrl: '/src/assets/userType/client.svg',
   },
   {
-    name: '최고 관리자',
-    type: '최고 관리자',
+    name: '최고관리자',
+    type: '최고관리자',
     imgUrl: '/src/assets/userType/manager.svg',
   },
 ];
@@ -75,7 +75,17 @@ export const REPORT_STRUCTURE = {
   date: '',
   memo: '메모',
 };
-
+export const USER_STRUCTURE = {
+  // no: 1, // 계정 고유 번호
+  nick: '닉네임', // 닉네임 or 회사명
+  name: '이름', // 이름
+  tel: '01012345678', // 연락처
+  cate: '최고관리자', // 분류
+  mail: '', // 메일
+  bno: '', // 사업자번호
+  memo: '', // 메모
+  pw: '',
+};
 export const responsiveWidth = 1200;
 export const responsiveWidthMiddle = 750;
 
