@@ -61,7 +61,7 @@ const NavUser = ({
             };
             const handleDelete = (e) => {
               let isfirstElementDeleted = isModal === 0;
-              deleteList(campaign.no, idx);
+              deleteList(user.no, idx);
               setIsModal(false);
 
               if (isfirstElementDeleted && isActive) {
@@ -79,18 +79,7 @@ const NavUser = ({
               e.preventDefault();
               setIsModal(idx);
             };
-            //  {
-            //     no: 2, // 계정 고유 번호
-            //     nick: '닉네임2', // 닉네임 or 회사명
-            //     name: '문상협2', // 이름
-            //     tel: '01012334444', // 연락처
-            //     cate: '거래처', // 분류
-            //     mail: 'admin2@gmail.com', // 메일
-            //     bno: '183-42-00547', // 사업자번호
-            //     memo: '문상협2님에 대한 메모', // 메모
-            //     date: '2024.04.22', // 등록일일
-            //아이디와 profileimg 가 없음
-            //   },
+            // console.log(isModal);
             return (
               <StyledContainer key={idx + user.name}>
                 <LiNav
@@ -98,6 +87,7 @@ const NavUser = ({
                   date={user.date}
                   onClick={handleClick}
                   isActive={isActive}
+                  ref={liRef}
                   // profileImg={user.profileImg}
                   no={user.no}
                   id={user.id ? user.id : undefined}

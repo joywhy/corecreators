@@ -4,20 +4,23 @@ import clientImgUrl from '/src/assets/userType/client.svg';
 import managerImgUrl from '/src/assets/userType/manager.svg';
 import styled from 'styled-components';
 
-const LiNav = ({
-  profileImg,
-  date = '2024.7.7',
-  id,
-  email,
-  nick,
-  name,
-  cate,
-  isActive,
-  onClick,
-  no,
-  onContextMenu,
-  modalActive,
-}) => {
+const LiNav = forwardRef(function Component(
+  {
+    profileImg,
+    date = '2024.7.7',
+    id,
+    email,
+    nick,
+    name,
+    cate,
+    isActive,
+    onClick,
+    no,
+    onContextMenu,
+    modalActive,
+  },
+  ref
+) {
   const [path, setPath] = useState(`/user/${no}.png`);
 
   const isManager = cate === '최고관리자';
@@ -25,7 +28,12 @@ const LiNav = ({
   // console.log(cate);
 
   return (
-    <StyledLi className={isActive ? 'active' : ''} onClick={onClick}>
+    <StyledLi
+      className={isActive ? 'active' : ''}
+      onClick={onClick}
+      onContextMenu={onContextMenu}
+      ref={ref}
+    >
       <div className="left-wrapper">
         <img
           src={path}
@@ -50,7 +58,7 @@ const LiNav = ({
       <p className="date text10">{new Date(date).format('Y.M.D')}</p>
     </StyledLi>
   );
-};
+});
 
 const StyledLi = styled.li`
   display: flex;

@@ -48,7 +48,7 @@ import { responsiveWidthMiddle, responsiveWidth } from '../../constants/index';
 const User = () => {
   const [index, setIndex] = useState(0);
 
-  const { users, getUser, getUserNo, getUserNoList } = useUser();
+  const { users, getUser, getUserNo, getUserNoList, deleteUser } = useUser();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const [isOpenNav, setIsOpenNav] = useState(true);
 
@@ -73,7 +73,7 @@ const User = () => {
           setIsCreatedReady={setIsCreatedReady}
           list={users}
           searchList={searchList}
-          deleteList={deleteList}
+          deleteList={deleteUser}
           isOpenNav={isOpenNav}
           setIsOpenNav={setIsOpenNav}
           //   userNoList={userNoList}
@@ -90,7 +90,7 @@ const User = () => {
           setIsCreatedReady={setIsCreatedReady}
           list={users}
           searchList={searchList}
-          deleteList={deleteList}
+          deleteList={deleteUser}
           isOpenNav={isOpenNav}
           setIsOpenNav={setIsOpenNav}
           //   userNoList={userNoList}
