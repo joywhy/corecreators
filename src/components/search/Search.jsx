@@ -22,6 +22,7 @@ const Search = () => {
     maxFollower: 3,
   };
   const [filter, setFilter] = useState(initalFilter);
+  
   const handleSubmit = () => {
     searchCreator(searchValue);
   };

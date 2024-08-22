@@ -34,11 +34,7 @@ const List = () => {
   const getCampaignsByUsertype = () => {
     let no = getUserInfoNo();
     let cate = getUserInfoCate();
-    if (cate === '거래처') {
-      getMemberCampaignList(no, 10, 10);
-    } else if (cate === '최고관리자') {
-      getList(30);
-    }
+    getList(100);
   };
 
   useEffect(() => {
@@ -49,11 +45,11 @@ const List = () => {
     fun();
   }, []);
 
-  if (loading) {
-    return (
-      <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <StyledDiv>{/* {width > responsiveWidth && <div ></div>} */}</StyledDiv>
+  //   );
+  // }
 
   return (
     <StyledDiv>

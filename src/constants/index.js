@@ -58,29 +58,29 @@ export const CHANNEL_STRUCTURE = {
   channel: '',
 };
 export const CAMPAIGN_STRUCTURE = {
-  name: '캠페인명',
-  userNo: 1,
+  name: '',
+  userNo: null,
   creatorList: [],
   // channelList: [{ ...CHANNEL_STRUCTURE }],
   channelList: [{ ...CHANNEL_STRUCTURE }],
   no: 0,
   date: '',
-  memo: '메모',
+  memo: '',
 };
 export const REPORT_STRUCTURE = {
-  name: '보고서명',
-  userNo: 1,
+  name: '',
+  userNo: null,
   linkList: [], //? text ?
   no: 0,
   date: '',
-  memo: '메모',
+  memo: '',
 };
 export const USER_STRUCTURE = {
   // no: 1, // 계정 고유 번호
   nick: '', // 닉네임 or 회사명
   name: '', // 이름
   tel: '', // 연락처
-  cate: '최고관리자', // 분류
+  cate: '', // 분류
   mail: '', // 메일
   bno: '', // 사업자번호
   memo: '', // 메모
@@ -133,10 +133,10 @@ export const type = [
     label: '틱톡',
     value: 'TT',
   },
-  {
-    label: '네이버',
-    value: 'NAV',
-  },
+  // {
+  //   label: '네이버',
+  //   value: 'NAV',
+  // },
 ];
 export const gender = [
   {

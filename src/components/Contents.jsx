@@ -8,7 +8,7 @@ import { responsiveWidthMiddle } from '../constants/index.js';
 import { useCampaign } from '../store/useCampaign.js';
 import { getUserInfoCate } from '../utils';
 import { CAMPAIGN_STRUCTURE } from '../constants';
-
+//리스트
 const Contents = ({
   index,
   isCreatedReady,

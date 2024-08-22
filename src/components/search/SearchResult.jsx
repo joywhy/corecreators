@@ -75,9 +75,13 @@ const getCateImg = (cate) => {
     return '/src/assets/channel/youtube_icon.svg';
   } else if (cate === '틱톡') {
     return '/src/assets/channel/tikkok_icon.svg';
-  } else {
+  }
+  
+  /*
+  else {
     return '/src/assets/channel/naver_icon.svg';
   }
+  */
 };
 const SearchResult = () => {
   const { members } = useCreator();
@@ -101,7 +105,7 @@ const SearchResult = () => {
               <div className="header">
                 <div className="wrapper">
                   <div className="Profilewrapper">
-                    <img src={creator.img} alt="프로필 이미지" />
+                    <img src={creator.img} crossorigin="anonymous" alt="프로필 이미지" />
                     <img src={cateImg} alt="유형" />
                   </div>
                   <div className="title2">
