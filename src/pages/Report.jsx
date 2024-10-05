@@ -104,88 +104,63 @@ const Report = () => {
     fun();
   }, []);
   return (
-    <StyledDiv>
-      {width > responsiveWidth && <Aside />}
-      <MainWrapper>
-        {width > 1000 && (
-          <Nav
-            title="보고서"
-            setIndex={setIndex}
-            index={index}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            list={report}
-            searchList={searchReport}
-            deleteList={deleteReport}
-            setIsOpenNav={setIsOpenNav}
-            isOpenNav={isOpenNav}
-            userNo={userNo}
-          />
-        )}
-        {width <= 1000 && isOpenNav && (
-          <Nav
-            title="보고서"
-            setIndex={setIndex}
-            index={index}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            list={report}
-            searchList={searchReport}
-            deleteList={deleteReport}
-            setIsOpenNav={setIsOpenNav}
-            isOpenNav={isOpenNav}
-            userNo={userNo}
-          />
-        )}
-        {width <= 1000 && !isOpenNav && (
-          <ReportContents
-            index={index}
-            setIndex={setIndex}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            content={report[index]}
-            basic={REPORT_STRUCTURE}
-            setIsOpenNav={setIsOpenNav}
-            userNo={userNo}
-          />
-        )}
-        {width > 1000 && (
-          <ReportContents
-            index={index}
-            setIndex={setIndex}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            content={report[index]}
-            basic={REPORT_STRUCTURE}
-            setIsOpenNav={setIsOpenNav}
-            userNo={userNo}
-          />
-        )}
-      </MainWrapper>
-      {width <= responsiveWidth && <AsideSmall />}
-    </StyledDiv>
+    <MainWrapper>
+      {width > 1000 && (
+        <Nav
+          title="보고서"
+          setIndex={setIndex}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          list={report}
+          searchList={searchReport}
+          deleteList={deleteReport}
+          setIsOpenNav={setIsOpenNav}
+          isOpenNav={isOpenNav}
+          userNo={userNo}
+        />
+      )}
+      {width <= 1000 && isOpenNav && (
+        <Nav
+          title="보고서"
+          setIndex={setIndex}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          list={report}
+          searchList={searchReport}
+          deleteList={deleteReport}
+          setIsOpenNav={setIsOpenNav}
+          isOpenNav={isOpenNav}
+          userNo={userNo}
+        />
+      )}
+      {width <= 1000 && !isOpenNav && (
+        <ReportContents
+          index={index}
+          setIndex={setIndex}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          content={report[index]}
+          basic={REPORT_STRUCTURE}
+          setIsOpenNav={setIsOpenNav}
+          userNo={userNo}
+        />
+      )}
+      {width > 1000 && (
+        <ReportContents
+          index={index}
+          setIndex={setIndex}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          content={report[index]}
+          basic={REPORT_STRUCTURE}
+          setIsOpenNav={setIsOpenNav}
+          userNo={userNo}
+        />
+      )}
+    </MainWrapper>
   );
 };
-
-const StyledDiv = styled.div`
-  width: 100%;
-  display: flex;
-
-  @media only screen and (width <= 1200px) {
-    & {
-      display: block;
-    }
-  }
-
-  & .content {
-    height: 100%;
-
-    @media only screen and (width <= 1200px) {
-      & {
-        height: calc(100vh - 70px);
-      }
-    }
-  }
-`;
 
 export default Report;

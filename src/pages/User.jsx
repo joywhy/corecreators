@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import NavUser from './NavUser';
-import UserContent from './UserContent';
+import NavUser from '../components/user/NavUser';
+import UserContent from '../components/user/UserContent';
 
-import { useUser } from '../../store/useUser';
+import { useUser } from '../store/useUser';
 import styled from 'styled-components';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
-import { responsiveWidthMiddle, responsiveWidth } from '../../constants/index';
+import useWindowDimensions from '../hooks/useWindowDimensions';
+import { responsiveWidthMiddle, responsiveWidth } from '../constants/index';
 //가데이터
 // const users = [
 //   {

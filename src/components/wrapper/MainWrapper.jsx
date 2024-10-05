@@ -20,12 +20,14 @@ const StyledMain = styled.main`
   height: 100vh;
   overflow: hidden;
 
+  /* border: 1px solid red; */
+
   & section {
     display: flex;
     max-width: 1000px;
     width: 100%;
 
-    /* max-height: 1000px; */
+    /* border: 1px solid blue; */
     height: 100%;
     border-radius: 10px;
     background-color: var(--white);

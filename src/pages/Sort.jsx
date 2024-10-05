@@ -12,35 +12,32 @@ const Sort = () => {
   let { height, width } = useWindowDimensions();
 
   return (
-    <StyledDiv>
-      {width > responsiveWidth && <Aside />}
-      <Main>
-        <div className="content">
-          <div className="button-wrapper">
-            <Button>엑셀 업로드</Button>
-          </div>
-          <Search />
+    <Main>
+      <div className="content">
+        <div className="button-wrapper">
+          <Button>엑셀 업로드</Button>
         </div>
-      </Main>
-      {width <= responsiveWidth && <AsideSmall />}
-    </StyledDiv>
+        <Search />
+      </div>
+    </Main>
   );
 };
 
-const StyledDiv = styled.div`
-  width: 100%;
+const Main = styled.main`
   display: flex;
-
-  @media only screen and (width <= 1200px) {
-    & {
-      display: block;
-    }
-  }
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-40);
+  height: 100vh;
+  overflow: hidden;
 
   & .content {
     height: 100%;
     background-color: var(--gray-10);
     overflow: scroll;
+    max-width: 1000px;
 
     @media only screen and (width <= 1200px) {
       & {
@@ -58,27 +55,10 @@ const StyledDiv = styled.div`
       }
     }
   }
-`;
-
-const Main = styled.main`
-  display: flex;
-  width: 100%;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--gray-40);
-  height: 100vh;
-  overflow: hidden;
-
-  & .content {
-    max-width: 1000px;
-  }
 
   @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
-
-      /* border:1px solid red; */
     }
   }
 `;
