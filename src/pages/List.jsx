@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Aside from '../components/aside/Aside.jsx';
-import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/wrapper/MainWrapper.jsx';
 import Nav from '../components/common/Nav.jsx';
 import Contents from '../components/Contents.jsx';
@@ -15,20 +13,12 @@ import styled from 'styled-components';
 
 const List = () => {
   const [index, setIndex] = useState(0); //사용자가 보고있는 목록의 인덱스
-  const {
-    userNo,
-    loading,
-    getList,
-    changeList,
-    getMemberCampaignList,
-    campaign,
-    searchList,
-    deleteList,
-  } = useCampaign();
-  const { users, userNoList, getUserNo, getUserNoList } = useUser();
+  const { userNo, getList, changeList, campaign, searchList, deleteList } =
+    useCampaign();
+  const { userNoList, getUserNo } = useUser();
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const [isOpenNav, setIsOpenNav] = useState(true);
-  // console.log(isOpenNav);
+
   let { width } = useWindowDimensions();
 
   const getCampaignsByUsertype = () => {
@@ -113,18 +103,5 @@ const List = () => {
     </MainWrapper>
   );
 };
-
-// const StyledDiv = styled.div`
-//   width: 100%;
-//   display: flex;
-
-//   @media only screen and (width <= 1200px) {
-//     & {
-//       display: block;
-//       flex-direction: column;
-//       align-items: end;
-//     }
-//   }
-// `;
 
 export default List;
