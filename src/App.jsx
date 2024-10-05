@@ -5,16 +5,16 @@ import Login from './pages/Login';
 import List from './pages/List';
 import Sort from './pages/Sort';
 import Report from './pages/Report';
-import Adm from './pages/Adm';
 import Aside from './components/aside/Aside';
 import AsideSmall from './components/aside/AsideSmall';
-
+import MainWrapper from './components/wrapper/MainWrapper';
 import { responsiveWidth } from './constants';
 import { useUserInfo } from './store/userInfoStore';
 import './App.css';
 import styled from 'styled-components';
 import useWindowDimensions from './hooks/useWindowDimensions';
 import User from './pages/User';
+import Log from './pages/Log';
 
 function App() {
   const { rememberUser } = useUserInfo();
@@ -33,6 +33,14 @@ function App() {
     );
   };
 
+  const Adm = () => {
+    return (
+      <MainWrapper>
+        <Outlet />
+      </MainWrapper>
+    );
+  };
+
   return (
     <Routes>
       <Route index element={<Home />} />
@@ -43,9 +51,8 @@ function App() {
         <Route path="report" element={<Report />} />
         <Route path="adm" element={<Adm />}>
           <Route path="user" element={<User />} />
-          {/*  <Route path="log" element={<Log />} />
-            <Route path="*" element={<h1>404 Not Found</h1>}
-             />*/}
+          <Route path="log" element={<Log />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
         </Route>
       </Route>
     </Routes>

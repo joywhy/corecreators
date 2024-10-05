@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Log = () => {
-  return <StyleDiv></StyleDiv>;
+  return <StyleDiv>log</StyleDiv>;
 };
 
 export default Log;
