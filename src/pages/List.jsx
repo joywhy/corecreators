@@ -52,83 +52,79 @@ const List = () => {
   // }
 
   return (
-    <StyledDiv>
-      {width > responsiveWidth && <Aside />}
-      <MainWrapper>
-        {width > responsiveWidthMiddle && (
-          <Nav
-            title="캠페인"
-            setIndex={setIndex}
-            index={index}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            list={campaign}
-            searchList={searchList}
-            deleteList={deleteList}
-            isOpenNav={isOpenNav}
-            setIsOpenNav={setIsOpenNav}
-            userNoList={userNoList}
-            userNo={userNo}
-          />
-        )}
-        {width <= responsiveWidthMiddle && isOpenNav && (
-          <Nav
-            style={{ width: '100vw' }}
-            title="캠페인"
-            setIndex={setIndex}
-            index={index}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            list={campaign}
-            searchList={searchList}
-            deleteList={deleteList}
-            setIsOpenNav={setIsOpenNav}
-            isOpenNav={isOpenNav}
-            userNoList={userNoList}
-            userNo={userNo}
-          />
-        )}
-        {width <= responsiveWidthMiddle && !isOpenNav && (
-          <Contents
-            changeContent={changeList}
-            content={campaign[index]}
-            index={index}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            setIsOpenNav={setIsOpenNav}
-            setIndex={setIndex}
-            userNo={userNo}
-          />
-        )}
-        {width > responsiveWidthMiddle && (
-          <Contents
-            changeContent={changeList}
-            content={campaign[index]}
-            index={index}
-            isCreatedReady={isCreatedReady}
-            setIsCreatedReady={setIsCreatedReady}
-            setIsOpenNav={setIsOpenNav}
-            setIndex={setIndex}
-            userNo={userNo}
-          />
-        )}
-      </MainWrapper>
-      {width <= responsiveWidth && <AsideSmall />}
-    </StyledDiv>
+    <MainWrapper>
+      {width > responsiveWidthMiddle && (
+        <Nav
+          title="캠페인"
+          setIndex={setIndex}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          list={campaign}
+          searchList={searchList}
+          deleteList={deleteList}
+          isOpenNav={isOpenNav}
+          setIsOpenNav={setIsOpenNav}
+          userNoList={userNoList}
+          userNo={userNo}
+        />
+      )}
+      {width <= responsiveWidthMiddle && isOpenNav && (
+        <Nav
+          style={{ width: '100vw' }}
+          title="캠페인"
+          setIndex={setIndex}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          list={campaign}
+          searchList={searchList}
+          deleteList={deleteList}
+          setIsOpenNav={setIsOpenNav}
+          isOpenNav={isOpenNav}
+          userNoList={userNoList}
+          userNo={userNo}
+        />
+      )}
+      {width <= responsiveWidthMiddle && !isOpenNav && (
+        <Contents
+          changeContent={changeList}
+          content={campaign[index]}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          setIsOpenNav={setIsOpenNav}
+          setIndex={setIndex}
+          userNo={userNo}
+        />
+      )}
+      {width > responsiveWidthMiddle && (
+        <Contents
+          changeContent={changeList}
+          content={campaign[index]}
+          index={index}
+          isCreatedReady={isCreatedReady}
+          setIsCreatedReady={setIsCreatedReady}
+          setIsOpenNav={setIsOpenNav}
+          setIndex={setIndex}
+          userNo={userNo}
+        />
+      )}
+    </MainWrapper>
   );
 };
 
-const StyledDiv = styled.div`
-  width: 100%;
-  display: flex;
+// const StyledDiv = styled.div`
+//   width: 100%;
+//   display: flex;
 
-  @media only screen and (width <= 1200px) {
-    & {
-      display: block;
-      flex-direction: column;
-      align-items: end;
-    }
-  }
-`;
+//   @media only screen and (width <= 1200px) {
+//     & {
+//       display: block;
+//       flex-direction: column;
+//       align-items: end;
+//     }
+//   }
+// `;
 
 export default List;
