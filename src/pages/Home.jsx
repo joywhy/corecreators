@@ -83,27 +83,29 @@ const StyledLi = styled.li`
   position: relative;
   display: flex;
   flex-flow: column wrap;
-  max-width: 300px;
+  max-width: 250px;
   width: 100%;
   margin-bottom: 20px;
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   cursor: pointer;
 
+  /* border: 1px solid red; */
+
   & > img {
-    max-width: 300px;
     width: 100%;
-    height: 200px;
   }
 
   & > h1 {
     font-weight: bold;
     margin-top: 30px;
     text-align: center;
+    font-size: 1.25rem;
   }
 
   & > p {
     margin-top: 16px;
     text-align: center;
+    font-size: 1rem;
   }
 
   &:hover {

@@ -30,7 +30,7 @@ const handleClickLogout = () => {
 };
 
 const StyledButton = styled.button`
-  padding: 8px 20px;
+  padding: 2px 14px;
   height: 40px;
   border-radius: 5px;
   font-size: 16px;
