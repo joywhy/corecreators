@@ -1,5 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/header/Header';
+
 import { CARDS } from '../constants';
 import { isLogin } from '../utils';
 
@@ -26,10 +28,10 @@ const Home = () => {
 };
 
 const Card = ({ title, desc, img, url }) => {
+  const navigate = useNavigate();
   const handleClick = (url) => {
     if (isLogin()) {
-      location.href = '';
-      location.href = `${url}`;
+      navigate(`/${url}`);
     } else {
       alert('로그인이 필요합니다.');
       return;
@@ -78,11 +80,14 @@ const StyledUl = styled.ul`
 `;
 // card css
 const StyledLi = styled.li`
+  position: relative;
   display: flex;
   flex-flow: column wrap;
   max-width: 300px;
   width: 100%;
   margin-bottom: 20px;
+  transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+  cursor: pointer;
 
   & > img {
     max-width: 300px;
@@ -99,6 +104,10 @@ const StyledLi = styled.li`
   & > p {
     margin-top: 16px;
     text-align: center;
+  }
+
+  &:hover {
+    transform: scale(1.05);
   }
 `;
 

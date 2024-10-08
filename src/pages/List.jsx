@@ -9,13 +9,12 @@ import { useCampaign } from '../store/useCampaign.js';
 import { useUser } from '../store/useUser.js';
 import { getUserInfoNo, getUserInfoCate } from '../utils';
 
-import styled from 'styled-components';
-
 const List = () => {
   const [index, setIndex] = useState(0); //사용자가 보고있는 목록의 인덱스
   const { userNo, getList, changeList, campaign, searchList, deleteList } =
     useCampaign();
   const { userNoList, getUserNo } = useUser();
+
   const [isCreatedReady, setIsCreatedReady] = useState(true);
   const [isOpenNav, setIsOpenNav] = useState(true);
 
@@ -43,7 +42,7 @@ const List = () => {
 
   return (
     <MainWrapper>
-      {width > responsiveWidthMiddle && (
+      {width > responsiveWidthMiddle && ( // 750
         <Nav
           title="캠페인"
           setIndex={setIndex}
