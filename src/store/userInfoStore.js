@@ -5,7 +5,7 @@ import { create } from 'zustand';
 // cate : "거래처",
 // mail : "admin@lieul.com",
 // memo : null,
-// name : "박재천",
+// name : "이은희",
 // nick : "리을컴퍼니",
 // no : 2,
 // tel : "070-7630-1111",

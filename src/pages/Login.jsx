@@ -31,13 +31,19 @@ const LoginForm = () => {
   const { error, sendLoginRequest } = useUserInfo();
   const initialValues = { email: '', password: '' };
   const handleSubmitLogin = async () => {
-    console.log(values);
-    await sendLoginRequest(values);
-    if (error) {
-      alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.');
-    } else {
-      navigateToPath('/');
-    }
+    // 로그인이 되지 않아 임시 주석 처리함
+
+    // console.log(values);
+    // await sendLoginRequest(values);
+    // if (error) {
+    //   alert('아이디가 존재하지 않거나 비밀번호가 잘못되었습니다.');
+    // } else {
+    //   navigateToPath('/');
+    // }
+
+    // 로그인이 되지 않아 후속 조치함 (임시)
+    navigateToPath('/');
+    cookie.my = 'leh';
   };
 
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } =
