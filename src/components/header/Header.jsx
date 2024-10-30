@@ -1,15 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 import Button from '../common/Button';
 import Logo from '../common/Logo.jsx';
+
 import { useUserInfo } from '../../store/userInfoStore.js';
+
 import img from '/src/assets/logo.svg';
 import styled from 'styled-components';
 
 const Header = ({ isLogin }) => {
   const { userInfo, rememberUser } = useUserInfo();
-
-  const navigateToLogin = () => {
-    location.href = '/login';
-  };
+  const navigate = useNavigate();
 
   return (
     <StyledHeader>
@@ -17,7 +18,7 @@ const Header = ({ isLogin }) => {
       {isLogin ? (
         <LogindHeader name={userInfo.name} />
       ) : (
-        <Button type="login" primary onClick={navigateToLogin}>
+        <Button type="login" primary onClick={() => navigate('login')}>
           로그인
         </Button>
       )}
@@ -52,8 +53,8 @@ const StyledHeader = styled.header`
   flex-wrap: wrap;
   max-width: var(--home-max-width);
   width: 80%;
-  height: 258px;
-  padding-bottom: 17px;
+  height: auto;
+  margin-top: 5rem;
 
   & .rightside span {
     margin-right: 20px;

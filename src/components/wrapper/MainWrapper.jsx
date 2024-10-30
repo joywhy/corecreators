@@ -20,14 +20,10 @@ const StyledMain = styled.main`
   height: 100vh;
   overflow: hidden;
 
-  /* border: 1px solid red; */
-
   & section {
     display: flex;
     max-width: 1000px;
     width: 100%;
-
-    /* border: 1px solid blue; */
     height: 100%;
     border-radius: 10px;
     background-color: var(--white);
@@ -39,8 +35,6 @@ const StyledMain = styled.main`
   @media only screen and (width <= 1200px) {
     & {
       height: calc(100vh - 70px);
-
-      /* border:1px solid red; */
     }
   }
 `;

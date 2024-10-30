@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Aside from '../components/aside/Aside.jsx';
 import AsideSmall from '../components/aside/AsideSmall.jsx';
 import MainWrapper from '../components/wrapper/MainWrapper.jsx';
-import Nav from '../components/common/Nav.jsx';
+import Nav from '../components/nav/Nav.jsx';
 import ReportContents from '../components/ReportContents.jsx';
 import { useReport } from '../store/useReport.js';
 import { getUserInfoNo, getUserInfoCate } from '../utils';
@@ -107,7 +107,6 @@ const Report = () => {
     <MainWrapper>
       {width > 1000 && (
         <Nav
-          title="보고서"
           setIndex={setIndex}
           index={index}
           isCreatedReady={isCreatedReady}
@@ -122,7 +121,6 @@ const Report = () => {
       )}
       {width <= 1000 && isOpenNav && (
         <Nav
-          title="보고서"
           setIndex={setIndex}
           index={index}
           isCreatedReady={isCreatedReady}
