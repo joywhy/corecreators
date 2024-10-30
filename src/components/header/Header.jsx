@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import Button from '../common/Button';
+import LoginButton from '../molecules/LoginButton.jsx';
+import Button from '../common/Button.jsx';
 import Logo from '../common/Logo.jsx';
 
 import { useUserInfo } from '../../store/userInfoStore.js';
@@ -15,13 +16,7 @@ const Header = ({ isLogin }) => {
   return (
     <StyledHeader>
       <Logo src={img} />
-      {isLogin ? (
-        <LogindHeader name={userInfo.name} />
-      ) : (
-        <Button type="login" primary onClick={() => navigate('login')}>
-          로그인
-        </Button>
-      )}
+      {isLogin ? <LogindHeader name={userInfo.name} /> : <LoginButton />}
     </StyledHeader>
   );
 };
