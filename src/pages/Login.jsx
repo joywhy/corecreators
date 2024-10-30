@@ -9,7 +9,7 @@ import styled from 'styled-components';
 const Login = () => {
   const email = 'corecreators.korea@gmail.com';
   const des =
-    '코어 크리에이터스 솔루션 접속 문의는 공식 메일로 해주시기 바랍니다. ';
+    '코어 크리에이터스 솔루션 접속 문의는 공식 메일로 해주시기 바랍니다.';
 
   return (
     <>

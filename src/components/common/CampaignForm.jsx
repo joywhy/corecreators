@@ -5,7 +5,7 @@ import ChannelList from '../channelList/ChannelList.jsx';
 import useForm from '../../hooks/useForm.jsx';
 // import { USER_STRUCTURE } from '../../constants';
 import styled from 'styled-components';
-// listup  form  이랑 report form  
+// listup  form  이랑 report form
 const CampaignForm = ({
   index,
   setIsCreatedReady,
@@ -35,13 +35,10 @@ const CampaignForm = ({
     return {};
   };
   const handleSubmitCampaign = async () => {
-
     setIsCreatedReady(true);
     await setList(values);
-    
     //전송
     setIndex(0);
-
     alert('완료되었습니다.');
   };
   let {

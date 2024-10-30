@@ -66,7 +66,6 @@ const User = () => {
     <StyledDiv>
       {width > responsiveWidthMiddle && (
         <NavUser
-          title="회원"
           setIndex={setIndex}
           index={index}
           isCreatedReady={isCreatedReady}
@@ -83,7 +82,7 @@ const User = () => {
       {width <= responsiveWidthMiddle && isOpenNav && (
         <NavUser
           style={{ width: '100vw' }}
-          title="회원"
+          // title="회원"
           setIndex={setIndex}
           index={index}
           isCreatedReady={isCreatedReady}

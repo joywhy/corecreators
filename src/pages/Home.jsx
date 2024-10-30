@@ -11,7 +11,6 @@ const Home = () => {
   return (
     <>
       <Header isLogin={isLogin()} />
-
       <main>
         <nav>
           <StyledUl>
@@ -21,8 +20,6 @@ const Home = () => {
           </StyledUl>
         </nav>
       </main>
-
-      {/* <Footer/> */}
     </>
   );
 };
@@ -88,8 +85,6 @@ const StyledLi = styled.li`
   margin-bottom: 20px;
   transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
   cursor: pointer;
-
-  /* border: 1px solid red; */
 
   & > img {
     width: 100%;

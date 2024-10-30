@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import LiNav from './LiNav';
-import NavWrapper from '../wrapper/NavWrapper';
+import NavWrapper from '../nav/NavWrapper';
+
 import styled from 'styled-components';
 
 import searchImg from '/src/assets/search_icon.svg';
 import plusImg from '/src/assets/common/cross_icon.svg';
 const NavUser = ({
-  title = '캠페인',
   index,
   setIndex,
   setIsCreatedReady,
@@ -40,7 +41,7 @@ const NavUser = ({
   return (
     <NavWrapper isOpenNav={isOpenNav}>
       <Header
-        title={title}
+        // title={title}
         list={list}
         searchList={searchList}
         setIndex={setIndex}
@@ -118,7 +119,7 @@ const NavUser = ({
 };
 
 const Header = ({
-  title,
+  // title,
   isManager,
   list,
   searchList,
@@ -126,6 +127,12 @@ const Header = ({
   setIsCreatedReady,
   isCreatedReady,
 }) => {
+  const titles = {
+    '/list': '캠페인',
+    '/report': '보고서',
+    '/adm/user': '회원',
+  };
+  let pathname = useLocation().pathname;
   const [showInput, setShowInput] = useState(false);
   const [value, setValue] = useState('');
   const inputRef = useRef(null);
@@ -179,7 +186,7 @@ const Header = ({
   }
   return (
     <StyledHeader>
-      <h1 className="text20"> {title}</h1>
+      <h1 className="text20"> {titles[pathname]}</h1>
 
       <div>
         <button onClick={handleCLick}>

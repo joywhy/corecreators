@@ -3,7 +3,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import List from './pages/List';
+import ListUp from './pages/ListUp';
 import Sort from './pages/Sort';
 import Report from './pages/Report';
 import Aside from './components/aside/Aside';
@@ -49,7 +49,7 @@ function App() {
       <Route index element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route element={<Layer />}>
-        <Route path="list" element={<List />} />
+        <Route path="list" element={<ListUp />} />
         <Route path="sort" element={<Sort />} />
         <Route path="report" element={<Report />} />
         <Route path="adm" element={<BoxLayer />}>

@@ -1,9 +1,10 @@
 import React from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavWrapper = ({ children, isOpenNav }) => {
-  // console.log(window.location.pathname);
-  const isReportNav = window.location.pathname === '/report';
+  const isReportNav = useLocation().pathname === '/report';
+  // console.log('동작'); /
   return (
     <StyledDiv
       className={

@@ -16,6 +16,7 @@ const Contents = ({
   setIsOpenNav,
   setIndex,
   userNo,
+  setIsContentOpen,
 }) => {
   //가데이터
   const creatorList = [
@@ -45,6 +46,7 @@ const Contents = ({
 
   const handleBackCick = () => {
     setIsOpenNav(true);
+    setIsContentOpen(false);
   };
   return (
     <StyledDiv>
